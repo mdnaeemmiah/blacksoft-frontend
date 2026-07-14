@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { apiRequest } from './apiClient';
 
 export type CapabilityCard = {
   id: string;
@@ -11,46 +12,15 @@ export type CapabilityCard = {
   enabled: boolean;
 };
 
-const STORAGE_KEY = 'blacksoft_capability_cards';
 const STORE_EVENT = 'blacksoft_capability_cards_updated';
+const API_PATH = '/dashboard/capabilities';
 
-export const DEFAULT_CAPABILITY_CARDS: CapabilityCard[] = [
-  {
-    id: 'custom-ai-agents',
-    title: 'Custom AI Agents',
-    description: 'Autonomous digital employees tailored to your business logic and operational goals.',
-    icon: 'AI',
-    link: '#services',
-    enabled: true,
-  },
-  {
-    id: 'llm-specialization',
-    title: 'LLM Specialization',
-    description: 'Fine-tuning and deploying advanced LLMs for context-specific, high-performance tasks.',
-    icon: 'LLM',
-    link: '#services',
-    enabled: true,
-  },
-  {
-    id: 'workflow-automation',
-    title: 'Workflow Automation',
-    description: 'Streamlining legacy environments with intelligent, self-correcting software bridges.',
-    icon: 'WF',
-    link: '#services',
-    enabled: true,
-  },
-  {
-    id: 'enterprise-web',
-    title: 'Enterprise Web',
-    description: 'Scalable, high-fidelity web applications with a foundation of performance and security.',
-    icon: 'EW',
-    link: '#services',
-    enabled: true,
-  },
-];
+const EMPTY_CAPABILITY_CARDS: CapabilityCard[] = [];
 
-let cachedRawValue: string | null = null;
-let cachedCardsValue: CapabilityCard[] = DEFAULT_CAPABILITY_CARDS;
+let cachedCardsValue: CapabilityCard[] = EMPTY_CAPABILITY_CARDS;
+let hydrationPromise: Promise<void> | null = null;
+let hydrated = false;
+const listeners = new Set<() => void>();
 
 function createId(title: string): string {
   return title
@@ -62,7 +32,7 @@ function createId(title: string): string {
 
 function normalizeCards(cards: unknown): CapabilityCard[] {
   if (!Array.isArray(cards)) {
-    return DEFAULT_CAPABILITY_CARDS;
+    return EMPTY_CAPABILITY_CARDS;
   }
 
   const normalized = cards
@@ -78,63 +48,93 @@ function normalizeCards(cards: unknown): CapabilityCard[] {
       enabled: typeof item.enabled === 'boolean' ? item.enabled : true,
     }));
 
-  return normalized.length > 0 ? normalized : DEFAULT_CAPABILITY_CARDS;
+  return normalized;
 }
 
-export function getCapabilityCards(): CapabilityCard[] {
-  if (typeof window === 'undefined') {
-    return DEFAULT_CAPABILITY_CARDS;
+function persistCache(cards: CapabilityCard[]) {
+  cachedCardsValue = cards;
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new Event(STORE_EVENT));
   }
-
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) {
-      cachedRawValue = null;
-      cachedCardsValue = DEFAULT_CAPABILITY_CARDS;
-      return DEFAULT_CAPABILITY_CARDS;
-    }
-
-    if (raw === cachedRawValue) {
-      return cachedCardsValue;
-    }
-
-    cachedRawValue = raw;
-    cachedCardsValue = normalizeCards(JSON.parse(raw));
-    return cachedCardsValue;
-  } catch {
-    cachedRawValue = null;
-    cachedCardsValue = DEFAULT_CAPABILITY_CARDS;
-    return DEFAULT_CAPABILITY_CARDS;
-  }
+  listeners.forEach((listener) => listener());
 }
 
-export function setCapabilityCards(cards: CapabilityCard[]): void {
+async function hydrateFromApi(): Promise<void> {
   if (typeof window === 'undefined') {
     return;
   }
 
-  const normalized = normalizeCards(cards);
-  const serialized = JSON.stringify(normalized);
+  try {
+    const items = await apiRequest<CapabilityCard[]>(API_PATH);
+    persistCache(normalizeCards(items));
+  } catch {
+    persistCache(EMPTY_CAPABILITY_CARDS);
+  } finally {
+    hydrated = true;
+  }
+}
 
-  cachedRawValue = serialized;
-  cachedCardsValue = normalized;
-  localStorage.setItem(STORAGE_KEY, serialized);
-  window.dispatchEvent(new Event(STORE_EVENT));
+function ensureHydrated() {
+  if (typeof window === 'undefined' || hydrated || hydrationPromise) {
+    return;
+  }
+
+  hydrationPromise = hydrateFromApi().finally(() => {
+    hydrationPromise = null;
+  });
+}
+
+export function getCapabilityCards(): CapabilityCard[] {
+  if (typeof window === 'undefined') {
+    return EMPTY_CAPABILITY_CARDS;
+  }
+
+  ensureHydrated();
+  return cachedCardsValue;
+}
+
+export function setCapabilityCards(cards: CapabilityCard[]): void {
+  const normalized = normalizeCards(cards);
+  persistCache(normalized);
+
+  void apiRequest<CapabilityCard[]>(API_PATH, {
+    method: 'PUT',
+    body: JSON.stringify(normalized),
+  }).then((items) => {
+    persistCache(normalizeCards(items));
+  }).catch(() => {
+    // Keep optimistic state if the backend is temporarily unavailable.
+  });
 }
 
 export function addCapabilityCard(title: string, description: string, icon: string, link: string): CapabilityCard[] {
-  const next = [
-    ...getCapabilityCards(),
-    {
-      id: createId(title),
-      title: title.trim(),
-      description: description.trim(),
-      icon: icon.trim() || 'AI',
-      link: link.trim() || '#services',
-      enabled: true,
-    },
-  ];
-  setCapabilityCards(next);
+  const optimisticCard: CapabilityCard = {
+    id: createId(title),
+    title: title.trim(),
+    description: description.trim(),
+    icon: icon.trim() || 'AI',
+    link: link.trim() || '#services',
+    enabled: true,
+  };
+
+  const next = [...getCapabilityCards(), optimisticCard];
+  persistCache(next);
+
+  void apiRequest<CapabilityCard>(API_PATH, {
+    method: 'POST',
+    body: JSON.stringify({
+      title: optimisticCard.title,
+      description: optimisticCard.description,
+      icon: optimisticCard.icon,
+      link: optimisticCard.link,
+      enabled: optimisticCard.enabled,
+    }),
+  }).then((created) => {
+    persistCache(getCapabilityCards().map((card) => (card.id === optimisticCard.id ? normalizeCards([created])[0] : card)));
+  }).catch(() => {
+    // Keep optimistic card if the request fails.
+  });
+
   return next;
 }
 
@@ -154,13 +154,31 @@ export function updateCapabilityCard(
         }
       : card
   ));
-  setCapabilityCards(next);
+
+  persistCache(next);
+
+  void apiRequest<CapabilityCard>(`${API_PATH}/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify(patch),
+  }).then((updated) => {
+    persistCache(getCapabilityCards().map((card) => (card.id === id ? normalizeCards([updated])[0] : card)));
+  }).catch(() => {
+    // Keep optimistic state if the backend request fails.
+  });
+
   return next;
 }
 
 export function deleteCapabilityCard(id: string): CapabilityCard[] {
   const next = getCapabilityCards().filter((card) => card.id !== id);
-  setCapabilityCards(next);
+  persistCache(next);
+
+  void apiRequest<void>(`${API_PATH}/${id}`, {
+    method: 'DELETE',
+  }).catch(() => {
+    // Keep optimistic removal if the backend request fails.
+  });
+
   return next;
 }
 
@@ -168,19 +186,23 @@ export function useCapabilityCards(): [CapabilityCard[], React.Dispatch<React.Se
   const subscribe = React.useCallback((onStoreChange: () => void) => {
     const handleUpdate = () => onStoreChange();
 
+    listeners.add(handleUpdate);
     window.addEventListener(STORE_EVENT, handleUpdate);
-    window.addEventListener('storage', handleUpdate);
 
     return () => {
+      listeners.delete(handleUpdate);
       window.removeEventListener(STORE_EVENT, handleUpdate);
-      window.removeEventListener('storage', handleUpdate);
     };
+  }, []);
+
+  React.useEffect(() => {
+    ensureHydrated();
   }, []);
 
   const cards = React.useSyncExternalStore(
     subscribe,
     getCapabilityCards,
-    () => DEFAULT_CAPABILITY_CARDS
+    () => EMPTY_CAPABILITY_CARDS
   );
 
   const setCards = React.useCallback<React.Dispatch<React.SetStateAction<CapabilityCard[]>>>((value) => {

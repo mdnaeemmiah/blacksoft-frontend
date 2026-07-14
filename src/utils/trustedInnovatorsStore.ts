@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { apiRequest } from './apiClient';
 
 export type TrustedInnovator = {
   id: string;
@@ -8,20 +9,15 @@ export type TrustedInnovator = {
   enabled: boolean;
 };
 
-const STORAGE_KEY = 'blacksoft_trusted_innovators';
 const STORE_EVENT = 'blacksoft_trusted_innovators_updated';
+const API_PATH = '/dashboard/innovators';
 
-export const DEFAULT_TRUSTED_INNOVATORS: TrustedInnovator[] = [
-  { id: 'metalogic', name: 'METALOGIC', enabled: true },
-  { id: 'cloudrise', name: 'CLOUDRISE', enabled: true },
-  { id: 'zenith-ai', name: 'ZENITH AI', enabled: true },
-  { id: 'novasphere', name: 'NOVASPHERE', enabled: true },
-  { id: 'velocity', name: 'VELOCITY', enabled: true },
-  { id: 'lumina', name: 'LUMINA', enabled: true },
-];
+const EMPTY_TRUSTED_INNOVATORS: TrustedInnovator[] = [];
 
-let cachedRawValue: string | null = null;
-let cachedItemsValue: TrustedInnovator[] = DEFAULT_TRUSTED_INNOVATORS;
+let cachedItemsValue: TrustedInnovator[] = EMPTY_TRUSTED_INNOVATORS;
+let hydrationPromise: Promise<void> | null = null;
+let hydrated = false;
+const listeners = new Set<() => void>();
 
 function createId(name: string): string {
   return name
@@ -33,7 +29,7 @@ function createId(name: string): string {
 
 function normalizeItems(items: unknown): TrustedInnovator[] {
   if (!Array.isArray(items)) {
-    return DEFAULT_TRUSTED_INNOVATORS;
+    return EMPTY_TRUSTED_INNOVATORS;
   }
 
   const normalized = items
@@ -45,56 +41,79 @@ function normalizeItems(items: unknown): TrustedInnovator[] {
     }))
     .filter((item) => item.name.trim().length > 0);
 
-  return normalized.length > 0 ? normalized : DEFAULT_TRUSTED_INNOVATORS;
+  return normalized;
 }
 
-export function getTrustedInnovators(): TrustedInnovator[] {
-  if (typeof window === 'undefined') {
-    return DEFAULT_TRUSTED_INNOVATORS;
+function persistCache(items: TrustedInnovator[]) {
+  cachedItemsValue = items;
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new Event(STORE_EVENT));
   }
-
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) {
-      cachedRawValue = null;
-      cachedItemsValue = DEFAULT_TRUSTED_INNOVATORS;
-      return DEFAULT_TRUSTED_INNOVATORS;
-    }
-
-    if (raw === cachedRawValue) {
-      return cachedItemsValue;
-    }
-
-    cachedRawValue = raw;
-    cachedItemsValue = normalizeItems(JSON.parse(raw));
-    return cachedItemsValue;
-  } catch {
-    cachedRawValue = null;
-    cachedItemsValue = DEFAULT_TRUSTED_INNOVATORS;
-    return DEFAULT_TRUSTED_INNOVATORS;
-  }
+  listeners.forEach((listener) => listener());
 }
 
-export function setTrustedInnovators(items: TrustedInnovator[]): void {
+async function hydrateFromApi(): Promise<void> {
   if (typeof window === 'undefined') {
     return;
   }
 
-  const normalized = normalizeItems(items);
-  const serialized = JSON.stringify(normalized);
+  try {
+    const items = await apiRequest<TrustedInnovator[]>(API_PATH);
+    persistCache(normalizeItems(items));
+  } catch {
+    persistCache(EMPTY_TRUSTED_INNOVATORS);
+  } finally {
+    hydrated = true;
+  }
+}
 
-  cachedRawValue = serialized;
-  cachedItemsValue = normalized;
-  localStorage.setItem(STORAGE_KEY, serialized);
-  window.dispatchEvent(new Event(STORE_EVENT));
+function ensureHydrated() {
+  if (typeof window === 'undefined' || hydrated || hydrationPromise) {
+    return;
+  }
+
+  hydrationPromise = hydrateFromApi().finally(() => {
+    hydrationPromise = null;
+  });
+}
+
+export function getTrustedInnovators(): TrustedInnovator[] {
+  if (typeof window === 'undefined') {
+    return EMPTY_TRUSTED_INNOVATORS;
+  }
+
+  ensureHydrated();
+  return cachedItemsValue;
+}
+
+export function setTrustedInnovators(items: TrustedInnovator[]): void {
+  const normalized = normalizeItems(items);
+  persistCache(normalized);
+
+  void apiRequest<TrustedInnovator[]>(API_PATH, {
+    method: 'PUT',
+    body: JSON.stringify(normalized),
+  }).then((result) => {
+    persistCache(normalizeItems(result));
+  }).catch(() => {
+    // Keep optimistic state if the backend is temporarily unavailable.
+  });
 }
 
 export function addTrustedInnovator(name: string): TrustedInnovator[] {
-  const next = [
-    ...getTrustedInnovators(),
-    { id: createId(name), name: name.trim(), enabled: true },
-  ];
-  setTrustedInnovators(next);
+  const optimisticItem = { id: createId(name), name: name.trim(), enabled: true };
+  const next = [...getTrustedInnovators(), optimisticItem];
+  persistCache(next);
+
+  void apiRequest<TrustedInnovator>(API_PATH, {
+    method: 'POST',
+    body: JSON.stringify({ name: optimisticItem.name, enabled: optimisticItem.enabled }),
+  }).then((created) => {
+    persistCache(getTrustedInnovators().map((item) => (item.id === optimisticItem.id ? normalizeItems([created])[0] : item)));
+  }).catch(() => {
+    // Keep optimistic item if the backend request fails.
+  });
+
   return next;
 }
 
@@ -108,13 +127,31 @@ export function updateTrustedInnovator(id: string, patch: Partial<Pick<TrustedIn
         }
       : item
   ));
-  setTrustedInnovators(next);
+
+  persistCache(next);
+
+  void apiRequest<TrustedInnovator>(`${API_PATH}/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify(patch),
+  }).then((updated) => {
+    persistCache(getTrustedInnovators().map((item) => (item.id === id ? normalizeItems([updated])[0] : item)));
+  }).catch(() => {
+    // Keep optimistic state if the backend request fails.
+  });
+
   return next;
 }
 
 export function deleteTrustedInnovator(id: string): TrustedInnovator[] {
   const next = getTrustedInnovators().filter((item) => item.id !== id);
-  setTrustedInnovators(next);
+  persistCache(next);
+
+  void apiRequest<void>(`${API_PATH}/${id}`, {
+    method: 'DELETE',
+  }).catch(() => {
+    // Keep optimistic removal if the backend request fails.
+  });
+
   return next;
 }
 
@@ -122,19 +159,23 @@ export function useTrustedInnovators(): [TrustedInnovator[], React.Dispatch<Reac
   const subscribe = React.useCallback((onStoreChange: () => void) => {
     const handleUpdate = () => onStoreChange();
 
+    listeners.add(handleUpdate);
     window.addEventListener(STORE_EVENT, handleUpdate);
-    window.addEventListener('storage', handleUpdate);
 
     return () => {
+      listeners.delete(handleUpdate);
       window.removeEventListener(STORE_EVENT, handleUpdate);
-      window.removeEventListener('storage', handleUpdate);
     };
+  }, []);
+
+  React.useEffect(() => {
+    ensureHydrated();
   }, []);
 
   const items = React.useSyncExternalStore(
     subscribe,
     getTrustedInnovators,
-    () => DEFAULT_TRUSTED_INNOVATORS
+    () => EMPTY_TRUSTED_INNOVATORS
   );
 
   const setItems = React.useCallback<React.Dispatch<React.SetStateAction<TrustedInnovator[]>>>((value) => {

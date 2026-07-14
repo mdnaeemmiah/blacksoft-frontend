@@ -12,11 +12,16 @@ export default function Capabilities() {
     <section id="services" className={styles.capabilitiesSection}>
       <div className={`container ${styles.capabilitiesContainer}`}>
         <div className={styles.headerBlock}>
-          <span className={styles.tag}>CORE CAPABILITIES</span>
-          <h2 className={styles.title}>Architecting Intelligence</h2>
-          <p className={styles.subtext}>
-            From bespoke automation to enterprise-grade AI models, we build core engineering for modern business.
-          </p>
+          <div>
+            <span className={styles.tag}>WHAT WE BUILD</span>
+            <h2 className={styles.title}>From idea to intelligent product.</h2>
+          </div>
+          <div className={styles.headerAside}>
+            <span className={styles.sectionIndex}>01 <i /> 04</span>
+            <p className={styles.subtext}>
+              Product strategy, AI agents, and the systems that make ambitious software useful in the real world.
+            </p>
+          </div>
         </div>
 
         <div className={styles.cardGrid}>

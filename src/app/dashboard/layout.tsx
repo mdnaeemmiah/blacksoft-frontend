@@ -10,11 +10,13 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
   const getBreadcrumbs = () => {
     const isOverview = pathname === '/dashboard' || pathname === '/dashboard/';
+    const current = pathname.split('/').filter(Boolean).pop() || 'overview';
+    const label = isOverview ? 'Overview' : current.split('-').map((part) => part.charAt(0).toUpperCase() + part.slice(1)).join(' ');
     return (
       <span>
         <span>Dashboard</span>
         <span>/</span>
-        <span>{isOverview ? 'Overview' : 'Overview'}</span>
+        <span>{label}</span>
       </span>
     );
   };
@@ -60,6 +62,56 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               </svg>
               Architecting Intelligence
             </Link>
+            <Link
+              href="/dashboard/ecommerce"
+              className={`${styles.navLink} ${pathname.startsWith('/dashboard/ecommerce') ? styles.activeLink : ''}`}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={styles.icon}>
+                <path d="M6 6h15l-1.5 9h-12z" />
+                <path d="M6 6 5 3H2" />
+                <circle cx="9" cy="19" r="1" />
+                <circle cx="18" cy="19" r="1" />
+              </svg>
+              E-commerce
+            </Link>
+            <Link
+              href="/dashboard/app-websites"
+              className={`${styles.navLink} ${pathname.startsWith('/dashboard/app-websites') ? styles.activeLink : ''}`}
+            >
+              <span className={styles.icon}>W</span>
+              App & Website
+            </Link>
+            <Link
+              href="/dashboard/ai-solutions"
+              className={`${styles.navLink} ${pathname.startsWith('/dashboard/ai-solutions') ? styles.activeLink : ''}`}
+            >
+              <span className={styles.icon}>AI</span>
+              AI Solutions
+            </Link>
+            <Link
+              href="/dashboard/technology-stack"
+              className={`${styles.navLink} ${pathname.startsWith('/dashboard/technology-stack') ? styles.activeLink : ''}`}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={styles.icon}>
+                <path d="M4 7h16" />
+                <path d="M4 12h10" />
+                <path d="M4 17h13" />
+                <circle cx="18" cy="12" r="2" />
+              </svg>
+              Technology Stack
+            </Link>
+            <Link
+              href="/dashboard/team-members"
+              className={`${styles.navLink} ${pathname.startsWith('/dashboard/team-members') ? styles.activeLink : ''}`}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={styles.icon}>
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+              </svg>
+              Team Members
+            </Link>
           </div>
         </nav>
       </aside>
@@ -93,6 +145,15 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             </div>
           </div>
         </header>
+
+        <nav className={styles.mobileNav} aria-label="Dashboard sections">
+          <Link href="/dashboard">Overview</Link>
+          <Link href="/dashboard/architecting-intelligence">Capabilities</Link>
+          <Link href="/dashboard/ecommerce">Commerce</Link>
+          <Link href="/dashboard/app-websites">Websites</Link>
+          <Link href="/dashboard/ai-solutions">AI solutions</Link>
+          <Link href="/dashboard/team-members">Team</Link>
+        </nav>
 
         <main className={styles.mainContent}>
           {children}

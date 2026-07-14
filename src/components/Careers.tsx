@@ -35,7 +35,7 @@ export default function Careers() {
         
         {/* Left Column: Copy & Jobs */}
         <div className={styles.leftColumn}>
-          <h2 className={styles.title}>Build the Future of <span className={styles.highlight}>Autonomy</span></h2>
+          <h2 className={styles.title}>Build the Future</h2>
           <p className={styles.description}>
             We are looking for the outliers—the researchers who dream in neural nets and the engineers who optimize for the last nanosecond. Join us in building the operating system for the next century.
           </p>

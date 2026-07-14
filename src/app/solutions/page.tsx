@@ -6,6 +6,7 @@ import Fintech from '../../components/Fintech';
 import Ecommerce from '../../components/Ecommerce';
 import SolutionsCTA from '../../components/SolutionsCTA';
 import Footer from '../../components/Footer';
+import { AiSolutions, AppWebsites } from '../../components/SolutionCatalog';
 
 export default function SolutionsPage() {
   return (
@@ -13,6 +14,8 @@ export default function SolutionsPage() {
       <Navbar />
       <main>
         <SolutionsHero />
+        <AppWebsites />
+        <AiSolutions />
         <Healthcare />
         <Fintech />
         <Ecommerce />

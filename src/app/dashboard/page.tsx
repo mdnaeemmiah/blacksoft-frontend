@@ -1,174 +1,127 @@
 'use client';
 
 import React from 'react';
-import { useSiteConfig } from '../../utils/configStore';
-import CallModal, { openCallModal } from '../../components/CallModal';
+import Link from 'next/link';
+import styles from './page.module.css';
+import { apiRequest } from '../../utils/apiClient';
 
-const metrics = [
-  { label: 'Published pages', value: '18', detail: 'Homepage, brand pages, and service routes' },
-  { label: 'Open actions', value: '7', detail: 'Copy updates, reviews, and routing checks' },
-  { label: 'Live alerts', value: '2', detail: 'Items requiring attention this week' },
-];
+type Summary = {
+  capabilities: number;
+  innovators: number;
+  ecommerce_cards: number;
+  app_websites: number;
+  ai_solutions: number;
+  technology_stack_cards: number;
+  team_members: number;
+};
 
-const actions = [
-  'Review homepage and hero copy for consistency.',
-  'Check active leads and content approvals.',
-  'Confirm analytics tags and form routing.',
-];
+const initialSummary: Summary = {
+  capabilities: 0,
+  innovators: 0,
+  ecommerce_cards: 0,
+  app_websites: 0,
+  ai_solutions: 0,
+  technology_stack_cards: 0,
+  team_members: 0,
+};
 
 export default function DashboardOverviewPage() {
-  const brandName = useSiteConfig('navbar.brand');
+  const [summary, setSummary] = React.useState<Summary>(initialSummary);
+  const [isLoading, setIsLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    let cancelled = false;
+    void apiRequest<Summary>('/dashboard/summary')
+      .then((data) => {
+        if (!cancelled) setSummary({ ...initialSummary, ...data });
+      })
+      .catch(() => undefined)
+      .finally(() => {
+        if (!cancelled) setIsLoading(false);
+      });
+    return () => { cancelled = true; };
+  }, []);
+
+  const metrics = [
+    { label: 'Capabilities', value: summary.capabilities, detail: 'AI services on the homepage' },
+    { label: 'Innovators', value: summary.innovators, detail: 'Trusted partner names' },
+    { label: 'Commerce cards', value: summary.ecommerce_cards, detail: 'Personalized agentic shopping' },
+    { label: 'AI solutions', value: summary.ai_solutions, detail: 'Agents and automation systems' },
+    { label: 'Team members', value: summary.team_members, detail: 'People shown in the studio' },
+  ];
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '24px',
-      }}
-    >
-      <section
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'minmax(0, 1.4fr) minmax(280px, 0.9fr)',
-          gap: '20px',
-          alignItems: 'stretch',
-        }}
-      >
-        <div
-          style={{
-            padding: '28px',
-            borderRadius: '20px',
-            background: 'linear-gradient(145deg, rgba(37, 99, 235, 0.18), rgba(15, 23, 42, 0.92))',
-            border: '1px solid var(--border-light)',
-            boxShadow: '0 24px 80px rgba(0, 0, 0, 0.25)',
-          }}
-        >
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-            <span style={{ fontSize: '0.74rem', fontWeight: 800, letterSpacing: '0.18em', color: 'var(--primary)' }}>
-              {brandName.toUpperCase()} ADMIN
-            </span>
-            <h2 style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--text-white)', lineHeight: 1.1 }}>
-              Dashboard Overview
-            </h2>
-            <p style={{ color: 'var(--text-muted)', maxWidth: '62ch' }}>
-              Review site health, content status, and the next set of admin tasks from one place.
-            </p>
-          </div>
-
-          <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginTop: '22px' }}>
-            <button className="btn btn-primary" onClick={() => openCallModal()}>
-              Book a Call
-            </button>
-            <button className="btn btn-secondary" type="button">
-              Overview
-            </button>
-          </div>
+    <div className={styles.page}>
+      <section className={styles.hero}>
+        <div>
+          <div className={styles.eyebrow}>Blacksoft / control room</div>
+          <h1 className={styles.title}>Build the intelligence layer.</h1>
+          <p className={styles.intro}>
+            Shape the public site, product stories, and AI capabilities from one focused workspace.
+            Every change here is reflected in the live experience.
+          </p>
         </div>
-
-        <div
-          style={{
-            padding: '28px',
-            borderRadius: '20px',
-            background: 'var(--bg-card)',
-            border: '1px solid var(--border-light)',
-          }}
-        >
-          <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-white)', marginBottom: '16px' }}>
-            Route Actions
-          </h3>
-          <ul style={{ display: 'flex', flexDirection: 'column', gap: '14px', padding: 0, margin: 0, listStyle: 'none' }}>
-            {actions.map((action) => (
-              <li
-                key={action}
-                style={{
-                  padding: '14px 16px',
-                  borderRadius: '14px',
-                  background: 'rgba(255, 255, 255, 0.02)',
-                  border: '1px solid rgba(255, 255, 255, 0.05)',
-                  color: 'var(--text-muted)',
-                }}
-              >
-                {action}
-              </li>
-            ))}
-          </ul>
-        </div>
+        <Link href="/" target="_blank" className={styles.heroAction}>
+          View live site <span>↗</span>
+        </Link>
       </section>
 
-      <section
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
-          gap: '16px',
-        }}
-      >
-        {metrics.map((metric) => (
-          <article
-            key={metric.label}
-            style={{
-              padding: '20px',
-              borderRadius: '18px',
-              background: 'var(--bg-card)',
-              border: '1px solid var(--border-light)',
-            }}
-          >
-            <div style={{ fontSize: '0.78rem', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--text-light)' }}>
-              {metric.label}
+      <section className={styles.metrics} aria-label="Content summary">
+        {metrics.map((metric, index) => (
+          <article className={styles.metric} key={metric.label}>
+            <div className={styles.metricLabel}>{metric.label}</div>
+            <div className={`${styles.metricValue} ${index === 0 ? styles.metricAccent : ''}`}>
+              {isLoading ? '—' : metric.value}
             </div>
-            <div style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--text-white)', marginTop: '6px' }}>
-              {metric.value}
-            </div>
-            <p style={{ marginTop: '8px', color: 'var(--text-muted)', fontSize: '0.92rem' }}>
-              {metric.detail}
-            </p>
+            <div className={styles.metricDetail}>{metric.detail}</div>
           </article>
         ))}
       </section>
 
-      <section
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
-          gap: '16px',
-        }}
-      >
-        <article
-          style={{
-            padding: '24px',
-            borderRadius: '18px',
-            background: 'var(--bg-card)',
-            border: '1px solid var(--border-light)',
-          }}
-        >
-          <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-white)', marginBottom: '14px' }}>
-            Current Scope
-          </h3>
-          <p style={{ color: 'var(--text-muted)', lineHeight: 1.7 }}>
-            You are editing the dashboard overview.
-          </p>
+      <section className={styles.contentGrid}>
+        <article className={styles.panel}>
+          <div className={styles.panelHeader}>
+            <h2 className={styles.panelTitle}>Content surface</h2>
+            <span className={styles.status}>Connected</span>
+          </div>
+          <div className={styles.scopeList}>
+            <Link href="/dashboard/architecting-intelligence" className={styles.scopeItem}>
+              <span>Architecting Intelligence</span><span className={styles.scopeCount}>{summary.capabilities}</span>
+            </Link>
+            <Link href="/dashboard/trusted-by-global-innovators" className={styles.scopeItem}>
+              <span>Trusted by Global Innovators</span><span className={styles.scopeCount}>{summary.innovators}</span>
+            </Link>
+            <Link href="/dashboard/ecommerce" className={styles.scopeItem}>
+              <span>Personalized Agentic Shopping</span><span className={styles.scopeCount}>{summary.ecommerce_cards}</span>
+            </Link>
+            <Link href="/dashboard/app-websites" className={styles.scopeItem}>
+              <span>App & Website</span><span className={styles.scopeCount}>{summary.app_websites}</span>
+            </Link>
+            <Link href="/dashboard/ai-solutions" className={styles.scopeItem}>
+              <span>AI Solutions</span><span className={styles.scopeCount}>{summary.ai_solutions}</span>
+            </Link>
+            <Link href="/dashboard/technology-stack" className={styles.scopeItem}>
+              <span>Technology Stack</span><span className={styles.scopeCount}>{summary.technology_stack_cards}</span>
+            </Link>
+            <Link href="/dashboard/team-members" className={styles.scopeItem}>
+              <span>Team Members</span><span className={styles.scopeCount}>{summary.team_members}</span>
+            </Link>
+          </div>
         </article>
 
-        <article
-          style={{
-            padding: '24px',
-            borderRadius: '18px',
-            background: 'var(--bg-card)',
-            border: '1px solid var(--border-light)',
-          }}
-        >
-          <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-white)', marginBottom: '14px' }}>
-            Next Checks
-          </h3>
-          <ol style={{ paddingLeft: '18px', margin: 0, color: 'var(--text-muted)', lineHeight: 1.8 }}>
-            <li>Confirm copy, media, and CTA labels for the overview.</li>
-            <li>Verify links and dashboard navigation targets.</li>
-            <li>Push the final content after review.</li>
-          </ol>
+        <article className={styles.panel}>
+          <div className={styles.panelHeader}>
+            <h2 className={styles.panelTitle}>Operating checklist</h2>
+            <span className={styles.panelKicker}>Today</span>
+          </div>
+          <div className={styles.taskList}>
+            <div className={styles.task}><span className={`${styles.taskDot} ${styles.taskDotReady}`} />Confirm active content has an image or icon.</div>
+            <div className={styles.task}><span className={styles.taskDot} />Review the public site on mobile after publishing.</div>
+            <div className={styles.task}><span className={styles.taskDot} />Keep titles concise so cards scan quickly.</div>
+          </div>
+          <div className={styles.note}>Tip: use the eye controls inside each editor to preview the exact card before publishing.</div>
         </article>
       </section>
-
-      <CallModal />
     </div>
   );
 }

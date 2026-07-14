@@ -4,7 +4,7 @@
   left: 0;
   right: 0;
   height: var(--header-height);
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(8, 13, 24, 0.7);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid transparent;
@@ -15,9 +15,9 @@
 }
 
 .scrolled {
-  background-color: rgba(255, 255, 255, 0.9);
-  border-bottom: 1px solid var(--border-light);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+  background-color: rgba(7, 11, 24, 0.92);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
 }
 
 .navContainer {
@@ -29,10 +29,22 @@
 
 .logo {
   font-family: var(--font-heading);
-  font-size: 1.5rem;
+  font-size: 1.15rem;
   font-weight: 800;
-  color: var(--text-main);
-  letter-spacing: -0.5px;
+  color: var(--text-white);
+  letter-spacing: -0.06em;
+  gap: 9px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.logo::before {
+  content: '';
+  width: 25px;
+  height: 25px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #65e6bd, #3f8cff);
+  box-shadow: 0 0 22px rgba(78, 216, 188, .28);
 }
 
 .logo span {
@@ -42,14 +54,14 @@
 .navMenu {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 27px;
 }
 
 .navLink {
   font-family: var(--font-heading);
-  font-size: 0.95rem;
+  font-size: 0.78rem;
   font-weight: 500;
-  color: var(--text-muted);
+  color: rgba(219, 230, 244, 0.68);
   position: relative;
   padding: 8px 0;
 }
@@ -66,7 +78,7 @@
 }
 
 .navLink:hover {
-  color: var(--text-main);
+  color: var(--text-white);
 }
 
 .navLink:hover::after {
@@ -74,7 +86,7 @@
 }
 
 .navActive {
-  color: var(--primary) !important;
+  color: #93c5fd !important;
 }
 
 .navActive::after {
@@ -126,8 +138,8 @@
   right: -100%;
   width: 300px;
   height: 100vh;
-  background-color: var(--bg-main);
-  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.05);
+  background: linear-gradient(180deg, rgba(7, 11, 24, 0.98), rgba(10, 15, 30, 0.98));
+  box-shadow: -20px 0 40px rgba(0, 0, 0, 0.28);
   transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   padding: 100px 40px;
   z-index: 999;
@@ -147,11 +159,11 @@
   font-family: var(--font-heading);
   font-size: 1.25rem;
   font-weight: 500;
-  color: var(--text-muted);
+  color: rgba(255, 255, 255, 0.74);
 }
 
 .mobileLink:hover {
-  color: var(--primary);
+  color: var(--text-white);
 }
 
 .mobileCta {
