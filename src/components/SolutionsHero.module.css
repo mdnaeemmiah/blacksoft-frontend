@@ -1,0 +1,119 @@
+.heroSection {
+  padding-top: calc(var(--header-height) + 60px);
+  padding-bottom: 80px;
+  background-color: var(--bg-main);
+  position: relative;
+  overflow: hidden;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+}
+
+/* Header Text Block */
+.headerBlock {
+  text-align: center;
+  max-width: 700px;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.tag {
+  display: inline-block;
+  background-color: rgba(79, 70, 229, 0.06);
+  border: 1px solid rgba(79, 70, 229, 0.15);
+  color: var(--primary);
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: var(--text-main);
+  line-height: 1.15;
+  letter-spacing: -1.5px;
+  margin-bottom: 20px;
+}
+
+.description {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+/* Graphic Card */
+.imageWrapper {
+  width: 100%;
+  max-width: 1000px;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.08), 
+              0 1px 3px rgba(0, 0, 0, 0.02);
+  position: relative;
+  animation: fadeInUp 1s ease-out;
+  border: 1px solid var(--border-light);
+}
+
+.imagePlaceholder {
+  width: 100%;
+  height: 420px;
+  background-color: #f8fafc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+.placeholderIcon {
+  width: 100px;
+  height: 100px;
+  color: #cbd5e1;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.imageWrapper:hover .placeholderIcon {
+  transform: scale(1.05) rotate(2deg);
+}
+
+/* Glow Background Overlays */
+.glow1 {
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(79, 70, 229, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.glow2 {
+  position: absolute;
+  bottom: -10%;
+  right: -10%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.06) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Responsive elements */
+@media (max-width: 768px) {
+  .title {
+    font-size: 2.5rem;
+  }
+  
+  .imageWrapper {
+    border-radius: 20px;
+  }
+}

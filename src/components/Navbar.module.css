@@ -1,0 +1,352 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--header-height);
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid transparent;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+
+.scrolled {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-bottom: 1px solid var(--border-light);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+}
+
+.navContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.logo {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.5px;
+}
+
+.logo span {
+  color: var(--primary);
+}
+
+.navMenu {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.navLink {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  position: relative;
+  padding: 8px 0;
+}
+
+.navLink::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary);
+  transition: width 0.3s ease;
+}
+
+.navLink:hover {
+  color: var(--text-main);
+}
+
+.navLink:hover::after {
+  width: 100%;
+}
+
+.navActive {
+  color: var(--primary) !important;
+}
+
+.navActive::after {
+  width: 100% !important;
+}
+
+.navCta {
+  display: flex;
+  align-items: center;
+}
+
+/* Burger Menu Trigger */
+.burger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 18px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.burgerLine {
+  width: 100%;
+  height: 2px;
+  background-color: var(--text-main);
+  transition: all 0.3s ease;
+}
+
+/* Burger Animation */
+.burgerActive .burgerLine:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.burgerActive .burgerLine:nth-child(2) {
+  opacity: 0;
+}
+
+.burgerActive .burgerLine:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Mobile Drawer */
+.mobileDrawer {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 300px;
+  height: 100vh;
+  background-color: var(--bg-main);
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.05);
+  transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 100px 40px;
+  z-index: 999;
+}
+
+.drawerOpen {
+  right: 0;
+}
+
+.mobileNav {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.mobileLink {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.mobileLink:hover {
+  color: var(--primary);
+}
+
+.mobileCta {
+  margin-top: 16px;
+  text-align: center;
+}
+
+/* Responsive breakpoint */
+@media (max-width: 768px) {
+  .navMenu, .navCta {
+    display: none;
+  }
+  
+  .burger {
+    display: flex;
+  }
+}
+
+.themeToggle {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 16px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-light);
+  color: var(--text-main);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.themeToggle:hover {
+  transform: scale(1.05);
+  border-color: var(--primary);
+  color: var(--primary);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.themeIcon {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.5s ease;
+}
+
+.themeToggle:hover .themeIcon {
+  transform: rotate(20deg);
+}
+
+.mobileThemeToggle {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-light);
+  color: var(--text-main);
+  padding: 12px 24px;
+  border-radius: 9999px;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-top: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.mobileThemeToggle:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.specsPanel {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--bg-card);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid var(--border-card);
+  border-radius: 20px;
+  padding: 24px;
+  width: 320px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  animation: slideInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  overflow: hidden;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.specsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: 10px;
+}
+
+.specsHeader h4 {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-white);
+  margin: 0;
+}
+
+.specsClose {
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  background: none;
+  border: none;
+  transition: color 0.2s ease;
+  line-height: 1;
+}
+
+.specsClose:hover {
+  color: var(--primary);
+}
+
+.specsBody {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.specRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+}
+
+.specRow span {
+  color: var(--text-muted);
+}
+
+.specRow strong {
+  color: var(--text-white);
+  font-weight: 600;
+}
+
+.specRow code {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: var(--primary);
+}
+
+.colorPreview {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.colorDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  display: inline-block;
+}
+
+.specsProgress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background: var(--accent-gradient);
+  width: 100%;
+  animation: progressBurn 4.5s linear forwards;
+}
+
+@keyframes progressBurn {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}

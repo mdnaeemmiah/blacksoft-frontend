@@ -1,0 +1,136 @@
+.section {
+  padding: 100px 0;
+  background-color: var(--bg-main);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 70px;
+}
+
+/* Left Content Column */
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.tag {
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--secondary);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: inline-block;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -1px;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.description {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin-bottom: 32px;
+}
+
+/* Feature List */
+.featureList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.featureItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1rem;
+  color: var(--text-muted);
+}
+
+.checkIcon {
+  width: 20px;
+  height: 20px;
+  color: var(--secondary);
+  flex-shrink: 0;
+}
+
+.actionBtn {
+  display: flex;
+}
+
+/* Right Graphic Column */
+.graphic {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imageCard {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: visible;
+  padding: 5px;
+}
+
+.image {
+  border-radius: 20px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.5s ease;
+  display: block;
+}
+
+.imageCard:hover .image {
+  transform: translateY(-4px);
+}
+
+.glowBg {
+  position: absolute;
+  top: -10%;
+  right: -10%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+  animation: pulseGlow 8s infinite ease-in-out;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .container {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  
+  .graphic {
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    order: -1;
+  }
+  
+  .image {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 2rem;
+  }
+}

@@ -1,0 +1,220 @@
+.footer {
+  padding: 80px 0 60px;
+  background-color: var(--bg-footer);
+  border-top: 1px solid var(--border-light);
+}
+
+.footerContainer {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr 0.8fr 1.2fr;
+  gap: 40px;
+}
+
+/* Brand Column */
+.brandCol {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.logo {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.5px;
+}
+
+.logo span {
+  color: var(--primary);
+}
+
+.description {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  max-width: 260px;
+}
+
+.socials {
+  display: flex;
+  gap: 12px;
+}
+
+.socialLink {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  transition: all 0.3s ease;
+}
+
+.socialLink:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background-color: rgba(79, 70, 229, 0.05);
+  transform: translateY(-2px);
+}
+
+/* Columns General */
+.colTitle {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 24px;
+}
+
+.linksList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.link {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  transition: color 0.2s ease;
+}
+
+.link:hover {
+  color: var(--primary);
+}
+
+/* Contact Column */
+.contactCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.contactList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.contactItem {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.email {
+  color: var(--primary);
+  font-weight: 500;
+}
+
+.email:hover {
+  color: var(--primary-hover);
+  text-decoration: underline;
+}
+
+/* Connect / Newsletter */
+.connectContainer {
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+.newsletterForm {
+  display: flex;
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+}
+
+.newsletterInput {
+  width: 100%;
+  padding: 12px 52px 12px 20px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border-light);
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.newsletterInput:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.newsletterBtn {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--primary);
+  color: var(--text-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.newsletterBtn:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-50%) scale(1.05);
+}
+
+.btnArrow {
+  width: 16px;
+  height: 16px;
+}
+
+/* Metadata bottom info overlayed inside contact column or separated */
+.bottomMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-top: 1px solid var(--border-light);
+  padding-top: 24px;
+}
+
+.copy {
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+
+.legal {
+  display: flex;
+  gap: 16px;
+}
+
+.legalLink {
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+
+.legalLink:hover {
+  color: var(--primary);
+}
+
+/* Responsive breaks */
+@media (max-width: 992px) {
+  .footerContainer {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 48px;
+  }
+}
+
+@media (max-width: 576px) {
+  .footerContainer {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .brandCol, .linksCol, .contactCol {
+    max-width: 100%;
+  }
+}
