@@ -109,7 +109,7 @@ export default function Pathway() {
           <div className={styles.imageCard}>
             <Image 
               src="/images/pathway_laboratory.png" 
-              alt="MishiAi Production Wafer Lab" 
+              alt="Blacksoft Production Wafer Lab" 
               width={540} 
               height={540}
               className={styles.pathwayImage}

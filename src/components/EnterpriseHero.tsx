@@ -39,7 +39,7 @@ export default function EnterpriseHero() {
           <div className={styles.imageCard}>
             <Image
               src="/images/enterprise_hero_security.png"
-              alt="MishiAi Enterprise Cloud Security Architecture"
+              alt="Blacksoft Enterprise Cloud Security Architecture"
               width={540}
               height={540}
               priority

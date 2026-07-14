@@ -2,25 +2,20 @@
 
 import React from 'react';
 import styles from './Partners.module.css';
-
-const PARTNERS = [
-  'METALOGIC',
-  'CLOUDRISE',
-  'ZENITH AI',
-  'NOVASPHERE',
-  'VELOCITY',
-  'LUMINA'
-];
+import { useTrustedInnovators } from '../utils/trustedInnovatorsStore';
 
 export default function Partners() {
+  const [partners] = useTrustedInnovators();
+  const visiblePartners = partners.filter((partner) => partner.enabled);
+
   return (
     <section className={styles.partnersSection}>
       <div className={`container ${styles.partnersContainer}`}>
         <p className={styles.heading}>TRUSTED BY GLOBAL INNOVATORS</p>
         <div className={styles.logoGrid}>
-          {PARTNERS.map((partner, index) => (
-            <div key={index} className={styles.logoItem}>
-              {partner}
+          {visiblePartners.map((partner) => (
+            <div key={partner.id} className={styles.logoItem}>
+              {partner.name}
             </div>
           ))}
         </div>

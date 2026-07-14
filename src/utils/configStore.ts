@@ -13,7 +13,7 @@ export const DEFAULTS = {
   // About Page Hero
   'about.hero.tag': 'OUR MISSION',
   'about.hero.title': 'Architecting Intelligence for the Elite Enterprise.',
-  'about.hero.description': "At MishiAi, we don't just build software; we engineer the cognitive infrastructure that powers the world's most ambitious organizations. Our mission is to bridge the gap between raw data and autonomous wisdom.",
+  'about.hero.description': "At Blacksoft, we don't just build software; we engineer the cognitive infrastructure that powers the world's most ambitious organizations. Our mission is to bridge the gap between raw data and autonomous wisdom.",
   'about.hero.cta': 'Explore Our Tech',
 
   // Technology Page Hero
@@ -32,28 +32,28 @@ export const DEFAULTS = {
   // Solutions Page Hero
   'solutions.hero.tag': 'POWERING THE FUTURE',
   'solutions.hero.title': 'Industry Solutions',
-  'solutions.hero.description': 'MishiAi delivers high-precision, enterprise-grade artificial intelligence tailored for specialized domains. We bridge the gap between experimental tech and mission-critical deployment.',
+  'solutions.hero.description': 'Blacksoft delivers high-precision, enterprise-grade artificial intelligence tailored for specialized domains. We bridge the gap between experimental tech and mission-critical deployment.',
 
   // Navbar
   'navbar.cta': 'Book a Call',
-  'navbar.brand': 'MishiAi',
+  'navbar.brand': 'Blacksoft',
 
   // Footer
   'footer.description': 'Architecting the next generation of intelligent software for world-class innovators and tech leaders.',
-  'footer.email': 'hello@mishi.ai.tech',
+  'footer.email': 'hello@blacksoft.tech',
   'footer.location': 'Global HQ: San Francisco, CA',
-  'footer.copyright': 'MishiAi. All rights reserved.',
+  'footer.copyright': 'Blacksoft. All rights reserved.',
 
   // CTA Section
   'cta.title': 'Ready to build the future of industry?',
-  'cta.description': "Join the ranks of global innovators who have transformed their operations with MishiAi's AI-first intelligence platforms.",
+  'cta.description': "Join the ranks of global innovators who have transformed their operations with Blacksoft's AI-first intelligence platforms.",
   'cta.primary': 'Schedule a Consultation',
   'cta.secondary': 'View Case Studies'
 };
 
 export function getConfig(key: keyof typeof DEFAULTS): string {
   if (typeof window !== 'undefined') {
-    const saved = localStorage.getItem(`mishiai_config_${key}`);
+    const saved = localStorage.getItem(`blacksoft_config_${key}`);
     if (saved !== null) {
       return saved;
     }
@@ -63,28 +63,30 @@ export function getConfig(key: keyof typeof DEFAULTS): string {
 
 export function setConfig(key: keyof typeof DEFAULTS, value: string): void {
   if (typeof window !== 'undefined') {
-    localStorage.setItem(`mishiai_config_${key}`, value);
+    localStorage.setItem(`blacksoft_config_${key}`, value);
     // Dispatch custom event to notify other components on the same page
-    window.dispatchEvent(new Event('mishiai_config_updated'));
+    window.dispatchEvent(new Event('blacksoft_config_updated'));
   }
 }
 
 export function useSiteConfig(key: keyof typeof DEFAULTS): string {
-  const [val, setVal] = React.useState<string>(DEFAULTS[key]);
-
-  React.useEffect(() => {
-    // Initial load
-    setVal(getConfig(key));
-
+  const subscribe = React.useCallback((onStoreChange: () => void) => {
     const handleUpdate = () => {
-      setVal(getConfig(key));
+      onStoreChange();
     };
 
-    window.addEventListener('mishiai_config_updated', handleUpdate);
+    window.addEventListener('blacksoft_config_updated', handleUpdate);
+    window.addEventListener('storage', handleUpdate);
+
     return () => {
-      window.removeEventListener('mishiai_config_updated', handleUpdate);
+      window.removeEventListener('blacksoft_config_updated', handleUpdate);
+      window.removeEventListener('storage', handleUpdate);
     };
-  }, [key]);
+  }, []);
 
-  return val;
+  return React.useSyncExternalStore(
+    subscribe,
+    () => getConfig(key),
+    () => DEFAULTS[key]
+  );
 }

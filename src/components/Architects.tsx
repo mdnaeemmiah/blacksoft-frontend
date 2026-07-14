@@ -18,25 +18,25 @@ export default function Architects() {
       name: 'Dr. Elena Vance',
       role: 'CHIEF SCIENTIST & FOUNDER',
       imageSrc: '/images/team_elena.png',
-      imageAlt: 'Dr. Elena Vance - Chief Scientist & Founder at MishiAi'
+      imageAlt: 'Dr. Elena Vance - Chief Scientist & Founder at Blacksoft'
     },
     {
       name: 'Marcus Thorne',
       role: 'HEAD OF ENGINEERING',
       imageSrc: '/images/team_marcus.png',
-      imageAlt: 'Marcus Thorne - Head of Engineering at MishiAi'
+      imageAlt: 'Marcus Thorne - Head of Engineering at Blacksoft'
     },
     {
       name: 'Sarah Chen',
       role: 'VP OF STRATEGY',
       imageSrc: '/images/team_sarah.png',
-      imageAlt: 'Sarah Chen - VP of Strategy at MishiAi'
+      imageAlt: 'Sarah Chen - VP of Strategy at Blacksoft'
     },
     {
       name: 'Julian Kross',
       role: 'LEAD NEURAL ARCHITECT',
       imageSrc: '/images/team_julian.png',
-      imageAlt: 'Julian Kross - Lead Neural Architect at MishiAi'
+      imageAlt: 'Julian Kross - Lead Neural Architect at Blacksoft'
     }
   ];
 

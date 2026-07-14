@@ -18,20 +18,20 @@ export default function Ecommerce() {
       title: 'Visual Search & Discovery',
       description: 'AI-driven visual recognition allowing customers to find products using nothing but a single image capture.',
       imageSrc: '/images/solutions_visual_search.png',
-      imageAlt: 'MishiAi Visual Search Shoe Scan App'
+      imageAlt: 'Blacksoft Visual Search Shoe Scan App'
     },
     {
       title: 'Autonomous Shopping Agents',
       description: 'Intelligent agents that manage procurement, negotiation, and scheduling for enterprise-scale B2B e-commerce.',
       imageSrc: '',
-      imageAlt: 'MishiAi Autonomous AI Shopping Agent',
+      imageAlt: 'Blacksoft Autonomous AI Shopping Agent',
       isPlaceholder: true
     },
     {
       title: 'Predictive Inventory Management',
       description: 'Anticipate demand surges before they happen, optimizing logistics and reducing overhead by up to 40%.',
       imageSrc: '/images/solutions_predictive_inventory.png',
-      imageAlt: 'MishiAi Predictive Inventory Logistics Dashboard'
+      imageAlt: 'Blacksoft Predictive Inventory Logistics Dashboard'
     }
   ];
 

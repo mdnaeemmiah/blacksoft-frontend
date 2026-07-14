@@ -24,14 +24,6 @@ export default function Footer() {
     }
   };
 
-  const getFooterDescription = () => {
-    if (pathname === '/solutions') return "Advancing the frontier of elite AI software development.";
-    if (pathname === '/about') return "Defining the frontier of elite software intelligence.";
-    if (pathname === '/technology') return "Architecting high-performance neural computing infrastructure.";
-    if (pathname === '/enterprise') return "Scaling cognitive enterprise intelligence with absolute compliance.";
-    return "Architecting the next generation of intelligent software for world-class innovators and tech leaders.";
-  };
-
   return (
     <footer className={styles.footer}>
       <div className={`container ${styles.footerContainer}`}>
@@ -39,7 +31,7 @@ export default function Footer() {
         {/* Brand Description Column */}
         <div className={styles.brandCol}>
           <Link href="/" className={styles.logo}>
-            Mishi<span>Ai</span>
+            Blacksoft
           </Link>
           <p className={styles.description}>
             {footerDesc}

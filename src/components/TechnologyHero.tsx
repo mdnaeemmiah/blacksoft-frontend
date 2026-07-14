@@ -38,7 +38,7 @@ export default function TechnologyHero() {
           <div className={styles.imageCard}>
             <Image
               src="/images/technology_hero_compute.png"
-              alt="MishiAi Neural Compute Cluster Infrastructure"
+              alt="Blacksoft Neural Compute Cluster Infrastructure"
               width={540}
               height={540}
               priority

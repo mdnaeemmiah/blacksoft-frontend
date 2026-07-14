@@ -3,6 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import CallModal, { openCallModal } from './CallModal';
 import styles from './Hero.module.css';
 import { useSiteConfig } from '../utils/configStore';
 
@@ -13,6 +14,7 @@ export default function Hero() {
   const cta = useSiteConfig('home.hero.cta');
 
   return (
+    <>
     <section id="hero" className={styles.heroSection}>
       <div className={`container ${styles.heroContainer}`}>
         {/* Left Content */}
@@ -35,9 +37,9 @@ export default function Hero() {
 
           {/* Buttons */}
           <div className={styles.buttonGroup}>
-            <Link href="#contact" className="btn btn-primary">
+            <button onClick={() => openCallModal()} className="btn btn-primary">
               {cta}
-            </Link>
+            </button>
             <Link href="#portfolio" className={`btn btn-secondary ${styles.portfolioBtn}`}>
               Explore Portfolio <span className={styles.arrow}>→</span>
             </Link>
@@ -49,7 +51,7 @@ export default function Hero() {
           <div className={styles.imageWrapper}>
             <Image 
               src="/images/hero_ai_dashboard.png" 
-              alt="MishiAi Intelligent Dashboard" 
+              alt="Blacksoft Intelligent Dashboard" 
               width={540} 
               height={540}
               priority
@@ -62,5 +64,7 @@ export default function Hero() {
         </div>
       </div>
     </section>
+    <CallModal />
+    </>
   );
 }

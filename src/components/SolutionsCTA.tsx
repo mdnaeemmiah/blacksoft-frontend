@@ -12,7 +12,7 @@ export default function SolutionsCTA() {
           <div className={styles.content}>
             <h2 className={styles.title}>Ready to lead your industry?</h2>
             <p className={styles.description}>
-              Partner with MishiAi to integrate the most advanced AI frameworks into your business workflow today.
+              Partner with Blacksoft to integrate the most advanced AI frameworks into your business workflow today.
             </p>
             <div className={styles.buttons}>
               <Link href="#contact" className="btn btn-primary">
