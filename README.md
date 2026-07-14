@@ -1,5 +1,8 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+The public website is intentionally separate from the content dashboard. Run
+the dashboard from the sibling `MishiAi-dashboard` project.
+
 ## Getting Started
 
 First, run the development server:
