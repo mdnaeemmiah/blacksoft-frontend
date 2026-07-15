@@ -9,7 +9,7 @@ import { useSiteConfig } from '../utils/configStore';
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   const pathname = usePathname();
-  const isSubPage = pathname === '/solutions' || pathname === '/about' || pathname === '/technology' || pathname === '/enterprise';
+  const isSubPage = pathname === '/solutions' || pathname === '/about' || pathname === '/technology' || pathname === '/team';
   const [emailInput, setEmailInput] = useState('');
   const footerDesc = useSiteConfig('footer.description');
   const footerEmail = useSiteConfig('footer.email');
@@ -80,14 +80,13 @@ export default function Footer() {
           <ul className={styles.linksList}>
             {isSubPage ? (
               <>
-                <li><Link href="/about#architects" className={styles.link}>Our Team</Link></li>
+                <li><Link href="/team" className={styles.link}>Our Team</Link></li>
                 <li><Link href="/about#careers" className={styles.link}>Careers</Link></li>
                 <li><Link href="#" className={styles.link}>Privacy Policy</Link></li>
                 <li><Link href="#" className={styles.link}>Terms of Service</Link></li>
               </>
             ) : (
               <>
-                <li><Link href="/enterprise" className={styles.link}>Our Process</Link></li>
                 <li><Link href="/solutions" className={styles.link}>Portfolio</Link></li>
                 <li><Link href="/about" className={styles.link}>Insights</Link></li>
                 <li><Link href="/about#careers" className={styles.link}>Careers</Link></li>

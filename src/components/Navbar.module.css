@@ -4,7 +4,7 @@
   left: 0;
   right: 0;
   height: var(--header-height);
-  background-color: rgba(8, 13, 24, 0.7);
+  background-color: rgba(251, 250, 247, 0.7);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid transparent;
@@ -15,9 +15,9 @@
 }
 
 .scrolled {
-  background-color: rgba(7, 11, 24, 0.92);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+  background-color: rgba(255, 255, 255, 0.92);
+  border-bottom: 1px solid var(--border-light);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
 }
 
 .navContainer {
@@ -29,26 +29,23 @@
 
 .logo {
   font-family: var(--font-heading);
-  font-size: 1.15rem;
+  font-size: 1.25rem;
   font-weight: 800;
   color: var(--text-white);
-  letter-spacing: -0.06em;
+  letter-spacing: -0.03em;
   gap: 9px;
   display: inline-flex;
   align-items: center;
 }
 
-.logo::before {
-  content: '';
-  width: 25px;
-  height: 25px;
-  border-radius: 8px;
-  background: linear-gradient(135deg, #65e6bd, #3f8cff);
-  box-shadow: 0 0 22px rgba(78, 216, 188, .28);
+.logoIcon {
+  color: #6366f1; /* Beautiful royal purple/indigo matching user's logo */
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
 }
 
-.logo span {
-  color: var(--primary);
+.logo:hover .logoIcon {
+  transform: scale(1.05);
 }
 
 .navMenu {
@@ -60,8 +57,8 @@
 .navLink {
   font-family: var(--font-heading);
   font-size: 0.78rem;
-  font-weight: 500;
-  color: rgba(219, 230, 244, 0.68);
+  font-weight: 700;
+  color: var(--text-muted);
   position: relative;
   padding: 8px 0;
 }
@@ -86,16 +83,11 @@
 }
 
 .navActive {
-  color: #93c5fd !important;
+  color: var(--primary) !important;
 }
 
 .navActive::after {
   width: 100% !important;
-}
-
-.navCta {
-  display: flex;
-  align-items: center;
 }
 
 /* Burger Menu Trigger */
@@ -138,8 +130,8 @@
   right: -100%;
   width: 300px;
   height: 100vh;
-  background: linear-gradient(180deg, rgba(7, 11, 24, 0.98), rgba(10, 15, 30, 0.98));
-  box-shadow: -20px 0 40px rgba(0, 0, 0, 0.28);
+  background-color: var(--bg-card-high);
+  box-shadow: -20px 0 40px rgba(0, 0, 0, 0.05);
   transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   padding: 100px 40px;
   z-index: 999;
@@ -158,8 +150,8 @@
 .mobileLink {
   font-family: var(--font-heading);
   font-size: 1.25rem;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.74);
+  font-weight: 700;
+  color: var(--text-muted);
 }
 
 .mobileLink:hover {

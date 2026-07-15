@@ -21,7 +21,7 @@ export default function CTA() {
               {description}
             </p>
             <div className={styles.buttons}>
-              <Link href="#contact" className="btn btn-white">
+              <Link href="/book-a-call" className="btn btn-white">
                 {primary}
               </Link>
               <Link href="#portfolio" className="btn btn-outline-white">

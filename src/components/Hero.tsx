@@ -2,7 +2,6 @@
 
 import React from 'react';
 import Link from 'next/link';
-import CallModal, { openCallModal } from './CallModal';
 import styles from './Hero.module.css';
 import { useSiteConfig } from '../utils/configStore';
 
@@ -21,9 +20,9 @@ export default function Hero() {
             <h1 className={styles.title}>{title}</h1>
             <p className={styles.description}>{description}</p>
             <div className={styles.buttonGroup}>
-              <button onClick={() => openCallModal()} className="btn btn-primary">{cta}</button>
+              <Link href="/book-a-call" className="btn btn-primary">Schedule a Consultation</Link>
               <Link href="#services" className={`btn btn-secondary ${styles.portfolioBtn}`}>
-                Explore capabilities <span className={styles.arrow}>{'->'}</span>
+                View Case Studies <span className={styles.arrow}>{'->'}</span>
               </Link>
             </div>
             <div className={styles.proofRow}>
@@ -62,7 +61,6 @@ export default function Hero() {
           </div>
         </div>
       </section>
-      <CallModal />
     </>
   );
 }

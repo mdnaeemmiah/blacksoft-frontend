@@ -1,37 +1,37 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-  /* Color Palette - Blacksoft Elite Dark Mode Design System */
-  --primary: #c3c0ff;
-  --primary-container: #4f46e5;
-  --primary-hover: #dad7ff;
-  --primary-glow: rgba(79, 70, 229, 0.15);
+  /* Color Palette - Blacksoft Cream & White Mode Design System with Brown Accents */
+  --primary: #5c4033;       /* Espresso Brown */
+  --primary-container: #7a5843; /* Bronze Brown */
+  --primary-hover: #3d281e; /* Deep Coffee */
+  --primary-glow: rgba(92, 64, 51, 0.08);
   
-  --secondary: #adc6ff;
-  --secondary-container: #3b82f6;
-  --secondary-glow: rgba(59, 130, 246, 0.15);
+  --secondary: #565e74;
+  --secondary-container: #dae2fd;
+  --secondary-glow: rgba(86, 94, 116, 0.12);
   
-  --tertiary: #4cd7f6;
-  --tertiary-container: #006a7c;
+  --tertiary: #a3826f;      /* Muted Taupe */
+  --tertiary-container: #fcfbf9;
   
-  --accent-gradient: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
-  --cta-gradient: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);
+  --accent-gradient: linear-gradient(135deg, #5c4033 0%, #a3826f 100%);
+  --cta-gradient: linear-gradient(135deg, #422d22 0%, #7a5843 100%);
   
-  --bg-main: #0b0f19;
-  --bg-secondary: #121624;
-  --bg-card: rgba(22, 27, 43, 0.7);
-  --bg-card-high: #25293a;
-  --bg-footer: #080d1d;
+  --bg-main: #fbfaf7;       /* Cream */
+  --bg-secondary: #f5f3ee;  /* Darker Cream */
+  --bg-card: rgba(255, 255, 255, 0.85); /* White glassmorphism */
+  --bg-card-high: #ffffff;  /* Pure White */
+  --bg-footer: #eae8e2;     /* Muted Cream footer */
   
-  --text-main: #dee1f9;
-  --text-muted: #c7c4d8;
-  --text-light: #918fa1;
-  --text-white: #ffffff;
+  --text-main: #1e293b;     /* Dark Slate */
+  --text-muted: #475569;    /* Slate */
+  --text-light: #64748b;    /* Light Slate */
+  --text-white: #0b0f19;    /* Swapped to Dark Slate so headers display dark */
   
-  --border-light: rgba(255, 255, 255, 0.08);
-  --border-card: rgba(255, 255, 255, 0.12);
-  --card-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.4);
-  --card-shadow-hover: 0 20px 50px -15px rgba(79, 70, 229, 0.18);
+  --border-light: rgba(0, 0, 0, 0.08);
+  --border-card: rgba(0, 0, 0, 0.1);
+  --card-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.04);
+  --card-shadow-hover: 0 20px 50px -15px rgba(0, 0, 0, 0.08);
 
   /* Fonts */
   --font-heading: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -43,45 +43,6 @@
   --radius-sm: 8px;
   --radius-md: 16px;
   --radius-lg: 24px;
-}
-
-:root.lightTheme {
-  /* Color Palette - Lumina Enterprise Light Mode */
-  --primary: #004ac6;
-  --primary-container: #2563eb;
-  --primary-hover: #1e40af;
-  --primary-glow: rgba(37, 99, 235, 0.12);
-  
-  --secondary: #565e74;
-  --secondary-container: #dae2fd;
-  --secondary-glow: rgba(86, 94, 116, 0.12);
-  
-  --bg-main: #faf8ff;
-  --bg-secondary: #f0effa;
-  --bg-card: rgba(255, 255, 255, 0.85);
-  --bg-card-high: #e7e7f3;
-  --bg-footer: #e1e2ed;
-  
-  --text-main: #191b23;
-  --text-muted: #434655;
-  --text-light: #737686;
-  --text-white: #0b0f19;
-  
-  --border-light: rgba(0, 0, 0, 0.08);
-  --border-card: rgba(0, 0, 0, 0.1);
-  --card-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.04);
-  --card-shadow-hover: 0 20px 50px -15px rgba(37, 99, 235, 0.08);
-}
-
-:root.lightTheme body {
-  background-color: var(--bg-main);
-  background-image: 
-    radial-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
-    linear-gradient(rgba(0, 0, 0, 0.01) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.01) 1px, transparent 1px),
-    radial-gradient(circle at 10% 20%, rgba(37, 99, 235, 0.04) 0%, transparent 45%),
-    radial-gradient(circle at 90% 80%, rgba(6, 182, 212, 0.04) 0%, transparent 45%),
-    radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.01) 0%, transparent 55%);
 }
 
 /* Global Reset & Base */
@@ -103,14 +64,14 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
   
-  /* Animated Aurora Background Mesh Gradients with Cyber Grid coordinates */
+  /* Subtle light grid background matching cream mode */
   background-image: 
-    radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(rgba(255, 255, 255, 0.012) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.012) 1px, transparent 1px),
-    radial-gradient(circle at 10% 20%, rgba(79, 70, 229, 0.09) 0%, transparent 45%),
-    radial-gradient(circle at 90% 80%, rgba(6, 182, 212, 0.09) 0%, transparent 45%),
-    radial-gradient(circle at 50% 50%, rgba(195, 192, 255, 0.03) 0%, transparent 55%);
+    radial-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(rgba(0, 0, 0, 0.008) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.008) 1px, transparent 1px),
+    radial-gradient(circle at 10% 20%, rgba(79, 70, 229, 0.03) 0%, transparent 45%),
+    radial-gradient(circle at 90% 80%, rgba(6, 182, 212, 0.03) 0%, transparent 45%),
+    radial-gradient(circle at 50% 50%, rgba(79, 70, 229, 0.01) 0%, transparent 55%);
   background-attachment: fixed;
   background-size: 24px 24px, 48px 48px, 48px 48px, 200% 200%, 200% 200%, 200% 200%;
   animation: auroraMove 25s infinite linear;
@@ -169,15 +130,15 @@ button {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);
-  color: var(--text-white);
-  box-shadow: 0 4px 15px rgba(79, 70, 229, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  background: var(--cta-gradient);
+  color: #ffffff; /* Explicit white text for contrast */
+  box-shadow: 0 4px 15px rgba(92, 64, 51, 0.15), inset 0 1px 1px rgba(255, 255, 255, 0.15);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(79, 70, 229, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 25px rgba(92, 64, 51, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.2);
   filter: brightness(1.1);
 }
 
@@ -189,9 +150,9 @@ button {
 }
 
 .btn-secondary:hover {
-  color: var(--text-white);
+  color: #ffffff; /* Explicit white on hover background fill */
   border-color: var(--primary);
-  background-color: rgba(255, 255, 255, 0.03);
+  background-color: var(--primary);
   transform: translateY(-2px);
 }
 

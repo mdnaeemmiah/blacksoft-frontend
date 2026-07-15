@@ -4,15 +4,15 @@
 .heroContent { position: relative; z-index: 1; animation: fadeInUp .75s ease-out both; }
 .tag { display: inline-flex; align-items: center; gap: 9px; padding: 8px 12px; border: 1px solid rgba(104, 223, 186, .23); border-radius: 8px; background: rgba(60, 205, 164, .07); color: #6de0bc; font-size: .68rem; font-weight: 800; letter-spacing: .15em; }
 .liveDot { width: 7px; height: 7px; border-radius: 50%; background: #67dfb9; box-shadow: 0 0 11px #67dfb9; }
-.title { max-width: 660px; margin: 23px 0 22px; color: #f4f7fb; font-size: clamp(3.3rem, 6.2vw, 6.1rem); line-height: .96; letter-spacing: -.085em; }
-.description { max-width: 550px; margin-bottom: 30px; color: #a1aec1; font-size: 1.02rem; line-height: 1.7; }
+.title { max-width: 660px; margin: 23px 0 22px; color: var(--text-white); font-size: clamp(3.3rem, 6.2vw, 6.1rem); line-height: .96; letter-spacing: -.085em; }
+.description { max-width: 550px; margin-bottom: 30px; color: var(--text-muted); font-size: 1.02rem; line-height: 1.7; }
 .buttonGroup { display: flex; flex-wrap: wrap; align-items: center; gap: 11px; }
 .portfolioBtn { gap: 10px; }
 .arrow { color: #6de0bc; transition: transform .2s ease; }
 .portfolioBtn:hover .arrow { transform: translateX(4px); }
-.proofRow { display: flex; align-items: center; flex-wrap: wrap; gap: 11px; margin-top: 42px; color: #68778d; font-size: .72rem; }
-.proofRow strong { color: #a6b5c9; font-weight: 700; }
-.proofLine { width: 26px; height: 1px; background: #304157; }
+.proofRow { display: flex; align-items: center; flex-wrap: wrap; gap: 11px; margin-top: 42px; color: var(--text-light); font-size: .72rem; }
+.proofRow strong { color: var(--text-muted); font-weight: 700; }
+.proofLine { width: 26px; height: 1px; background: var(--border-light); }
 .heroGraphic { position: relative; min-height: 510px; display: grid; place-items: center; animation: fadeInUp .9s .12s ease-out both; }
 .orbit { position: absolute; width: 470px; height: 470px; border: 1px solid rgba(94, 212, 193, .12); border-radius: 50%; box-shadow: 0 0 80px rgba(40, 158, 175, .09); }
 .workspaceCard { position: relative; z-index: 2; width: min(100%, 610px); overflow: hidden; border: 1px solid rgba(157, 201, 221, .2); border-radius: 16px; background: rgba(14, 24, 39, .88); box-shadow: 0 35px 80px rgba(0,0,0,.35), 0 0 0 8px rgba(255,255,255,.018); transform: perspective(1300px) rotateY(-5deg) rotateX(2deg); }

@@ -1,0 +1,131 @@
+.section {
+  padding: 120px 0;
+  background-color: var(--bg-main);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.headerBlock {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 48px;
+  margin-bottom: 60px;
+}
+
+.titleBlock {
+  max-width: 600px;
+}
+
+.tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  display: inline-block;
+}
+
+.title {
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 800;
+  color: var(--text-white);
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.subtext {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  max-width: 400px;
+  margin: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  padding: 32px 24px;
+  border-radius: 16px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+}
+
+.card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #4f46e5, #06b6d4);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(99, 102, 241, 0.25);
+  background: var(--bg-card-high);
+  box-shadow: var(--card-shadow-hover);
+}
+
+.card:hover::after {
+  opacity: 1;
+}
+
+.icon {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.cardTitle {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-white);
+  margin: 0 0 12px 0;
+}
+
+.cardDescription {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin: 0;
+  flex-grow: 1;
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .headerBlock {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}

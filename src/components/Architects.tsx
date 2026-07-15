@@ -36,10 +36,27 @@ export default function Architects() {
                   height={260}
                   className={styles.image}
                 />
+                {member.logo && (
+                  <div className={styles.logoBadge}>
+                    <img src={member.logo} alt="Technology icon" className={styles.logoIcon} />
+                  </div>
+                )}
               </div>
               <div className={styles.info}>
-                <h3 className={styles.name}>{member.name}</h3>
+                <div className={styles.nameRow}>
+                  <h3 className={styles.name}>{member.name}</h3>
+                  {member.link && (
+                    <a href={member.link} target="_blank" rel="noopener noreferrer" className={styles.socialLink} aria-label={`${member.name}'s profile`}>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={styles.socialIcon}>
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                        <polyline points="15 3 21 3 21 9" />
+                        <line x1="10" y1="14" x2="21" y2="3" />
+                      </svg>
+                    </a>
+                  )}
+                </div>
                 <p className={styles.role}>{member.role}</p>
+                {member.bio && <p className={styles.bio}>{member.bio}</p>}
               </div>
             </div>
           ))}
