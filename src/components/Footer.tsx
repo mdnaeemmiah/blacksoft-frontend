@@ -43,25 +43,14 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Links Column 1: Services / Solutions */}
+        {/* Links Column 1: Services */}
         <div className={styles.linksCol}>
-          <h3 className={styles.colTitle}>{isSubPage ? "Solutions" : "Services"}</h3>
+          <h3 className={styles.colTitle}>Services</h3>
           <ul className={styles.linksList}>
-            {isSubPage ? (
-              <>
-                <li><Link href="/solutions#healthcare" className={styles.link}>Custom AI Models</Link></li>
-                <li><Link href="/solutions#fintech" className={styles.link}>Enterprise Strategy</Link></li>
-                <li><Link href="/solutions#ecommerce" className={styles.link}>Data Engineering</Link></li>
-                <li><Link href="/solutions#ecommerce" className={styles.link}>MLOps</Link></li>
-              </>
-            ) : (
-              <>
-                <li><Link href="/technology" className={styles.link}>Custom AI Agents</Link></li>
-                <li><Link href="/technology" className={styles.link}>LLM Fine-Tuning</Link></li>
-                <li><Link href="/technology" className={styles.link}>Workflow Automation</Link></li>
-                <li><Link href="/technology" className={styles.link}>Cloud Architecture</Link></li>
-              </>
-            )}
+            <li><Link href="/technology" className={styles.link}>Custom AI Agents</Link></li>
+            <li><Link href="/technology" className={styles.link}>LLM Fine-Tuning</Link></li>
+            <li><Link href="/technology" className={styles.link}>Workflow Automation</Link></li>
+            <li><Link href="/technology" className={styles.link}>Cloud Architecture</Link></li>
           </ul>
         </div>
 
@@ -69,43 +58,32 @@ export default function Footer() {
         <div className={styles.linksCol}>
           <h3 className={styles.colTitle}>Company</h3>
           <ul className={styles.linksList}>
-            {isSubPage ? (
-              <>
-                <li><Link href="/team" className={styles.link}>Our Team</Link></li>
-                <li><Link href="/about" className={styles.link}>About Us</Link></li>
-                <li><Link href="#" className={styles.link}>Privacy Policy</Link></li>
-                <li><Link href="#" className={styles.link}>Terms of Service</Link></li>
-              </>
-            ) : (
-              <>
-                <li><Link href="/solutions" className={styles.link}>Solutions</Link></li>
-                <li><Link href="/about" className={styles.link}>About Us</Link></li>
-                <li><Link href="/team" className={styles.link}>Our Team</Link></li>
-              </>
-            )}
+            <li><Link href="/solutions" className={styles.link}>Solutions</Link></li>
+            <li><Link href="/about" className={styles.link}>About Us</Link></li>
+            <li><Link href="/team" className={styles.link}>Our Team</Link></li>
+            <li><Link href="/book-a-call" className={styles.link}>Contact</Link></li>
           </ul>
         </div>
 
-        {/* Links Column 3: Contact / Connect */}
+        {/* Links Column 3: Contact */}
         <div className={styles.contactCol}>
           <h3 className={styles.colTitle}>Contact</h3>
-          
           <ul className={styles.contactList}>
             <li className={styles.contactItem}>{footerLocation}</li>
             <li className={styles.contactItem}>
               Email: <a href={`mailto:${footerEmail}`} className={styles.email}>{footerEmail}</a>
             </li>
           </ul>
-          
-          <div className={styles.bottomMeta}>
-            <p className={styles.copy}>&copy; {currentYear} {footerCopy}</p>
-            <div className={styles.legal}>
-              <Link href="#" className={styles.legalLink}>Privacy Policy</Link>
-              <Link href="#" className={styles.legalLink}>Terms of Service</Link>
-            </div>
-          </div>
         </div>
 
+      </div>
+
+      <div className={`container ${styles.bottomMeta}`}>
+        <p className={styles.copy}>&copy; 2026 {footerCopy}</p>
+        <div className={styles.legal}>
+          <Link href="#" className={styles.legalLink}>Privacy Policy</Link>
+          <Link href="#" className={styles.legalLink}>Terms of Service</Link>
+        </div>
       </div>
     </footer>
   );
