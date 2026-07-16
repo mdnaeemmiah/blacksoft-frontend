@@ -61,19 +61,16 @@ function renderIcon(iconKey: TechnologyStackIconKey) {
     case 'ai':
       return (
         <svg {...iconProps}>
-          <path d="M12 2a4 4 0 0 1 4 4v1h1a3 3 0 0 1 0 6h-1v1a4 4 0 0 1-8 0v-1H7a3 3 0 0 1 0-6h1V6a4 4 0 0 1 4-4z" />
-          <circle cx="9" cy="9" r="1" fill="currentColor" />
-          <circle cx="15" cy="9" r="1" fill="currentColor" />
+          <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.44l-3-9.35A2.5 2.5 0 0 1 5.5 7h7" />
+          <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.44l3-9.35A2.5 2.5 0 0 0 18.5 7h-7" />
         </svg>
       );
     case 'design':
       return (
         <svg {...iconProps}>
-          <circle cx="13.5" cy="6.5" r="3.5" />
-          <circle cx="17.5" cy="10.5" r="3.5" />
-          <circle cx="8.5" cy="7.5" r="3.5" />
-          <circle cx="6.5" cy="12.5" r="3.5" />
-          <path d="M12 20 C12 20 4 17 4 12.5 S7 6.5 7 6.5" />
+          <path d="M2 13.5V21h7.5" />
+          <path d="M22 13.5V21h-7.5" />
+          <path d="M12 2L2 13.5h20L12 2z" />
         </svg>
       );
     case 'devops':
@@ -115,36 +112,75 @@ function renderIcon(iconKey: TechnologyStackIconKey) {
   }
 }
 
+// Preferred display order for categories
+const CATEGORY_ORDER = [
+  'FRONTEND FRAMEWORK',
+  'BACKEND FRAMEWORK',
+  'MOBILE FRAMEWORK',
+  'DEPLOYMENT & CLOUD',
+];
 
 export default function TechStackGrid() {
-  const stack = useTechnologyStackCards().filter((item) => item.enabled);
+  const allCards = useTechnologyStackCards().filter((item) => item.enabled);
   const settings = useTechnologyStackSettings();
+
+  // Group by category, respecting preferred order
+  const grouped = React.useMemo(() => {
+    const map: Record<string, typeof allCards> = {};
+    allCards.forEach((card) => {
+      const cat = card.category || 'OTHER';
+      if (!map[cat]) map[cat] = [];
+      map[cat].push(card);
+    });
+
+    // Sort categories by preferred order, then alphabetically
+    const sorted = Object.keys(map).sort((a, b) => {
+      const ai = CATEGORY_ORDER.indexOf(a);
+      const bi = CATEGORY_ORDER.indexOf(b);
+      if (ai !== -1 && bi !== -1) return ai - bi;
+      if (ai !== -1) return -1;
+      if (bi !== -1) return 1;
+      return a.localeCompare(b);
+    });
+
+    return sorted.map((cat) => ({ category: cat, cards: map[cat] }));
+  }, [allCards]);
+
+  if (allCards.length === 0) return null;
 
   return (
     <section id="stack" className={styles.section}>
       <div className={`container ${styles.container}`}>
-        
-        {/* Header Block */}
+
+        {/* Header */}
         <div className={styles.headerBlock}>
-          <h2 className={styles.title}>{settings.sectionTitle}</h2>
+          <span className={styles.tag}>OUR TECHNOLOGY STACK</span>
+          <h2 className={styles.title}>
+            {settings.sectionTitle || 'Our Technology Stack'}
+          </h2>
           <p className={styles.subtext}>
-            {settings.sectionSubtitle}
+            {settings.sectionSubtitle || 'Built on battle-tested frameworks and advanced cloud kernels.'}
           </p>
         </div>
 
-        {/* Value Cards Grid */}
-        <div className={styles.grid}>
-          {stack.map((item) => (
-            <div key={item.id} className={styles.card}>
-              <div className={styles.iconContainer}>
-                {renderIcon(item.iconKey)}
-              </div>
-              <span className={styles.category}>{item.category}</span>
-              <h3 className={styles.cardTitle}>{item.title}</h3>
-              <p className={styles.cardDescription}>{item.description}</p>
+        {/* Grouped category sections */}
+        {grouped.map(({ category, cards }) => (
+          <div key={category} className={styles.categoryGroup}>
+            <div className={styles.categoryLabel}>{category}</div>
+            <div className={styles.grid}>
+              {cards.map((item) => (
+                <div key={item.id} className={styles.card}>
+                  <div className={styles.iconContainer}>
+                    {renderIcon(item.iconKey)}
+                  </div>
+                  <span className={styles.categoryTag}>{item.category}</span>
+                  <h3 className={styles.cardTitle}>{item.title}</h3>
+                  <p className={styles.cardDescription}>{item.description}</p>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
 
       </div>
     </section>
