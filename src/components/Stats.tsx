@@ -35,19 +35,23 @@ export default function Stats() {
 
   // Only show stats that have been configured in the admin dashboard
   const activeStats = stats.filter(s => s.label.trim() !== '' || s.value.trim() !== '');
-
-  // Hide the entire section when nothing is configured
-  if (activeStats.length === 0) return null;
+  const isHidden = activeStats.length === 0;
 
   return (
-    <section ref={ref} className={styles.statsSection}>
-      <div className={`container ${styles.statsContainer}`}>
-        <div className={styles.grid}>
-          {activeStats.map((stat, index) => (
-            <StatCard key={index} stat={stat} index={index} trigger={visible} />
-          ))}
+    <section 
+      ref={ref} 
+      className={styles.statsSection} 
+      style={isHidden ? { opacity: 0, height: 0, padding: 0, overflow: 'hidden', pointerEvents: 'none' } : undefined}
+    >
+      {!isHidden && (
+        <div className={`container ${styles.statsContainer}`}>
+          <div className={styles.grid}>
+            {activeStats.map((stat, index) => (
+              <StatCard key={index} stat={stat} index={index} trigger={visible} />
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </section>
   );
 }
