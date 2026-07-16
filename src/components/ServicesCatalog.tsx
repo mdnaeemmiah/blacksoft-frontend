@@ -112,6 +112,13 @@ export default function ServicesCatalog() {
                       <span className={styles.index}>0{index + 1}</span>
                       <span className={styles.icon}>{card.icon}</span>
                     </div>
+                    {card.imageSrc && (
+                      <img 
+                        src={card.imageSrc} 
+                        alt={card.imageAlt || card.title} 
+                        className={styles.cardImage} 
+                      />
+                    )}
                     <h3 className={styles.cardTitle}>{card.title}</h3>
                     <p className={styles.cardDescription}>{card.description}</p>
                     <div className={styles.footerLine} />
