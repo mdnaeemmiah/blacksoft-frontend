@@ -32,7 +32,7 @@
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1440px; /* Expanded layout width */
   margin: 0 auto;
   padding: 0 40px;
   position: relative;
@@ -125,8 +125,8 @@
 
 /* Image Showcase Container - Circular Format */
 .imageContainer {
-  width: 220px; /* Generous circular container size */
-  height: 220px;
+  width: 250px; /* Increased circular container size */
+  height: 250px;
   position: relative;
   border-radius: 50%; /* Perfect circle! */
   overflow: hidden;
@@ -171,8 +171,8 @@
 /* Technology Stack Logo Badge overlay - Premium Cream */
 .logoBadge {
   position: absolute;
-  bottom: 8px;
-  right: 18px; /* Adjusted position to float perfectly near the circular boundary */
+  bottom: 12px;
+  right: 22px; /* Adjusted position for the larger 250px boundary */
   width: 38px;
   height: 38px;
   border-radius: 50%;
