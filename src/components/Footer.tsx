@@ -35,6 +35,14 @@ export default function Footer() {
         {/* Brand Description Column */}
         <div className={styles.brandCol}>
           <Link href="/" className={styles.logo}>
+            <svg viewBox="0 0 32 32" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '8px', flexShrink: 0 }}>
+              <rect x="2" y="2" width="6" height="17" rx="3" fill="currentColor" />
+              <rect x="2" y="23" width="6" height="7" rx="3" fill="currentColor" />
+              <path d="M5 25 L12 18" stroke="currentColor" strokeWidth="4.5" strokeLinecap="round" />
+              <circle cx="14" cy="16" r="4.5" fill="currentColor" />
+              <path d="M11 5 h11 c2.76 0 5 2.24 5 5 v0 c0 2.76 -2.24 5 -5 5 h-4" stroke="currentColor" strokeWidth="5.5" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M11 27 h11 c2.76 0 5 -2.24 5 -5 v0 c0 -2.76 -2.24 -5 -5 -5 h-4" stroke="currentColor" strokeWidth="5.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
             Blacksoft
           </Link>
           <p className={styles.description}>
