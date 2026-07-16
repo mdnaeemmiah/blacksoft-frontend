@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import styles from './Footer.module.css';
@@ -10,19 +10,10 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
   const pathname = usePathname();
   const isSubPage = pathname === '/solutions' || pathname === '/about' || pathname === '/technology' || pathname === '/team';
-  const [emailInput, setEmailInput] = useState('');
   const footerDesc = useSiteConfig('footer.description');
   const footerEmail = useSiteConfig('footer.email');
   const footerLocation = useSiteConfig('footer.location');
   const footerCopy = useSiteConfig('footer.copyright');
-
-  const handleSubscribe = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (emailInput.trim()) {
-      alert(`Subscribed: ${emailInput}`);
-      setEmailInput('');
-    }
-  };
 
   return (
     <footer className={styles.footer}>
@@ -97,44 +88,21 @@ export default function Footer() {
 
         {/* Links Column 3: Contact / Connect */}
         <div className={styles.contactCol}>
-          <h3 className={styles.colTitle}>{isSubPage ? "Connect" : "Contact"}</h3>
+          <h3 className={styles.colTitle}>Contact</h3>
           
-          {isSubPage ? (
-            <div className={styles.connectContainer}>
-              <form onSubmit={handleSubscribe} className={styles.newsletterForm}>
-                <input
-                  type="email"
-                  placeholder="Newsletter"
-                  value={emailInput}
-                  onChange={(e) => setEmailInput(e.target.value)}
-                  required
-                  className={styles.newsletterInput}
-                />
-                <button type="submit" className={styles.newsletterBtn} aria-label="Subscribe">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={styles.btnArrow}>
-                    <line x1="5" y1="12" x2="19" y2="12" />
-                    <polyline points="12 5 19 12 12 19" />
-                  </svg>
-                </button>
-              </form>
-            </div>
-          ) : (
-            <ul className={styles.contactList}>
-              <li className={styles.contactItem}>{footerLocation}</li>
-              <li className={styles.contactItem}>
-                Email: <a href={`mailto:${footerEmail}`} className={styles.email}>{footerEmail}</a>
-              </li>
-            </ul>
-          )}
+          <ul className={styles.contactList}>
+            <li className={styles.contactItem}>{footerLocation}</li>
+            <li className={styles.contactItem}>
+              Email: <a href={`mailto:${footerEmail}`} className={styles.email}>{footerEmail}</a>
+            </li>
+          </ul>
           
           <div className={styles.bottomMeta}>
             <p className={styles.copy}>&copy; {currentYear} {footerCopy}</p>
-            {!isSubPage && (
-              <div className={styles.legal}>
-                <Link href="#" className={styles.legalLink}>Privacy Policy</Link>
-                <Link href="#" className={styles.legalLink}>Terms of Service</Link>
-              </div>
-            )}
+            <div className={styles.legal}>
+              <Link href="#" className={styles.legalLink}>Privacy Policy</Link>
+              <Link href="#" className={styles.legalLink}>Terms of Service</Link>
+            </div>
           </div>
         </div>
 
