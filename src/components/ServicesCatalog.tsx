@@ -32,6 +32,43 @@ const CATEGORIES_META: Record<string, { title: string; subtitle: string }> = {
   },
 };
 
+// Order of categories to always render on the Solutions page
+const CATEGORIES_ORDER = ['App', 'Website', 'Figma design', 'Backend development', 'AI solution'];
+
+// Premium showcase placeholder cards for categories with no published items
+const SECTION_PLACEHOLDERS: Record<string, { title: string; description: string; icon: string; link: string }> = {
+  'App': {
+    title: 'Custom Mobile & Desktop Showcase',
+    description: 'Bespoke native applications engineered for optimal speed, fluidity, and seamless integration with your company operations.',
+    icon: '📱',
+    link: '/book-a-call',
+  },
+  'Website': {
+    title: 'Premium Corporate Web Surfaces',
+    description: 'High-speed marketing layers and interactive web products designed for exceptional conversion rate performance.',
+    icon: '🌐',
+    link: '/book-a-call',
+  },
+  'Figma design': {
+    title: 'High-Fidelity Product UI/UX Systems',
+    description: 'Complete UI component libraries, prototypes, and dynamic layout systems built for direct frontend translation.',
+    icon: '🎨',
+    link: '/book-a-call',
+  },
+  'Backend development': {
+    title: 'Secure Cloud & API Architectures',
+    description: 'High-concurrency data layers, robust server controllers, and zero-trust authentication protocols tailored to scale.',
+    icon: '⚙️',
+    link: '/book-a-call',
+  },
+  'AI solution': {
+    title: 'Agentic Automations & LLM Engines',
+    description: 'Context-specific AI assistants, neural language layers, and workflow automation blocks that eliminate routine task loops.',
+    icon: '🧠',
+    link: '/book-a-call',
+  },
+};
+
 export default function ServicesCatalog() {
   const [appCards] = useAppWebsiteCards();
   const [aiCards] = useAiSolutionCards();
@@ -66,28 +103,10 @@ export default function ServicesCatalog() {
     return groups;
   }, [allCards]);
 
-  // We want to render them in a specific order: App, Website, Figma design, Backend development, AI solution
-  const categoriesToRender = Object.keys(groupedCards).sort((a, b) => {
-    const order = ['App', 'Website', 'Figma design', 'Backend development', 'AI solution', 'Other'];
-    const indexA = order.indexOf(a);
-    const indexB = order.indexOf(b);
-    const valA = indexA !== -1 ? indexA : 99;
-    const valB = indexB !== -1 ? indexB : 99;
-    return valA - valB;
-  });
-
-  if (allCards.length === 0) {
-    return (
-      <div style={{ textAlign: 'center', padding: '80px 24px', background: 'var(--bg-main)' }}>
-        <p style={{ color: 'var(--text-muted)' }}>No solutions catalog items published yet.</p>
-      </div>
-    );
-  }
-
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
-      {categoriesToRender.map((categoryKey) => {
-        const categoryCards = groupedCards[categoryKey];
+      {CATEGORIES_ORDER.map((categoryKey) => {
+        const categoryCards = groupedCards[categoryKey] || [];
         const meta = CATEGORIES_META[categoryKey] || {
           title: `${categoryKey} Development`,
           subtitle: `Custom-built systems tailored for ${categoryKey.toLowerCase()} architecture.`,
@@ -106,24 +125,46 @@ export default function ServicesCatalog() {
 
               {/* Grid of Cards */}
               <div className={styles.grid}>
-                {categoryCards.map((card, index) => (
-                  <a className={styles.card} href={card.link || '#solutions'} key={card.id}>
-                    <div className={styles.cardTop}>
-                      <span className={styles.index}>0{index + 1}</span>
-                      <span className={styles.icon}>{card.icon}</span>
-                    </div>
-                    {card.imageSrc && (
-                      <img 
-                        src={card.imageSrc} 
-                        alt={card.imageAlt || card.title} 
-                        className={styles.cardImage} 
-                      />
-                    )}
-                    <h3 className={styles.cardTitle}>{card.title}</h3>
-                    <p className={styles.cardDescription}>{card.description}</p>
-                    <div className={styles.footerLine} />
-                  </a>
-                ))}
+                {categoryCards.length > 0 ? (
+                  categoryCards.map((card, index) => (
+                    <a className={styles.card} href={card.link || '#solutions'} key={card.id}>
+                      <div className={styles.cardTop}>
+                        <span className={styles.index}>0{index + 1}</span>
+                        <span className={styles.icon}>{card.icon}</span>
+                      </div>
+                      {card.imageSrc && (
+                        <img 
+                          src={card.imageSrc} 
+                          alt={card.imageAlt || card.title} 
+                          className={styles.cardImage} 
+                        />
+                      )}
+                      <h3 className={styles.cardTitle}>{card.title}</h3>
+                      <p className={styles.cardDescription}>{card.description}</p>
+                      <div className={styles.footerLine} />
+                    </a>
+                  ))
+                ) : (
+                  // If category has no items, render a placeholder card
+                  (() => {
+                    const pl = SECTION_PLACEHOLDERS[categoryKey];
+                    if (!pl) return null;
+                    return (
+                      <a className={styles.card} href={pl.link} style={{ borderStyle: 'dashed', borderColor: 'rgba(255,255,255,0.15)' }}>
+                        <div className={styles.cardTop}>
+                          <span className={styles.index} style={{ opacity: 0.5 }}>REQUEST</span>
+                          <span className={styles.icon} style={{ background: 'rgba(99, 102, 241, 0.08)' }}>{pl.icon}</span>
+                        </div>
+                        <h3 className={styles.cardTitle} style={{ opacity: 0.9 }}>{pl.title}</h3>
+                        <p className={styles.cardDescription} style={{ opacity: 0.7 }}>{pl.description}</p>
+                        <span style={{ fontSize: '0.78rem', fontWeight: 800, color: 'var(--primary)', marginTop: 'auto', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                          Start your project <span>↗</span>
+                        </span>
+                        <div className={styles.footerLine} />
+                      </a>
+                    );
+                  })()
+                )}
               </div>
 
             </div>
