@@ -440,7 +440,11 @@ export default function TechStackGrid() {
               {cards.map((item) => (
                 <div key={item.id} className={styles.card}>
                   <div className={styles.iconContainer}>
-                    {renderOfficialIcon(item.title, item.iconKey, styles.iconSvg)}
+                    {item.imageSrc ? (
+                      <img src={item.imageSrc} alt={item.imageAlt || item.title} style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '2px' }} />
+                    ) : (
+                      renderOfficialIcon(item.title, item.iconKey, styles.iconSvg)
+                    )}
                   </div>
                   <span className={styles.categoryTag}>{item.category}</span>
                   <h3 className={styles.cardTitle}>{item.title}</h3>
