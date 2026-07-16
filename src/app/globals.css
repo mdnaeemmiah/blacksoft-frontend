@@ -5,44 +5,57 @@
    Apple-quality animations & typography
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 :root {
+  /* Color Palette - Blacksoft Cream & White Mode Design System with Brown Accents */
+  --primary: #5c4033;       /* Espresso Brown */
+  --primary-container: #7a5843; /* Bronze Brown */
+  --primary-hover: #3d281e; /* Deep Coffee */
+  --primary-glow: rgba(92, 64, 51, 0.08);
+
+  --secondary: #565e74;
+  --secondary-container: #dae2fd;
+  --secondary-glow: rgba(86, 94, 116, 0.12);
+
+  --tertiary: #a3826f;      /* Muted Taupe */
+  --tertiary-container: #fcfbf9;
+
   /* ── Core Palette ── */
-  --bg-main:        #060a14;
-  --bg-secondary:   #090e1c;
-  --bg-card:        rgba(255,255,255,0.035);
-  --bg-card-high:   rgba(255,255,255,0.06);
-  --bg-footer:      #040710;
+  --bg-main:        #fbfaf7;       /* Cream */
+  --bg-secondary:   #f5f3ee;  /* Darker Cream */
+  --bg-card:        rgba(255, 255, 255, 0.75); /* White glassmorphism */
+  --bg-card-high:   #ffffff;  /* Pure White */
+  --bg-footer:      #eae8e2;     /* Muted Cream footer */
 
   /* ── Accent System ── */
-  --accent-1:       #4f8ef7;        /* electric blue    */
-  --accent-2:       #a78bfa;        /* soft violet      */
-  --accent-3:       #34d399;        /* mint             */
-  --accent-warm:    #f472b6;        /* rose             */
-  --accent-glow-1:  rgba(79,142,247,0.18);
-  --accent-glow-2:  rgba(167,139,250,0.14);
-  --accent-glow-3:  rgba(52,211,153,0.12);
+  --accent-1:       #5c4033;        /* Espresso Brown */
+  --accent-2:       #a3826f;        /* Muted Taupe */
+  --accent-3:       #7a5843;        /* Bronze Brown */
+  --accent-warm:    #8c6239;        /* Warm brown */
+  --accent-glow-1:  rgba(92, 64, 51, 0.12);
+  --accent-glow-2:  rgba(163, 130, 111, 0.10);
+  --accent-glow-3:  rgba(122, 88, 67, 0.08);
 
   /* ── Gradients ── */
-  --grad-hero:      linear-gradient(135deg, #4f8ef7 0%, #a78bfa 50%, #34d399 100%);
-  --grad-cta:       linear-gradient(135deg, #4f8ef7 0%, #a78bfa 100%);
-  --grad-card:      linear-gradient(145deg, rgba(79,142,247,0.08) 0%, rgba(167,139,250,0.04) 100%);
+  --grad-hero:      linear-gradient(135deg, #5c4033 0%, #a3826f 50%, #7a5843 100%);
+  --grad-cta:       linear-gradient(135deg, #422d22 0%, #7a5843 100%);
+  --grad-card:      linear-gradient(145deg, rgba(92,64,51,0.04) 0%, rgba(163,130,111,0.02) 100%);
   --grad-shine:     linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0) 100%);
 
   /* ── Text ── */
-  --text-main:    #f0f4ff;
-  --text-muted:   #8b9bbf;
-  --text-subtle:  #4a5578;
-  --text-white:   #ffffff;
+  --text-main:    #1e293b;     /* Dark Slate */
+  --text-muted:   #475569;    /* Slate */
+  --text-subtle:  #64748b;    /* Light Slate */
+  --text-white:   #0b0f19;    /* Swapped to Dark Slate so headers display dark */
 
   /* ── Borders ── */
-  --border-light:   rgba(255,255,255,0.07);
-  --border-card:    rgba(255,255,255,0.1);
-  --border-accent:  rgba(79,142,247,0.25);
+  --border-light:   rgba(0, 0, 0, 0.08);
+  --border-card:    rgba(0, 0, 0, 0.1);
+  --border-accent:  rgba(92, 64, 51, 0.25);
 
   /* ── Shadows ── */
-  --shadow-sm:   0 2px 12px rgba(0,0,0,0.4);
-  --shadow-md:   0 8px 40px rgba(0,0,0,0.5);
-  --shadow-lg:   0 24px 80px rgba(0,0,0,0.6);
-  --shadow-glow: 0 0 60px rgba(79,142,247,0.15);
+  --shadow-sm:   0 2px 12px rgba(92, 64, 51, 0.04);
+  --shadow-md:   0 8px 30px rgba(92, 64, 51, 0.06);
+  --shadow-lg:   0 20px 50px rgba(92, 64, 51, 0.08);
+  --shadow-glow: 0 0 60px rgba(92, 64, 51, 0.08);
 
   /* ── Typography ── */
   --font-heading: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -50,7 +63,7 @@
 
   /* ── Layout ── */
   --max-width:    1280px;
-  --header-height: 72px;
+  --header-height: 80px;
 
   /* ── Radii ── */
   --r-sm: 8px;
@@ -88,11 +101,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 
-  /* Animated dark mesh background */
+  /* Animated warm mesh background */
   background-image:
-    radial-gradient(ellipse 80% 50% at 20% -10%, rgba(79,142,247,0.12) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 50% at 80% 110%, rgba(167,139,250,0.1) 0%, transparent 60%),
-    radial-gradient(ellipse 40% 40% at 50% 50%, rgba(52,211,153,0.04) 0%, transparent 70%);
+    radial-gradient(ellipse 80% 50% at 20% -10%, rgba(92,64,51,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 110%, rgba(163,130,111,0.05) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 50% 50%, rgba(122,88,67,0.03) 0%, transparent 70%);
   background-attachment: fixed;
 }
 
@@ -172,38 +185,39 @@ img, svg { display: block; }
 .btn-primary {
   background: var(--grad-cta);
   color: #fff;
-  box-shadow: 0 4px 24px rgba(79,142,247,0.35), 0 1px 0 rgba(255,255,255,0.15) inset;
+  box-shadow: 0 4px 24px rgba(92,64,51,0.25), 0 1px 0 rgba(255,255,255,0.15) inset;
   border: 1px solid rgba(255,255,255,0.1);
 }
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 40px rgba(79,142,247,0.5), 0 1px 0 rgba(255,255,255,0.2) inset;
+  box-shadow: 0 8px 40px rgba(92,64,51,0.4), 0 1px 0 rgba(255,255,255,0.2) inset;
 }
 .btn-primary:active { transform: translateY(0); }
 
 .btn-secondary {
-  background: rgba(255,255,255,0.05);
+  background: rgba(92,64,51,0.04);
   color: var(--text-main);
   border: 1px solid var(--border-card);
   backdrop-filter: blur(12px);
 }
 .btn-secondary:hover {
-  background: rgba(255,255,255,0.09);
+  background: rgba(92,64,51,0.08);
   border-color: var(--border-accent);
   transform: translateY(-2px);
-  color: #fff;
+  color: var(--text-white);
 }
 
 .btn-white {
-  background: #ffffff;
-  color: #060a14;
+  background: var(--text-white);
+  color: var(--bg-main);
   font-weight: 700;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
 }
 .btn-white:hover {
-  background: #f0f4ff;
+  background: var(--text-muted);
+  color: var(--bg-main);
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 }
 
 .btn-outline-white {
@@ -212,8 +226,8 @@ img, svg { display: block; }
   border: 1px solid var(--border-card);
 }
 .btn-outline-white:hover {
-  background: rgba(255,255,255,0.06);
-  border-color: rgba(255,255,255,0.25);
+  background: rgba(92,64,51,0.05);
+  border-color: var(--border-accent);
   transform: translateY(-2px);
 }
 

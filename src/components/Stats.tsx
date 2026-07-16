@@ -3,6 +3,7 @@
 import React from 'react';
 import styles from './Stats.module.css';
 import { useInView, useCountUp } from '../utils/useAnimation';
+import { useStatsSettings } from '../utils/statsStore';
 
 interface StatItem {
   value: string;
@@ -11,21 +12,22 @@ interface StatItem {
 }
 
 export default function Stats() {
+  const settings = useStatsSettings();
   const stats: StatItem[] = [
     {
-      value: '50+',
-      label: 'Products Shipped',
-      description: 'High-performance solutions deployed globally for industry leaders.'
+      value: settings.stat1Value,
+      label: settings.stat1Label,
+      description: settings.stat1Description
     },
     {
-      value: '$250M+',
-      label: 'Value Generated',
-      description: 'Measured ROI and operational efficiency delivered for our partners.'
+      value: settings.stat2Value,
+      label: settings.stat2Label,
+      description: settings.stat2Description
     },
     {
-      value: '100%',
-      label: 'Success Rate',
-      description: 'Unwavering technical excellence and commitment to project delivery.'
+      value: settings.stat3Value,
+      label: settings.stat3Label,
+      description: settings.stat3Description
     }
   ];
 

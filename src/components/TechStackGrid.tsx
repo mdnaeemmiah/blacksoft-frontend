@@ -4,12 +4,11 @@ import React from 'react';
 import {
   useTechnologyStackCards,
   useTechnologyStackSettings,
-  type TechnologyStackIconKey,
 } from '../utils/technologyStackStore';
 import styles from './TechStackGrid.module.css';
 import { useInView } from '../utils/useAnimation';
 
-function renderOfficialIcon(title: string, iconKey: TechnologyStackIconKey, className: string) {
+function renderOfficialIcon(title: string, iconKey: string, className: string) {
   const norm = title.toLowerCase().trim();
   const iconProps = {
     xmlns: 'http://www.w3.org/2000/svg',

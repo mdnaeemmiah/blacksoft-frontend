@@ -2,7 +2,7 @@
 
 import React from 'react';
 import styles from './WhyUs.module.css';
-import { useWhyUsCards } from '../utils/whyUsStore';
+import { useWhyUsCards, type WhyUsCard } from '../utils/whyUsStore';
 import { useInView } from '../utils/useAnimation';
 
 export default function WhyUs() {
@@ -49,7 +49,7 @@ function WhyUsCard({
   card,
   index,
 }: {
-  card: { id: string; icon: string; imageSrc: string; imageAlt: string; title: string; description: string };
+  card: WhyUsCard;
   index: number;
 }) {
   const [ref, visible] = useInView(0.1, true);
