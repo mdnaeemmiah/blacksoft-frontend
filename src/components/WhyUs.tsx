@@ -28,6 +28,13 @@ export default function WhyUs() {
           {visibleCards.map((card) => (
             <article key={card.id} className={styles.card}>
               <div className={styles.icon}>{card.icon}</div>
+              {card.imageSrc && (
+                <img 
+                  src={card.imageSrc} 
+                  alt={card.imageAlt || card.title} 
+                  className={styles.cardImage} 
+                />
+              )}
               <h3 className={styles.cardTitle}>{card.title}</h3>
               <p className={styles.cardDescription}>{card.description}</p>
             </article>
