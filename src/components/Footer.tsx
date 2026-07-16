@@ -6,15 +6,16 @@ import { usePathname } from 'next/navigation';
 import styles from './Footer.module.css';
 import { useSiteConfig } from '../utils/configStore';
 import { useServiceCards } from '../utils/servicesStore';
+import { useContactInfo } from '../utils/contactStore';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   const pathname = usePathname();
-  const isSubPage = pathname === '/solutions' || pathname === '/about' || pathname === '/technology' || pathname === '/team';
   const footerDesc = useSiteConfig('footer.description');
-  const footerEmail = useSiteConfig('footer.email');
-  const footerLocation = useSiteConfig('footer.location');
   const footerCopy = useSiteConfig('footer.copyright');
+
+  // Live contact info from DB
+  const contact = useContactInfo();
 
   const [services] = useServiceCards();
   const visibleServices = services.filter((card) => card.enabled);
@@ -80,23 +81,35 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Links Column 3: Contact */}
+        {/* Links Column 3: Contact — DB-backed */}
         <div className={styles.contactCol}>
           <h3 className={styles.colTitle}>Contact</h3>
           <ul className={styles.contactList}>
-            <li className={styles.contactItem}>{footerLocation}</li>
-            <li className={styles.contactItem}>
-              Email: <a href={`mailto:${footerEmail}`} className={styles.email}>{footerEmail}</a>
-            </li>
+            {contact.location && (
+              <li className={styles.contactItem}>{contact.location}</li>
+            )}
+            {contact.email && (
+              <li className={styles.contactItem}>
+                Email: <a href={`mailto:${contact.email}`} className={styles.email}>{contact.email}</a>
+              </li>
+            )}
+            {contact.phone && (
+              <li className={styles.contactItem}>
+                Phone: <a href={`tel:${contact.phone}`} className={styles.email}>{contact.phone}</a>
+              </li>
+            )}
+            {!contact.location && !contact.email && !contact.phone && (
+              <li className={styles.contactItem} style={{ opacity: 0.4 }}>Contact info coming soon</li>
+            )}
           </ul>
         </div>
 
       </div>
 
       <div className={`container ${styles.bottomMeta}`}>
-        <p className={styles.copy}>&copy; 2026 {footerCopy}</p>
+        <p className={styles.copy}>&copy; {currentYear} {footerCopy}</p>
         <div className={styles.legal}>
-          <Link href="#" className={styles.legalLink}>Privacy Policy</Link>
+          <Link href="/privacy-policy" className={styles.legalLink}>Privacy Policy</Link>
           <Link href="#" className={styles.legalLink}>Terms of Service</Link>
         </div>
       </div>
