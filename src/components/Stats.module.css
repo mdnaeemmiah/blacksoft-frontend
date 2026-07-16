@@ -1,7 +1,8 @@
 .statsSection {
-  padding: 100px 0;
+  padding: 120px 0;
   background-color: var(--bg-main);
   border-bottom: 1px solid var(--border-light);
+  position: relative;
 }
 
 .statsContainer {
@@ -24,14 +25,9 @@
   align-items: center;
   padding: 24px;
   position: relative;
-  transition: transform 0.3s ease;
 }
 
-.statCard:hover {
-  transform: translateY(-4px);
-}
-
-/* Dividing borders between items */
+/* Dividing borders between items with premium styling */
 .statCard:not(:last-child)::after {
   content: '';
   position: absolute;
@@ -39,38 +35,38 @@
   top: 20%;
   height: 60%;
   width: 1px;
-  background-color: var(--border-light);
+  background: linear-gradient(to bottom, transparent, var(--border-light), transparent);
 }
 
 /* Value (50+, $250M+, 100%) */
 .value {
   font-family: var(--font-heading);
-  font-size: 3.5rem;
+  font-size: clamp(3rem, 5vw, 4.5rem);
   font-weight: 800;
-  color: var(--primary);
   line-height: 1.1;
   margin-bottom: 16px;
-  letter-spacing: -1.5px;
-  background: var(--accent-gradient);
+  letter-spacing: -2px;
+  background: var(--grad-hero);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  animation: gradientShift 4s ease infinite;
 }
 
 /* Label (Products Shipped, etc.) */
 .label {
   font-family: var(--font-heading);
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   font-weight: 700;
-  color: var(--text-main);
+  color: var(--text-white);
   margin-bottom: 12px;
 }
 
 /* Description text */
 .description {
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   color: var(--text-muted);
-  line-height: 1.5;
+  line-height: 1.6;
   max-width: 280px;
 }
 
@@ -83,10 +79,6 @@
   .statCard:not(:last-child)::after {
     display: none;
   }
-  
-  .value {
-    font-size: 3rem;
-  }
 }
 
 @media (max-width: 768px) {
@@ -96,7 +88,7 @@
   }
   
   .statCard {
-    padding: 12px;
+    padding: 20px 12px;
     border-bottom: 1px solid var(--border-light);
   }
   

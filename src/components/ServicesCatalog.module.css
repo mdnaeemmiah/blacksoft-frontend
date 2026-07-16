@@ -7,7 +7,7 @@
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 40px;
 }
 
 .headerBlock {
@@ -17,13 +17,17 @@
 }
 
 .tag {
-  font-size: 0.75rem;
+  display: inline-block;
+  font-size: 0.7rem;
   font-weight: 700;
-  color: var(--primary);
   letter-spacing: 2px;
   text-transform: uppercase;
-  margin-bottom: 12px;
-  display: inline-block;
+  color: var(--accent-1);
+  margin-bottom: 16px;
+  padding: 4px 12px;
+  background: rgba(79, 142, 247, 0.08);
+  border-radius: 9999px;
+  border: 1px solid rgba(79, 142, 247, 0.2);
 }
 
 .title {
@@ -36,9 +40,9 @@
 }
 
 .subtext {
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: var(--text-muted);
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
 .grid {
@@ -49,22 +53,21 @@
 
 .card {
   background: var(--bg-card);
-  border: 1px solid var(--border-light);
+  border: 1px solid var(--border-card);
   padding: 40px 32px;
   border-radius: 20px;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.4s var(--ease-out);
   display: flex;
   flex-direction: column;
   position: relative;
   overflow: hidden;
-  box-shadow: var(--card-shadow);
 }
 
 .card:hover {
   transform: translateY(-6px);
-  border-color: var(--primary);
-  background: var(--bg-card-high);
-  box-shadow: var(--card-shadow-hover);
+  border-color: rgba(79, 142, 247, 0.25);
+  background: rgba(79, 142, 247, 0.05);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4), 0 0 30px rgba(79, 142, 247, 0.06);
 }
 
 .cardTop {
@@ -75,7 +78,7 @@
 }
 
 .index {
-  color: var(--text-light);
+  color: var(--text-subtle);
   font-size: 0.75rem;
   font-weight: 800;
   letter-spacing: 1px;
@@ -87,9 +90,10 @@
   width: 48px;
   height: 48px;
   border-radius: 12px;
-  background-color: var(--primary-glow);
-  color: var(--primary);
+  background-color: rgba(79, 142, 247, 0.1);
+  color: var(--accent-1);
   font-size: 22px;
+  border: 1px solid rgba(79, 142, 247, 0.2);
 }
 
 .cardTitle {
@@ -114,18 +118,23 @@
   border-radius: 12px;
   margin-bottom: 24px;
   border: 1px solid var(--border-light);
+  opacity: 0.85;
+  transition: opacity 0.3s ease;
+}
+.card:hover .cardImage {
+  opacity: 1;
 }
 
 .footerLine {
   width: 100%;
   height: 2px;
-  background-color: var(--primary);
+  background: var(--grad-cta);
   position: absolute;
   bottom: 0;
   left: 0;
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.4s ease;
+  transition: transform 0.4s var(--ease-out);
 }
 
 .card:hover .footerLine {

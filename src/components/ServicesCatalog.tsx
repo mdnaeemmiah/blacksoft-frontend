@@ -3,8 +3,8 @@
 import React from 'react';
 import styles from './ServicesCatalog.module.css';
 import { useAppWebsiteCards, useAiSolutionCards, type SolutionCard } from '../utils/solutionCardsStore';
+import { useInView } from '../utils/useAnimation';
 
-// Map database category keys to friendly user-facing section titles and subtitles
 const CATEGORIES_META: Record<string, { title: string; subtitle: string }> = {
   'App': {
     title: 'Application Development Showcase',
@@ -32,10 +32,8 @@ const CATEGORIES_META: Record<string, { title: string; subtitle: string }> = {
   },
 };
 
-// Order of categories to always render on the Solutions page
 const CATEGORIES_ORDER = ['App', 'Website', 'Figma design', 'Backend development', 'AI solution'];
 
-// Premium showcase placeholder cards for categories with no published items
 const SECTION_PLACEHOLDERS: Record<string, { title: string; description: string; icon: string; link: string }> = {
   'App': {
     title: 'Custom Mobile & Desktop Showcase',
@@ -73,7 +71,6 @@ export default function ServicesCatalog() {
   const [appCards] = useAppWebsiteCards();
   const [aiCards] = useAiSolutionCards();
 
-  // Combine and filter active cards
   const allCards = React.useMemo(() => {
     return [...appCards, ...aiCards]
       .filter((c) => c.enabled)
@@ -90,7 +87,6 @@ export default function ServicesCatalog() {
       });
   }, [appCards, aiCards]);
 
-  // Group cards by category
   const groupedCards = React.useMemo(() => {
     const groups: Record<string, SolutionCard[]> = {};
     allCards.forEach((card) => {
@@ -113,64 +109,126 @@ export default function ServicesCatalog() {
         };
 
         return (
-          <section className={styles.section} key={categoryKey} id={`section-${categoryKey.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}>
-            <div className={`container ${styles.container}`}>
-              
-              {/* Section Header */}
-              <div className={styles.headerBlock}>
-                <span className={styles.tag}>{categoryKey.toUpperCase()}</span>
-                <h2 className={styles.title}>{meta.title}</h2>
-                <p className={styles.subtext}>{meta.subtitle}</p>
-              </div>
-
-              {/* Grid of Cards */}
-              <div className={styles.grid}>
-                {categoryCards.length > 0 ? (
-                  categoryCards.map((card, index) => (
-                    <a className={styles.card} href={card.link || '#solutions'} key={card.id}>
-                      <div className={styles.cardTop}>
-                        <span className={styles.index}>0{index + 1}</span>
-                        <span className={styles.icon}>{card.icon}</span>
-                      </div>
-                      {card.imageSrc && (
-                        <img 
-                          src={card.imageSrc} 
-                          alt={card.imageAlt || card.title} 
-                          className={styles.cardImage} 
-                        />
-                      )}
-                      <h3 className={styles.cardTitle}>{card.title}</h3>
-                      <p className={styles.cardDescription}>{card.description}</p>
-                      <div className={styles.footerLine} />
-                    </a>
-                  ))
-                ) : (
-                  // If category has no items, render a placeholder card
-                  (() => {
-                    const pl = SECTION_PLACEHOLDERS[categoryKey];
-                    if (!pl) return null;
-                    return (
-                      <a className={styles.card} href={pl.link} style={{ borderStyle: 'dashed', borderColor: 'rgba(255,255,255,0.15)' }}>
-                        <div className={styles.cardTop}>
-                          <span className={styles.index} style={{ opacity: 0.5 }}>REQUEST</span>
-                          <span className={styles.icon} style={{ background: 'rgba(99, 102, 241, 0.08)' }}>{pl.icon}</span>
-                        </div>
-                        <h3 className={styles.cardTitle} style={{ opacity: 0.9 }}>{pl.title}</h3>
-                        <p className={styles.cardDescription} style={{ opacity: 0.7 }}>{pl.description}</p>
-                        <span style={{ fontSize: '0.78rem', fontWeight: 800, color: 'var(--primary)', marginTop: 'auto', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                          Start your project <span>↗</span>
-                        </span>
-                        <div className={styles.footerLine} />
-                      </a>
-                    );
-                  })()
-                )}
-              </div>
-
-            </div>
-          </section>
+          <CategorySection
+            key={categoryKey}
+            categoryKey={categoryKey}
+            categoryCards={categoryCards}
+            meta={meta}
+          />
         );
       })}
     </div>
+  );
+}
+
+function CategorySection({
+  categoryKey,
+  categoryCards,
+  meta,
+}: {
+  categoryKey: string;
+  categoryCards: SolutionCard[];
+  meta: { title: string; subtitle: string };
+}) {
+  const [headerRef, headerVisible] = useInView(0.1, true);
+
+  return (
+    <section className={styles.section} id={`section-${categoryKey.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}>
+      <div className={`container ${styles.container}`}>
+        
+        {/* Section Header */}
+        <div 
+          ref={headerRef} 
+          className={styles.headerBlock}
+          style={{
+            opacity: headerVisible ? 1 : 0,
+            transform: headerVisible ? 'none' : 'translateY(24px)',
+            transition: 'opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out)',
+          }}
+        >
+          <span className={styles.tag}>{categoryKey.toUpperCase()}</span>
+          <h2 className={styles.title}>{meta.title}</h2>
+          <p className={styles.subtext}>{meta.subtitle}</p>
+        </div>
+
+        {/* Grid of Cards */}
+        <div className={styles.grid}>
+          {categoryCards.length > 0 ? (
+            categoryCards.map((card, index) => (
+              <ServiceCardItem key={card.id} card={card} index={index} />
+            ))
+          ) : (
+            (() => {
+              const pl = SECTION_PLACEHOLDERS[categoryKey];
+              if (!pl) return null;
+              return (
+                <PlaceholderCardItem pl={pl} categoryKey={categoryKey} />
+              );
+            })()
+          )}
+        </div>
+
+      </div>
+    </section>
+  );
+}
+
+function ServiceCardItem({ card, index }: { card: SolutionCard; index: number }) {
+  const [ref, visible] = useInView<HTMLAnchorElement>(0.1, true);
+  return (
+    <a 
+      ref={ref}
+      className={styles.card} 
+      href={card.link || '#solutions'}
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? 'none' : 'translateY(30px)',
+        transition: `opacity 0.7s ${index * 0.1}s var(--ease-out), transform 0.7s ${index * 0.1}s var(--ease-out)`,
+      }}
+    >
+      <div className={styles.cardTop}>
+        <span className={styles.index}>0{index + 1}</span>
+        <span className={styles.icon}>{card.icon}</span>
+      </div>
+      {card.imageSrc && (
+        <img 
+          src={card.imageSrc} 
+          alt={card.imageAlt || card.title} 
+          className={styles.cardImage} 
+        />
+      )}
+      <h3 className={styles.cardTitle}>{card.title}</h3>
+      <p className={styles.cardDescription}>{card.description}</p>
+      <div className={styles.footerLine} />
+    </a>
+  );
+}
+
+function PlaceholderCardItem({ pl, categoryKey }: { pl: { title: string; description: string; icon: string; link: string }; categoryKey: string }) {
+  const [ref, visible] = useInView<HTMLAnchorElement>(0.1, true);
+  return (
+    <a 
+      ref={ref}
+      className={styles.card} 
+      href={pl.link} 
+      style={{ 
+        borderStyle: 'dashed', 
+        borderColor: 'rgba(255,255,255,0.15)',
+        opacity: visible ? 1 : 0,
+        transform: visible ? 'none' : 'translateY(30px)',
+        transition: 'opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out)',
+      }}
+    >
+      <div className={styles.cardTop}>
+        <span className={styles.index} style={{ opacity: 0.5 }}>REQUEST</span>
+        <span className={styles.icon} style={{ background: 'rgba(79, 142, 247, 0.1)' }}>{pl.icon}</span>
+      </div>
+      <h3 className={styles.cardTitle} style={{ opacity: 0.9 }}>{pl.title}</h3>
+      <p className={styles.cardDescription} style={{ opacity: 0.7 }}>{pl.description}</p>
+      <span style={{ fontSize: '0.78rem', fontWeight: 800, color: 'var(--accent-1)', marginTop: 'auto', display: 'flex', alignItems: 'center', gap: '6px' }}>
+        Start your project <span>↗</span>
+      </span>
+      <div className={styles.footerLine} />
+    </a>
   );
 }

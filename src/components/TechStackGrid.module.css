@@ -1,5 +1,5 @@
 .section {
-  padding: 100px 0;
+  padding: 120px 0;
   background-color: var(--bg-main);
   border-bottom: 1px solid var(--border-light);
 }
@@ -8,6 +8,7 @@
   display: flex;
   flex-direction: column;
   gap: 64px;
+  padding: 0 40px;
 }
 
 /* Header */
@@ -18,13 +19,17 @@
 }
 
 .tag {
-  font-size: 0.72rem;
-  font-weight: 800;
-  color: var(--primary);
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
-  margin-bottom: 12px;
-  display: inline-block;
+  color: var(--accent-1);
+  margin-bottom: 16px;
+  padding: 4px 12px;
+  background: rgba(79, 142, 247, 0.08);
+  border-radius: 9999px;
+  border: 1px solid rgba(79, 142, 247, 0.2);
 }
 
 .title {
@@ -37,7 +42,7 @@
 }
 
 .subtext {
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: var(--text-muted);
   line-height: 1.65;
 }
@@ -57,7 +62,7 @@
   font-weight: 800;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--text-subtle);
 }
 
 .categoryLabel::after {
@@ -80,8 +85,7 @@
   border: 1px solid var(--border-card);
   padding: 28px 24px;
   border-radius: 18px;
-  box-shadow: var(--card-shadow);
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.35s var(--ease-out);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -96,15 +100,16 @@
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, var(--primary), transparent);
+  background: linear-gradient(90deg, var(--accent-1), transparent);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
 
 .card:hover {
   transform: translateY(-5px);
-  border-color: rgba(99, 102, 241, 0.3);
-  box-shadow: var(--card-shadow-hover);
+  border-color: rgba(79, 142, 247, 0.25);
+  background: rgba(79, 142, 247, 0.05);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35), 0 0 20px rgba(79, 142, 247, 0.05);
 }
 
 .card:hover::before {
@@ -116,20 +121,21 @@
   width: 44px;
   height: 44px;
   border-radius: 12px;
-  background: rgba(99, 102, 241, 0.08);
-  color: var(--primary);
+  background: rgba(79, 142, 247, 0.1);
+  color: var(--accent-1);
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 16px;
   transition: all 0.3s ease;
   flex-shrink: 0;
+  border: 1px solid rgba(79, 142, 247, 0.2);
 }
 
 .card:hover .iconContainer {
-  background: var(--primary);
+  background: var(--accent-1);
   color: #fff;
-  transform: scale(1.08);
+  transform: scale(1.08) rotate(-4deg);
 }
 
 .iconSvg {
@@ -140,7 +146,7 @@
 .categoryTag {
   font-size: 0.64rem;
   font-weight: 800;
-  color: var(--primary);
+  color: var(--accent-2);
   letter-spacing: 1.5px;
   text-transform: uppercase;
   margin-bottom: 8px;

@@ -1,102 +1,95 @@
 .ctaSection {
-  padding: 80px 0;
-  background-color: var(--bg-main);
-}
-
-.ctaContainer {
-  display: flex;
-  justify-content: center;
-}
-
-.ctaCard {
-  width: 100%;
-  max-width: 1050px;
-  background: var(--cta-gradient);
-  border-radius: 32px;
-  padding: 80px 40px;
-  text-align: center;
+  padding: 120px 0;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 30px 60px -15px rgba(79, 70, 229, 0.25);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+}
+
+.ctaContainer { position: relative; z-index: 1; }
+
+.ctaCard {
+  position: relative;
+  overflow: hidden;
+  border-radius: 28px;
+  padding: 80px 72px;
+  background: linear-gradient(135deg, rgba(79,142,247,0.15) 0%, rgba(167,139,250,0.1) 50%, rgba(52,211,153,0.08) 100%);
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 40px 100px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08);
+  text-align: center;
+  backdrop-filter: blur(20px);
+}
+
+/* Animated mesh gradient */
+.ctaCard::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    -45deg,
+    rgba(79,142,247,0.2),
+    rgba(167,139,250,0.15),
+    rgba(52,211,153,0.1),
+    rgba(79,142,247,0.2)
+  );
+  background-size: 400% 400%;
+  animation: gradientShift 6s ease infinite;
+  z-index: 0;
+}
+
+/* Glowing orbs */
+.shape1 {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(79,142,247,0.2) 0%, transparent 70%);
+  top: -100px;
+  right: -100px;
+  border-radius: 50%;
+  animation: float 8s ease-in-out infinite;
+}
+
+.shape2 {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(167,139,250,0.2) 0%, transparent 70%);
+  bottom: -80px;
+  left: -80px;
+  border-radius: 50%;
+  animation: float 10s 1s ease-in-out infinite;
 }
 
 .content {
   position: relative;
-  z-index: 3;
-  max-width: 720px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  z-index: 1;
+  max-width: 680px;
+  margin: 0 auto;
 }
 
 .title {
-  font-size: 2.8rem;
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
   font-weight: 800;
-  color: #ffffff;
-  letter-spacing: -1.5px;
-  line-height: 1.2;
-  margin-bottom: 20px;
+  color: var(--text-white);
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  margin: 0 0 20px;
 }
 
 .description {
-  font-size: 1.15rem;
-  color: rgba(255, 255, 255, 0.85);
-  line-height: 1.6;
-  margin-bottom: 40px;
-  max-width: 600px;
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.75;
+  margin: 0 0 40px;
 }
 
 .buttons {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px;
-  width: 100%;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 
-/* Background Glowing Shapes */
-.shape1 {
-  position: absolute;
-  top: -40%;
-  left: -20%;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 60%);
-  pointer-events: none;
-  z-index: 1;
-}
-
-.shape2 {
-  position: absolute;
-  bottom: -40%;
-  right: -20%;
-  width: 550px;
-  height: 550px;
-  background: radial-gradient(circle, rgba(6, 182, 212, 0.12) 0%, transparent 65%);
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* Responsive breaks */
 @media (max-width: 768px) {
-  .ctaCard {
-    padding: 60px 24px;
-    border-radius: 24px;
-  }
-  
-  .title {
-    font-size: 2rem;
-  }
-  
-  .buttons {
-    flex-direction: column;
-    gap: 16px;
-  }
-  
-  .buttons a {
-    width: 100%;
-  }
+  .ctaCard { padding: 56px 32px; border-radius: 20px; }
+  .title { font-size: 2rem; }
 }
