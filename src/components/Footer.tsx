@@ -81,15 +81,15 @@ export default function Footer() {
             {isSubPage ? (
               <>
                 <li><Link href="/team" className={styles.link}>Our Team</Link></li>
-                <li><Link href="/about#careers" className={styles.link}>Careers</Link></li>
+                <li><Link href="/about" className={styles.link}>About Us</Link></li>
                 <li><Link href="#" className={styles.link}>Privacy Policy</Link></li>
                 <li><Link href="#" className={styles.link}>Terms of Service</Link></li>
               </>
             ) : (
               <>
-                <li><Link href="/solutions" className={styles.link}>Portfolio</Link></li>
-                <li><Link href="/about" className={styles.link}>Insights</Link></li>
-                <li><Link href="/about#careers" className={styles.link}>Careers</Link></li>
+                <li><Link href="/solutions" className={styles.link}>Solutions</Link></li>
+                <li><Link href="/about" className={styles.link}>About Us</Link></li>
+                <li><Link href="/team" className={styles.link}>Our Team</Link></li>
               </>
             )}
           </ul>
