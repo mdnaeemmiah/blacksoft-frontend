@@ -37,7 +37,7 @@ export default function Hero() {
             <div className={styles.workspaceCard}>
               <div className={styles.workspaceTop}>
                 <span><i className={styles.windowDot} /> Mishi intelligence / workspace</span>
-                <span className={styles.workspaceStatus}>● LIVE</span>
+                <span className={`${styles.workspaceStatus} pulse-active`} style={{ display: 'inline-flex', padding: '0px 6px', borderRadius: '4px' }}>● LIVE</span>
               </div>
               <div className={styles.workspaceBody}>
                 <div className={styles.workspaceRail}>
@@ -53,7 +53,7 @@ export default function Hero() {
                     <div><small>Active agents</small><b>24</b><em>across 6 teams</em></div>
                     <div><small>Tasks automated</small><b>18.4k</b><em>this month</em></div>
                   </div>
-                  <div className={styles.activity}><span className={styles.activityPulse} /> Agent Atlas completed a workflow <time>2m ago</time></div>
+                  <div className={styles.activity}><span className={`${styles.activityPulse} pulse-active`} /> Agent Atlas completed a workflow <time>2m ago</time></div>
                 </div>
               </div>
             </div>

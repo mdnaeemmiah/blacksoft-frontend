@@ -230,3 +230,51 @@ button {
     padding-right: 20px;
   }
 }
+
+/* Scroll Reveal Animation System */
+.reveal-base {
+  opacity: 0;
+  transition-property: opacity, transform;
+  transition-duration: 0.8s;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-slide-up {
+  transform: translateY(30px);
+}
+
+.reveal-slide-down {
+  transform: translateY(-30px);
+}
+
+.reveal-fade {
+  transform: none;
+}
+
+.reveal-scale {
+  transform: scale(0.96);
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translate(0) scale(1);
+}
+
+/* Pulsing active animations matching the primary brown/cream theme */
+@keyframes pulseActive {
+  0% {
+    box-shadow: 0 0 0 0 rgba(92, 64, 51, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(92, 64, 51, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(92, 64, 51, 0);
+  }
+}
+
+.pulse-active {
+  animation: pulseActive 2s infinite;
+}
+
