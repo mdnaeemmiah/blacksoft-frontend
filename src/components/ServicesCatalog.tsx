@@ -14,7 +14,15 @@ const CATEGORIES_META: Record<string, { title: string; subtitle: string }> = {
     title: 'Website Development & Platforms',
     subtitle: 'Premium, fast-loading marketing surfaces and digital products built on modern web stacks.',
   },
-  'AI Solution': {
+  'Figma design': {
+    title: 'UI/UX & Figma Design Systems',
+    subtitle: 'High-fidelity wireframes, premium components libraries, and complete interactive prototypes.',
+  },
+  'Backend development': {
+    title: 'Backend Systems & API Kernels',
+    subtitle: 'Scalable data architectures, high-concurrency cloud engines, and robust web server APIs.',
+  },
+  'AI solution': {
     title: 'AI-Powered Solutions & Agents',
     subtitle: 'Goal-oriented agents, vector databases, and neural interfaces automating business workflows.',
   },
@@ -30,14 +38,26 @@ export default function ServicesCatalog() {
 
   // Combine and filter active cards
   const allCards = React.useMemo(() => {
-    return [...appCards, ...aiCards].filter((c) => c.enabled);
+    return [...appCards, ...aiCards]
+      .filter((c) => c.enabled)
+      .map((c) => {
+        let cat = c.category || 'App';
+        const lower = cat.toLowerCase();
+        if (lower === 'app') cat = 'App';
+        else if (lower === 'website') cat = 'Website';
+        else if (lower.includes('figma') || lower.includes('design')) cat = 'Figma design';
+        else if (lower.includes('backend') || lower.includes('developement') || lower.includes('development')) cat = 'Backend development';
+        else if (lower.includes('ai') || lower.includes('solution')) cat = 'AI solution';
+        else cat = 'Other';
+        return { ...c, category: cat };
+      });
   }, [appCards, aiCards]);
 
   // Group cards by category
   const groupedCards = React.useMemo(() => {
     const groups: Record<string, SolutionCard[]> = {};
     allCards.forEach((card) => {
-      const cat = card.category || 'App';
+      const cat = card.category;
       if (!groups[cat]) {
         groups[cat] = [];
       }
@@ -46,10 +66,9 @@ export default function ServicesCatalog() {
     return groups;
   }, [allCards]);
 
-  // We want to render them in a specific order if possible, or alphabetically
+  // We want to render them in a specific order: App, Website, Figma design, Backend development, AI solution
   const categoriesToRender = Object.keys(groupedCards).sort((a, b) => {
-    // Custom sort order: App first, Website second, AI Solution third, others after
-    const order = ['App', 'Website', 'AI Solution', 'Other'];
+    const order = ['App', 'Website', 'Figma design', 'Backend development', 'AI solution', 'Other'];
     const indexA = order.indexOf(a);
     const indexB = order.indexOf(b);
     const valA = indexA !== -1 ? indexA : 99;
