@@ -33,11 +33,17 @@ export default function Stats() {
 
   const [ref, visible] = useInView<HTMLElement>(0.1, true);
 
+  // Only show stats that have been configured in the admin dashboard
+  const activeStats = stats.filter(s => s.label.trim() !== '' || s.value.trim() !== '');
+
+  // Hide the entire section when nothing is configured
+  if (activeStats.length === 0) return null;
+
   return (
     <section ref={ref} className={styles.statsSection}>
       <div className={`container ${styles.statsContainer}`}>
         <div className={styles.grid}>
-          {stats.map((stat, index) => (
+          {activeStats.map((stat, index) => (
             <StatCard key={index} stat={stat} index={index} trigger={visible} />
           ))}
         </div>
