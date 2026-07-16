@@ -15,11 +15,11 @@
 }
 
 .scrolled {
-  background-color: rgba(6, 10, 20, 0.8);
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border-bottom: 1px solid rgba(255,255,255,0.07);
-  box-shadow: 0 1px 40px rgba(0,0,0,0.4);
+  background-color: rgba(251, 250, 247, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
 }
 
 .navContainer {
@@ -137,11 +137,11 @@
   right: -100%;
   width: 300px;
   height: 100vh;
-  background: rgba(6,10,20,0.96);
+  background: rgba(251, 250, 247, 0.96);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border-left: 1px solid var(--border-card);
-  box-shadow: -20px 0 60px rgba(0,0,0,0.6);
+  border-left: 1px solid var(--border-light);
+  box-shadow: -20px 0 60px rgba(92, 64, 51, 0.05);
   transition: right 0.45s var(--ease-out);
   padding: 100px 36px 40px;
   z-index: 999;
