@@ -232,14 +232,30 @@
   letter-spacing: -0.2px;
 }
 
+.socialsGroup {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .socialLink {
   color: var(--text-muted);
   transition: all 0.2s;
   display: inline-flex;
 }
 
+.linkedinLink:hover {
+  color: #0077b5 !important;
+  transform: scale(1.1);
+}
+
+.githubLink:hover {
+  color: #1e293b !important;
+  transform: scale(1.1);
+}
+
 .socialLink:hover {
-  color: #0077b5; /* LinkedIn signature color */
+  color: var(--accent-1);
   transform: scale(1.1);
 }
 
