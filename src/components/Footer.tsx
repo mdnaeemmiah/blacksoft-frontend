@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import styles from './Footer.module.css';
 import { useSiteConfig } from '../utils/configStore';
+import { useServiceCards } from '../utils/servicesStore';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -14,6 +15,17 @@ export default function Footer() {
   const footerEmail = useSiteConfig('footer.email');
   const footerLocation = useSiteConfig('footer.location');
   const footerCopy = useSiteConfig('footer.copyright');
+
+  const [services] = useServiceCards();
+  const visibleServices = services.filter((card) => card.enabled);
+  const displayServices = visibleServices.length > 0 
+    ? visibleServices.slice(0, 4).map(s => ({ title: s.title, href: '/technology' }))
+    : [
+        { title: 'Custom AI Agents', href: '/technology' },
+        { title: 'LLM Fine-Tuning', href: '/technology' },
+        { title: 'Workflow Automation', href: '/technology' },
+        { title: 'Cloud Architecture', href: '/technology' }
+      ];
 
   return (
     <footer className={styles.footer}>
@@ -47,10 +59,13 @@ export default function Footer() {
         <div className={styles.linksCol}>
           <h3 className={styles.colTitle}>Services</h3>
           <ul className={styles.linksList}>
-            <li><Link href="/technology" className={styles.link}>Custom AI Agents</Link></li>
-            <li><Link href="/technology" className={styles.link}>LLM Fine-Tuning</Link></li>
-            <li><Link href="/technology" className={styles.link}>Workflow Automation</Link></li>
-            <li><Link href="/technology" className={styles.link}>Cloud Architecture</Link></li>
+            {displayServices.map((service, idx) => (
+              <li key={idx}>
+                <Link href={service.href} className={styles.link}>
+                  {service.title}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
 
