@@ -111,8 +111,11 @@ function TeamMemberCard({ member, index }: { member: ReturnType<typeof useTeamMe
       <div className={styles.info}>
         <div className={styles.roleTag}>{member.role}</div>
         
-        <div className={styles.nameRow}>
-          <h3 className={styles.name}>{member.name}</h3>
+        <h3 className={styles.name}>{member.name}</h3>
+
+        {member.bio && <p className={styles.bio}>{member.bio}</p>}
+
+        {(member.linkedin || member.github || member.link) && (
           <div className={styles.socialsGroup}>
             {member.linkedin && (
               <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className={`${styles.socialLink} ${styles.linkedinLink}`} aria-label={`${member.name}'s LinkedIn`}>
@@ -140,9 +143,7 @@ function TeamMemberCard({ member, index }: { member: ReturnType<typeof useTeamMe
               </a>
             )}
           </div>
-        </div>
-
-        {member.bio && <p className={styles.bio}>{member.bio}</p>}
+        )}
       </div>
     </div>
   );

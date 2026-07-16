@@ -98,22 +98,21 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
 }
 
 .memberCard:hover {
-  transform: translateY(-6px);
-  border-color: rgba(79, 142, 247, 0.25);
-  background: rgba(79, 142, 247, 0.05);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4), 0 0 30px rgba(79, 142, 247, 0.06);
+  transform: translateY(-8px);
+  border-color: rgba(92, 64, 51, 0.15);
+  box-shadow: 0 30px 60px rgba(92, 64, 51, 0.08), 0 0 40px rgba(92, 64, 51, 0.02);
 }
 
-/* Card Glow Effect on Hover */
+/* Card Glow Effect on Hover - Warm Taupe/Bronze */
 .cardGlow {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 50% -20%, rgba(79, 142, 247, 0.15) 0%, rgba(0, 0, 0, 0) 60%);
+  background: radial-gradient(circle at 50% -20%, rgba(163, 130, 111, 0.25) 0%, rgba(255, 255, 255, 0) 70%);
   opacity: 0;
   transition: opacity 0.4s ease;
   pointer-events: none;
@@ -131,10 +130,10 @@
   position: relative;
   border-radius: 18px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  margin-bottom: 24px;
+  border: 1px solid rgba(92, 64, 51, 0.08);
+  margin-bottom: 20px;
   z-index: 2;
-  background: rgba(255, 255, 255, 0.01);
+  background: rgba(255, 255, 255, 0.02);
 }
 
 .image {
@@ -145,7 +144,7 @@
 }
 
 .memberCard:hover .image {
-  transform: scale(1.05);
+  transform: scale(1.04);
 }
 
 /* Avatar Placeholder if imageSrc is missing */
@@ -154,7 +153,7 @@
   height: 100%;
   display: grid;
   place-items: center;
-  background: linear-gradient(135deg, rgba(79, 142, 247, 0.15) 0%, rgba(167, 139, 250, 0.05) 100%);
+  background: linear-gradient(135deg, rgba(92, 64, 51, 0.08) 0%, rgba(163, 130, 111, 0.03) 100%);
   color: var(--accent-1);
 }
 
@@ -163,7 +162,7 @@
   font-weight: 800;
 }
 
-/* Technology Stack Logo Badge overlay */
+/* Technology Stack Logo Badge overlay - Premium Cream */
 .logoBadge {
   position: absolute;
   bottom: 12px;
@@ -171,13 +170,13 @@
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  background: rgba(10, 15, 30, 0.85);
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(92, 64, 51, 0.1);
   display: grid;
   place-items: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 12px rgba(92, 64, 51, 0.08);
   z-index: 3;
   transition: transform 0.3s ease;
 }
@@ -199,69 +198,79 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   z-index: 2;
   text-align: center;
 }
 
 .roleTag {
   font-size: 0.68rem;
-  font-weight: 800;
-  letter-spacing: 1px;
-  color: var(--accent-1);
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: #5c4033; /* Espresso Brown */
   text-transform: uppercase;
-  background: rgba(79, 142, 247, 0.08);
-  border: 1px solid rgba(79, 142, 247, 0.15);
-  padding: 4px 12px;
-  border-radius: 20px;
+  background: rgba(92, 64, 51, 0.04);
+  border: 1px solid rgba(92, 64, 51, 0.08);
+  padding: 5px 14px;
+  border-radius: 100px;
   display: inline-block;
 }
 
-.nameRow {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  width: 100%;
-}
-
 .name {
-  font-size: 1.25rem;
-  font-weight: 700;
+  font-size: 1.35rem;
+  font-weight: 800;
   color: var(--text-white);
-  letter-spacing: -0.2px;
+  letter-spacing: -0.3px;
+  margin: 4px 0;
+  width: 100%;
+  text-align: center;
 }
 
 .socialsGroup {
   display: flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 6px;
+  width: 100%;
 }
 
 .socialLink {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(92, 64, 51, 0.03);
+  border: 1px solid rgba(92, 64, 51, 0.06);
+  display: grid;
+  place-items: center;
   color: var(--text-muted);
-  transition: all 0.2s;
-  display: inline-flex;
+  transition: all 0.3s var(--ease-spring);
 }
 
 .linkedinLink:hover {
+  background: rgba(0, 119, 181, 0.08) !important;
+  border-color: rgba(0, 119, 181, 0.2) !important;
   color: #0077b5 !important;
-  transform: scale(1.1);
+  transform: translateY(-2px);
 }
 
 .githubLink:hover {
+  background: rgba(30, 41, 59, 0.08) !important;
+  border-color: rgba(30, 41, 59, 0.2) !important;
   color: #1e293b !important;
-  transform: scale(1.1);
+  transform: translateY(-2px);
 }
 
 .socialLink:hover {
+  background: rgba(92, 64, 51, 0.08);
+  border-color: rgba(92, 64, 51, 0.15);
   color: var(--accent-1);
-  transform: scale(1.1);
+  transform: translateY(-2px);
 }
 
 .socialIcon {
-  width: 17px;
-  height: 17px;
+  width: 16px;
+  height: 16px;
 }
 
 .bio {
