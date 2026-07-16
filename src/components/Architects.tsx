@@ -86,20 +86,23 @@ function TeamMemberCard({ member, index }: { member: ReturnType<typeof useTeamMe
       
       {/* Image Showcase */}
       <div className={styles.imageContainer}>
-        {member.imageSrc ? (
-          <img
-            src={member.imageSrc}
-            alt={member.imageAlt || member.name}
-            className={styles.image}
-            loading="eager"
-          />
-        ) : (
-          <div className={styles.avatarPlaceholder}>
-            <span className={styles.avatarInitial}>{member.name.charAt(0)}</span>
-          </div>
-        )}
+        {/* imageInner clips the photo to circle, letting the border ring show outside */}
+        <div className={styles.imageInner}>
+          {member.imageSrc ? (
+            <img
+              src={member.imageSrc}
+              alt={member.imageAlt || member.name}
+              className={styles.image}
+              loading="eager"
+            />
+          ) : (
+            <div className={styles.avatarPlaceholder}>
+              <span className={styles.avatarInitial}>{member.name.charAt(0)}</span>
+            </div>
+          )}
+        </div>
 
-        {/* Tech stack logo badge */}
+        {/* Tech stack logo badge — sits outside imageInner so it's not clipped */}
         {member.logo && (
           <div className={styles.logoBadge}>
             <img src={member.logo} alt="Technology icon" className={styles.logoIcon} />
