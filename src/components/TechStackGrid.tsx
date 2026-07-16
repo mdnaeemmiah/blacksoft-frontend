@@ -24,11 +24,11 @@ function renderOfficialIcon(title: string, iconKey: string, className: string) {
   if (norm.includes('figma')) {
     return (
       <svg viewBox="0 0 24 24" className={className} xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 2a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4z" fill="#0ACF83"/>
-        <path d="M8 12a4 4 0 1 0 8 0 4 4 0 1 0-8 0z" fill="#1ABC9C"/>
-        <path d="M8 18a4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4 4 4 0 0 0-4 4z" fill="#19BC9C"/>
-        <path d="M4 12a4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4 4 4 0 0 0-4 4z" fill="#F24E1E"/>
-        <path d="M4 6a4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4 4 4 0 0 0-4 4z" fill="#FF7262"/>
+        <path d="M8 2h4v8H8a4 4 0 1 1 0-8z" fill="#F24E1E"/>
+        <path d="M12 2h4a4 4 0 1 1-4 4V2z" fill="#FF7262"/>
+        <path d="M8 10h4v4H8a4 4 0 1 1 0-8z" fill="#A259FF"/>
+        <path d="M8 18a4 4 0 0 1 4-4v4a4 4 0 1 1-8 0 4 4 0 0 1 4-4z" fill="#1ABC9C"/>
+        <path d="M12 10a4 4 0 1 1 8 0 4 4 0 0 1-8 0z" fill="#0ACF83"/>
       </svg>
     );
   }
@@ -96,8 +96,8 @@ function renderOfficialIcon(title: string, iconKey: string, className: string) {
       return (
         <svg {...iconProps} stroke="currentColor">
           <path d="M5 5.5A3.5 3.5 0 0 1 8.5 2H12v7H8.5A3.5 3.5 0 0 1 5 5.5z" />
-          <path d="M12 2h3.5a3.5 3.5 0 1 1-3.5 3.5V2z" />
-          <path d="M12 12.5a3.5 3.5 0 1 1 3.5-3.5H12v3.5z" />
+          <path d="M12 2h3.5a3.5 3.5 0 1 1 3.5 3.5V9H12V2z" />
+          <path d="M12 12.5a3.5 3.5 0 1 1 3.5-3.5V16H12v-3.5z" />
           <path d="M5 12.5A3.5 3.5 0 0 1 8.5 9H12v7H8.5A3.5 3.5 0 0 1 5 12.5z" />
           <path d="M5 18.5A3.5 3.5 0 0 1 8.5 15H12v3.5a3.5 3.5 0 1 1-7 0z" />
         </svg>
