@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { useTeamMembers, useTeamSettings } from '../utils/teamMembersStore';
 import styles from './Architects.module.css';
@@ -88,13 +87,11 @@ function TeamMemberCard({ member, index }: { member: ReturnType<typeof useTeamMe
       {/* Image Showcase */}
       <div className={styles.imageContainer}>
         {member.imageSrc ? (
-          <Image
+          <img
             src={member.imageSrc}
             alt={member.imageAlt || member.name}
-            width={280}
-            height={280}
             className={styles.image}
-            priority
+            loading="eager"
           />
         ) : (
           <div className={styles.avatarPlaceholder}>
