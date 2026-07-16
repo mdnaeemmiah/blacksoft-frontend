@@ -213,10 +213,10 @@
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 1.5px;
-  color: #5c4033; /* Espresso Brown */
+  color: #3b1f14; /* Deep Espresso — high contrast on cream */
   text-transform: uppercase;
-  background: rgba(92, 64, 51, 0.04);
-  border: 1px solid rgba(92, 64, 51, 0.08);
+  background: rgba(92, 64, 51, 0.08);
+  border: 1px solid rgba(92, 64, 51, 0.18);
   padding: 5px 14px;
   border-radius: 100px;
   display: inline-block;
@@ -245,11 +245,11 @@
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: rgba(92, 64, 51, 0.03);
-  border: 1px solid rgba(92, 64, 51, 0.06);
+  background: rgba(92, 64, 51, 0.05);
+  border: 1px solid rgba(92, 64, 51, 0.15); /* Stronger visible border */
   display: grid;
   place-items: center;
-  color: var(--text-muted);
+  color: #3b1f14; /* Deep espresso — clearly visible on cream */
   transition: all 0.3s var(--ease-spring);
 }
 
@@ -281,9 +281,10 @@
 
 .bio {
   font-size: 0.88rem;
-  color: var(--text-muted);
-  line-height: 1.55;
+  color: #334155; /* Deeper slate — clearly readable on cream background */
+  line-height: 1.6;
   margin-top: 4px;
+  font-weight: 450;
 }
 
 /* empty state styling */
