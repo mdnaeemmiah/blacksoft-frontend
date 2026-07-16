@@ -113,12 +113,7 @@ function renderIcon(iconKey: TechnologyStackIconKey) {
 }
 
 // Preferred display order for categories
-const CATEGORY_ORDER = [
-  'FRONTEND FRAMEWORK',
-  'BACKEND FRAMEWORK',
-  'MOBILE FRAMEWORK',
-  'DEPLOYMENT & CLOUD',
-];
+const CATEGORY_ORDER = ['FIGMA', 'FRONTEND', 'APP', 'BACKEND', 'DEPLOYMENT'];
 
 export default function TechStackGrid() {
   const allCards = useTechnologyStackCards().filter((item) => item.enabled);
