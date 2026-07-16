@@ -21,6 +21,74 @@ function renderIcon(iconKey: TechnologyStackIconKey) {
   };
 
   switch (iconKey) {
+    case 'frontend':
+      return (
+        <svg {...iconProps}>
+          <polyline points="16 18 22 12 16 6" />
+          <polyline points="8 6 2 12 8 18" />
+        </svg>
+      );
+    case 'backend':
+      return (
+        <svg {...iconProps}>
+          <rect x="2" y="3" width="20" height="14" rx="2" />
+          <path d="M8 21h8M12 17v4" />
+          <path d="M7 8l2 2-2 2" />
+          <line x1="11" y1="10" x2="15" y2="10" />
+        </svg>
+      );
+    case 'mobile':
+      return (
+        <svg {...iconProps}>
+          <rect x="5" y="2" width="14" height="20" rx="2" />
+          <line x1="12" y1="18" x2="12.01" y2="18" />
+        </svg>
+      );
+    case 'database':
+      return (
+        <svg {...iconProps}>
+          <ellipse cx="12" cy="5" rx="9" ry="3" />
+          <path d="M3 5v14a9 3 0 0 0 18 0V5" />
+          <path d="M3 12a9 3 0 0 0 18 0" />
+        </svg>
+      );
+    case 'cloud':
+      return (
+        <svg {...iconProps}>
+          <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" />
+        </svg>
+      );
+    case 'ai':
+      return (
+        <svg {...iconProps}>
+          <path d="M12 2a4 4 0 0 1 4 4v1h1a3 3 0 0 1 0 6h-1v1a4 4 0 0 1-8 0v-1H7a3 3 0 0 1 0-6h1V6a4 4 0 0 1 4-4z" />
+          <circle cx="9" cy="9" r="1" fill="currentColor" />
+          <circle cx="15" cy="9" r="1" fill="currentColor" />
+        </svg>
+      );
+    case 'design':
+      return (
+        <svg {...iconProps}>
+          <circle cx="13.5" cy="6.5" r="3.5" />
+          <circle cx="17.5" cy="10.5" r="3.5" />
+          <circle cx="8.5" cy="7.5" r="3.5" />
+          <circle cx="6.5" cy="12.5" r="3.5" />
+          <path d="M12 20 C12 20 4 17 4 12.5 S7 6.5 7 6.5" />
+        </svg>
+      );
+    case 'devops':
+      return (
+        <svg {...iconProps}>
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+        </svg>
+      );
+    case 'testing':
+      return (
+        <svg {...iconProps}>
+          <polyline points="9 11 12 14 22 4" />
+          <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+        </svg>
+      );
     case 'hardware':
       return (
         <svg {...iconProps}>
@@ -37,14 +105,6 @@ function renderIcon(iconKey: TechnologyStackIconKey) {
           <line x1="2" y1="8.5" x2="12" y2="12" />
         </svg>
       );
-    case 'frontend':
-      return (
-        <svg {...iconProps}>
-          <circle cx="12" cy="12" r="10" />
-          <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
-          <path d="M2 12h20" />
-        </svg>
-      );
     case 'growth':
     default:
       return (
@@ -54,6 +114,7 @@ function renderIcon(iconKey: TechnologyStackIconKey) {
       );
   }
 }
+
 
 export default function TechStackGrid() {
   const stack = useTechnologyStackCards().filter((item) => item.enabled);
