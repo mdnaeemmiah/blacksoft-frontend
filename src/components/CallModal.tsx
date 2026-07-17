@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { getApiBaseUrl } from '@/utils/apiClient';
+import { getApiBaseUrl } from '../utils/apiClient';
 
 export function openCallModal() {
   if (typeof window !== 'undefined') {
@@ -86,7 +86,8 @@ export default function CallModal() {
     setLoading(true);
     setError('');
     try {
-      const res = await fetch(`${getApiBaseUrl()}/bookings`, {
+      const apiBase = getApiBaseUrl();
+      const res = await fetch(`${apiBase}/bookings`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

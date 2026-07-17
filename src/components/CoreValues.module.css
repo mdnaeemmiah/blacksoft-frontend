@@ -1,7 +1,8 @@
 .section {
-  padding: 100px 0;
+  padding: 120px 0;
   background-color: var(--bg-main);
   border-bottom: 1px solid var(--border-light);
+  position: relative;
 }
 
 .container {
@@ -16,19 +17,18 @@
   max-width: 650px;
   margin-left: auto;
   margin-right: auto;
-  animation: fadeInUp 0.8s ease-out;
 }
 
 .title {
   font-size: 2.5rem;
   font-weight: 800;
-  color: var(--text-main);
+  color: var(--text-white);
   letter-spacing: -1px;
   margin-bottom: 16px;
 }
 
 .subtext {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   color: var(--text-muted);
   line-height: 1.6;
 }
@@ -48,8 +48,7 @@
   border: 1px solid var(--border-card);
   padding: 40px 32px;
   border-radius: 24px;
-  box-shadow: var(--card-shadow);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.4s var(--ease-out);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -57,8 +56,9 @@
 
 .card:hover {
   transform: translateY(-6px);
-  border-color: rgba(79, 70, 229, 0.15);
-  box-shadow: var(--card-shadow-hover);
+  border-color: rgba(79, 142, 247, 0.25);
+  background: rgba(79, 142, 247, 0.05);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4), 0 0 30px rgba(79, 142, 247, 0.06);
 }
 
 /* Icon Wrap */
@@ -66,13 +66,14 @@
   width: 48px;
   height: 48px;
   border-radius: 12px;
-  background-color: rgba(79, 70, 229, 0.05);
-  color: var(--primary);
+  background-color: rgba(79, 142, 247, 0.1);
+  color: var(--accent-1);
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 24px;
   transition: all 0.3s ease;
+  border: 1px solid rgba(79, 142, 247, 0.25);
 }
 
 .iconSvg {
@@ -81,15 +82,16 @@
 }
 
 .card:hover .iconContainer {
-  background-color: var(--primary);
+  background-color: var(--accent-1);
   color: var(--text-white);
+  transform: scale(1.1) rotate(-5deg);
 }
 
 /* Card Text */
 .cardTitle {
   font-size: 1.25rem;
   font-weight: 700;
-  color: var(--text-main);
+  color: var(--text-white);
   margin-bottom: 12px;
 }
 
@@ -108,11 +110,5 @@
     margin-left: auto;
     margin-right: auto;
     width: 100%;
-  }
-}
-
-@media (max-width: 768px) {
-  .title {
-    font-size: 2rem;
   }
 }

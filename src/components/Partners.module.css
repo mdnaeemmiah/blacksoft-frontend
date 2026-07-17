@@ -3,6 +3,7 @@
   border-top: 1px solid var(--border-light);
   border-bottom: 1px solid var(--border-light);
   background-color: var(--bg-main);
+  position: relative;
 }
 
 .partnersContainer {
@@ -14,10 +15,10 @@
 
 .heading {
   font-family: var(--font-heading);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  color: var(--text-light);
-  letter-spacing: 2px;
+  color: var(--text-muted);
+  letter-spacing: 2.5px;
   text-transform: uppercase;
 }
 
@@ -33,20 +34,19 @@
 
 .logoItem {
   font-family: var(--font-heading);
-  font-size: 1.1rem;
-  font-weight: 800;
+  font-size: 1.15rem;
+  font-weight: 850;
   color: var(--text-muted);
-  opacity: 0.4;
-  letter-spacing: 1.5px;
-  transition: all 0.3s ease;
+  letter-spacing: 1px;
+  transition: all 0.35s var(--ease-out);
   user-select: none;
 }
 
 .logoItem:hover {
-  opacity: 0.95;
-  color: var(--primary);
-  transform: scale(1.05);
-  text-shadow: 0 0 10px rgba(79, 70, 229, 0.15);
+  opacity: 1 !important;
+  color: var(--text-white);
+  transform: translateY(-2px) scale(1.05);
+  text-shadow: 0 0 16px rgba(79, 142, 247, 0.4);
 }
 
 /* Responsive adjustment */
@@ -57,6 +57,6 @@
   }
   
   .logoItem {
-    font-size: 0.95rem;
+    font-size: 1rem;
   }
 }

@@ -6,22 +6,24 @@
 .container {
   display: flex;
   justify-content: center;
+  padding: 0 40px;
 }
 
 .card {
   width: 100%;
   max-width: 1050px;
-  background-color: var(--bg-main);
+  background: var(--bg-card);
   border: 1px solid var(--border-card);
   border-radius: 32px;
   padding: 80px 40px;
   text-align: center;
   position: relative;
   overflow: hidden;
-  box-shadow: var(--card-shadow-hover);
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.4), 0 0 40px rgba(79, 142, 247, 0.05);
+  backdrop-filter: blur(20px);
 }
 
 .content {
@@ -36,7 +38,7 @@
 .title {
   font-size: 2.8rem;
   font-weight: 800;
-  color: var(--text-main);
+  color: var(--text-white);
   letter-spacing: -1.5px;
   line-height: 1.25;
   margin-bottom: 20px;
@@ -45,7 +47,7 @@
 .description {
   font-size: 1.15rem;
   color: var(--text-muted);
-  line-height: 1.6;
+  line-height: 1.65;
   margin-bottom: 40px;
   max-width: 600px;
 }
@@ -64,7 +66,7 @@
   left: -20%;
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, rgba(79, 70, 229, 0.04) 0%, transparent 60%);
+  background: radial-gradient(circle, rgba(79, 142, 247, 0.08) 0%, transparent 60%);
   pointer-events: none;
   z-index: 1;
 }

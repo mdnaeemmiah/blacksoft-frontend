@@ -5,10 +5,10 @@ import Partners from '../components/Partners';
 import WhatWeDo from '../components/WhatWeDo';
 import WhoWeAre from '../components/WhoWeAre';
 import WhyUs from '../components/WhyUs';
-import Capabilities from '../components/Capabilities';
 import Stats from '../components/Stats';
 import CTA from '../components/CTA';
 import Footer from '../components/Footer';
+import ScrollReveal from '../components/ScrollReveal';
 
 export default function Home() {
   return (
@@ -16,13 +16,28 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <Partners />
+        
+        <ScrollReveal animationClass="reveal-fade" threshold={0.05}>
+          <Partners />
+        </ScrollReveal>
+        
         <WhatWeDo />
-        <WhoWeAre />
-        <WhyUs />
-        <Capabilities />
-        <Stats />
-        <CTA />
+        
+        <ScrollReveal animationClass="reveal-slide-up" threshold={0.05}>
+          <WhoWeAre />
+        </ScrollReveal>
+        
+        <ScrollReveal animationClass="reveal-scale" threshold={0.05}>
+          <WhyUs />
+        </ScrollReveal>
+        
+        <ScrollReveal animationClass="reveal-slide-up" threshold={0.05}>
+          <Stats />
+        </ScrollReveal>
+        
+        <ScrollReveal animationClass="reveal-scale" threshold={0.05}>
+          <CTA />
+        </ScrollReveal>
       </main>
       <Footer />
     </>

@@ -1,28 +1,32 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import styles from './Footer.module.css';
 import { useSiteConfig } from '../utils/configStore';
+import { useServiceCards } from '../utils/servicesStore';
+import { useContactInfo } from '../utils/contactStore';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   const pathname = usePathname();
-  const isSubPage = pathname === '/solutions' || pathname === '/about' || pathname === '/technology' || pathname === '/team';
-  const [emailInput, setEmailInput] = useState('');
   const footerDesc = useSiteConfig('footer.description');
-  const footerEmail = useSiteConfig('footer.email');
-  const footerLocation = useSiteConfig('footer.location');
   const footerCopy = useSiteConfig('footer.copyright');
 
-  const handleSubscribe = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (emailInput.trim()) {
-      alert(`Subscribed: ${emailInput}`);
-      setEmailInput('');
-    }
-  };
+  // Live contact info from DB
+  const contact = useContactInfo();
+
+  const [services] = useServiceCards();
+  const visibleServices = services.filter((card) => card.enabled);
+  const displayServices = visibleServices.length > 0 
+    ? visibleServices.slice(0, 4).map(s => ({ title: s.title, href: '/technology' }))
+    : [
+        { title: 'Custom AI Agents', href: '/technology' },
+        { title: 'LLM Fine-Tuning', href: '/technology' },
+        { title: 'Workflow Automation', href: '/technology' },
+        { title: 'Cloud Architecture', href: '/technology' }
+      ];
 
   return (
     <footer className={styles.footer}>
@@ -31,46 +35,54 @@ export default function Footer() {
         {/* Brand Description Column */}
         <div className={styles.brandCol}>
           <Link href="/" className={styles.logo}>
+            <svg viewBox="0 0 32 32" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '8px', flexShrink: 0 }}>
+              <rect x="2" y="2" width="6" height="17" rx="3" fill="currentColor" />
+              <rect x="2" y="23" width="6" height="7" rx="3" fill="currentColor" />
+              <path d="M5 25 L12 18" stroke="currentColor" strokeWidth="4.5" strokeLinecap="round" />
+              <circle cx="14" cy="16" r="4.5" fill="currentColor" />
+              <path d="M11 5 h11 c2.76 0 5 2.24 5 5 v0 c0 2.76 -2.24 5 -5 5 h-4" stroke="currentColor" strokeWidth="5.5" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M11 27 h11 c2.76 0 5 -2.24 5 -5 v0 c0 -2.76 -2.24 -5 -5 -5 h-4" stroke="currentColor" strokeWidth="5.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
             Blacksoft
           </Link>
           <p className={styles.description}>
             {footerDesc}
           </p>
           <div className={styles.socials}>
-            <a href="#" className={styles.socialLink} aria-label="Website">
+            {/* LinkedIn */}
+            <a href="#" className={styles.socialLink} aria-label="LinkedIn">
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="10"/>
-                <line x1="2" y1="12" x2="22" y2="12"/>
-                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                <rect x="2" y="9" width="4" height="12"/>
+                <circle cx="4" cy="4" r="2"/>
               </svg>
             </a>
+            {/* GitHub */}
             <a href="#" className={styles.socialLink} aria-label="GitHub">
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+              </svg>
+            </a>
+            {/* Twitter / X */}
+            <a href="#" className={styles.socialLink} aria-label="Twitter">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/>
               </svg>
             </a>
           </div>
         </div>
 
-        {/* Links Column 1: Services / Solutions */}
+        {/* Links Column 1: Services */}
         <div className={styles.linksCol}>
-          <h3 className={styles.colTitle}>{isSubPage ? "Solutions" : "Services"}</h3>
+          <h3 className={styles.colTitle}>Services</h3>
           <ul className={styles.linksList}>
-            {isSubPage ? (
-              <>
-                <li><Link href="/solutions#healthcare" className={styles.link}>Custom AI Models</Link></li>
-                <li><Link href="/solutions#fintech" className={styles.link}>Enterprise Strategy</Link></li>
-                <li><Link href="/solutions#ecommerce" className={styles.link}>Data Engineering</Link></li>
-                <li><Link href="/solutions#ecommerce" className={styles.link}>MLOps</Link></li>
-              </>
-            ) : (
-              <>
-                <li><Link href="/technology" className={styles.link}>Custom AI Agents</Link></li>
-                <li><Link href="/technology" className={styles.link}>LLM Fine-Tuning</Link></li>
-                <li><Link href="/technology" className={styles.link}>Workflow Automation</Link></li>
-                <li><Link href="/technology" className={styles.link}>Cloud Architecture</Link></li>
-              </>
-            )}
+            {displayServices.map((service, idx) => (
+              <li key={idx}>
+                <Link href={service.href} className={styles.link}>
+                  {service.title}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
 
@@ -78,66 +90,44 @@ export default function Footer() {
         <div className={styles.linksCol}>
           <h3 className={styles.colTitle}>Company</h3>
           <ul className={styles.linksList}>
-            {isSubPage ? (
-              <>
-                <li><Link href="/team" className={styles.link}>Our Team</Link></li>
-                <li><Link href="/about#careers" className={styles.link}>Careers</Link></li>
-                <li><Link href="#" className={styles.link}>Privacy Policy</Link></li>
-                <li><Link href="#" className={styles.link}>Terms of Service</Link></li>
-              </>
-            ) : (
-              <>
-                <li><Link href="/solutions" className={styles.link}>Portfolio</Link></li>
-                <li><Link href="/about" className={styles.link}>Insights</Link></li>
-                <li><Link href="/about#careers" className={styles.link}>Careers</Link></li>
-              </>
+            <li><Link href="/solutions" className={styles.link}>Solutions</Link></li>
+            <li><Link href="/about" className={styles.link}>About Us</Link></li>
+            <li><Link href="/team" className={styles.link}>Our Team</Link></li>
+            <li><Link href="/book-a-call" className={styles.link}>Contact</Link></li>
+          </ul>
+        </div>
+
+        {/* Links Column 3: Contact — DB-backed */}
+        <div className={styles.contactCol}>
+          <h3 className={styles.colTitle}>Contact</h3>
+          <ul className={styles.contactList}>
+            {contact.location && (
+              <li className={styles.contactItem}>{contact.location}</li>
+            )}
+            {contact.email && (
+              <li className={styles.contactItem}>
+                Email: <a href={`mailto:${contact.email}`} className={styles.email}>{contact.email}</a>
+              </li>
+            )}
+            {contact.phone && (
+              <li className={styles.contactItem}>
+                Phone: <a href={`tel:${contact.phone}`} className={styles.email}>{contact.phone}</a>
+              </li>
+            )}
+            {!contact.location && !contact.email && !contact.phone && (
+              <li className={styles.contactItem} style={{ opacity: 0.4 }}>Contact info coming soon</li>
             )}
           </ul>
         </div>
 
-        {/* Links Column 3: Contact / Connect */}
-        <div className={styles.contactCol}>
-          <h3 className={styles.colTitle}>{isSubPage ? "Connect" : "Contact"}</h3>
-          
-          {isSubPage ? (
-            <div className={styles.connectContainer}>
-              <form onSubmit={handleSubscribe} className={styles.newsletterForm}>
-                <input
-                  type="email"
-                  placeholder="Newsletter"
-                  value={emailInput}
-                  onChange={(e) => setEmailInput(e.target.value)}
-                  required
-                  className={styles.newsletterInput}
-                />
-                <button type="submit" className={styles.newsletterBtn} aria-label="Subscribe">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={styles.btnArrow}>
-                    <line x1="5" y1="12" x2="19" y2="12" />
-                    <polyline points="12 5 19 12 12 19" />
-                  </svg>
-                </button>
-              </form>
-            </div>
-          ) : (
-            <ul className={styles.contactList}>
-              <li className={styles.contactItem}>{footerLocation}</li>
-              <li className={styles.contactItem}>
-                Email: <a href={`mailto:${footerEmail}`} className={styles.email}>{footerEmail}</a>
-              </li>
-            </ul>
-          )}
-          
-          <div className={styles.bottomMeta}>
-            <p className={styles.copy}>&copy; {currentYear} {footerCopy}</p>
-            {!isSubPage && (
-              <div className={styles.legal}>
-                <Link href="#" className={styles.legalLink}>Privacy Policy</Link>
-                <Link href="#" className={styles.legalLink}>Terms of Service</Link>
-              </div>
-            )}
-          </div>
-        </div>
+      </div>
 
+      <div className={`container ${styles.bottomMeta}`}>
+        <p className={styles.copy}>&copy; {currentYear} {footerCopy}</p>
+        <div className={styles.legal}>
+          <Link href="/privacy-policy" className={styles.legalLink}>Privacy Policy</Link>
+          <Link href="#" className={styles.legalLink}>Terms of Service</Link>
+        </div>
       </div>
     </footer>
   );

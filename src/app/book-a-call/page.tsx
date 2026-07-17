@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { getApiBaseUrl } from '@/utils/apiClient';
+import { getApiBaseUrl } from '../../utils/apiClient';
 
 // ── Option lists ──────────────────────────────────────────────────────────────
 const SERVICES = [
@@ -268,7 +268,8 @@ export default function MinimalBookACallPage() {
     const fullPhone = phoneNumber ? `${phoneCode} ${phoneNumber}` : '';
 
     try {
-      const res = await fetch(`${getApiBaseUrl()}/bookings`, {
+      const apiBase = getApiBaseUrl();
+      const res = await fetch(`${apiBase}/bookings`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
