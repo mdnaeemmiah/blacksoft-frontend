@@ -1,6 +1,8 @@
 'use client';
 
-const DEFAULT_API_BASE_URL = 'http://localhost:8000/api';
+const DEFAULT_API_BASE_URL = process.env.NODE_ENV === 'production'
+  ? 'https://blacksoft-backend.vercel.app/api'
+  : 'http://localhost:8000/api';
 
 export type UploadResponse = {
   url: string;
