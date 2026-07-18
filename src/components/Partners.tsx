@@ -15,7 +15,7 @@ export default function Partners() {
   return (
     <section ref={ref} className={styles.partnersSection}>
       <div className={`container ${styles.partnersContainer}`}>
-        <p 
+        <p
           className={styles.heading}
           style={{
             opacity: visible ? 0.6 : 0,
@@ -27,8 +27,8 @@ export default function Partners() {
         </p>
         <div className={styles.logoGrid}>
           {visiblePartners.map((partner, index) => (
-            <div 
-              key={partner.id} 
+            <div
+              key={partner.id}
               className={styles.logoItem}
               style={{
                 opacity: visible ? 0.45 : 0,

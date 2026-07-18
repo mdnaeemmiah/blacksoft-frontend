@@ -17,7 +17,7 @@
   font-family: var(--font-heading);
   font-size: 0.72rem;
   font-weight: 700;
-  color: var(--text-muted);
+  color: var(--text-white);
   letter-spacing: 2.5px;
   text-transform: uppercase;
 }
@@ -36,7 +36,7 @@
   font-family: var(--font-heading);
   font-size: 1.15rem;
   font-weight: 850;
-  color: var(--text-muted);
+  color: var(--text-white);
   letter-spacing: 1px;
   transition: all 0.35s var(--ease-out);
   user-select: none;
@@ -44,7 +44,7 @@
 
 .logoItem:hover {
   opacity: 1 !important;
-  color: var(--text-white);
+  color: var(--primary);
   transform: translateY(-2px) scale(1.05);
   text-shadow: 0 0 16px rgba(92, 64, 51, 0.15);
 }
@@ -55,7 +55,7 @@
     justify-content: center;
     gap: 24px 40px;
   }
-  
+
   .logoItem {
     font-size: 1rem;
   }
