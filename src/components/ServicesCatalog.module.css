@@ -25,9 +25,9 @@
   color: var(--accent-1);
   margin-bottom: 16px;
   padding: 4px 12px;
-  background: rgba(79, 142, 247, 0.08);
+  background: rgba(92, 64, 51, 0.05);
   border-radius: 9999px;
-  border: 1px solid rgba(79, 142, 247, 0.2);
+  border: 1px solid rgba(92, 64, 51, 0.15);
 }
 
 .title {
@@ -65,9 +65,9 @@
 
 .card:hover {
   transform: translateY(-6px);
-  border-color: rgba(79, 142, 247, 0.25);
-  background: rgba(79, 142, 247, 0.05);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4), 0 0 30px rgba(79, 142, 247, 0.06);
+  border-color: rgba(92, 64, 51, 0.2);
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 24px 60px rgba(92, 64, 51, 0.05), 0 0 30px rgba(92, 64, 51, 0.03);
 }
 
 .cardTop {
@@ -90,10 +90,10 @@
   width: 48px;
   height: 48px;
   border-radius: 12px;
-  background-color: rgba(79, 142, 247, 0.1);
+  background-color: rgba(92, 64, 51, 0.05);
   color: var(--accent-1);
   font-size: 22px;
-  border: 1px solid rgba(79, 142, 247, 0.2);
+  border: 1px solid rgba(92, 64, 51, 0.15);
 }
 
 .cardTitle {

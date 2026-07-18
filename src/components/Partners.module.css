@@ -46,7 +46,7 @@
   opacity: 1 !important;
   color: var(--text-white);
   transform: translateY(-2px) scale(1.05);
-  text-shadow: 0 0 16px rgba(79, 142, 247, 0.4);
+  text-shadow: 0 0 16px rgba(92, 64, 51, 0.15);
 }
 
 /* Responsive adjustment */
