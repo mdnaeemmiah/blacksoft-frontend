@@ -315,82 +315,124 @@ export default function Hero() {
                         </div>
                       </div>
 
-                      {/* Charts Grid */}
-                      <div className={styles.chartsGrid}>
-                        {/* Histogram Chart */}
-                        <div className={styles.chartPanel}>
-                          <div className={styles.chartTitleRow}>
-                            <span>Throughput Rate</span>
-                            <strong>
-                              <AnimatedNumber value={74.8} decimals={1} suffix=" Gb/s" delay={100} duration={800} trigger={loaded} />
-                            </strong>
+                      {/* Project rows list */}
+                      <div className={styles.projectList}>
+                        <div className={styles.projectRow}>
+                          <div className={styles.projectInfo}>
+                            <div className={styles.projectLabel}>
+                              <strong>Project Alpha: Model Training</strong>
+                              <span>
+                                <AnimatedNumber value={68} decimals={0} suffix="%" delay={150} duration={900} trigger={loaded} />
+                              </span>
+                            </div>
+                            <div className={styles.projectProgress}>
+                              <div 
+                                className={styles.projectProgressFill} 
+                                style={{ 
+                                  width: loaded ? '68%' : '0%',
+                                  transition: 'width 1.2s 0.2s cubic-bezier(0.16, 1, 0.3, 1)' 
+                                }} 
+                              />
+                            </div>
                           </div>
-                          <div className={styles.histogramContainer}>
-                            {[
-                              { label: 'M', val: 45 },
-                              { label: 'T', val: 72 },
-                              { label: 'W', val: 58 },
-                              { label: 'T', val: 92 },
-                              { label: 'F', val: 78 },
-                            ].map((bar, i) => (
-                              <div key={i} className={styles.histogramColumn}>
-                                <div className={styles.histogramBarTrack}>
-                                  <div 
-                                    className={styles.histogramBarFill} 
-                                    style={{ 
-                                      height: loaded ? `${bar.val}%` : '0%',
-                                      transition: `height 1s ${0.1 + i * 0.1}s cubic-bezier(0.16, 1, 0.3, 1)`
-                                    }} 
-                                  />
-                                </div>
-                                <span className={styles.histogramLabel}>{bar.label}</span>
-                              </div>
-                            ))}
+                          <div className={styles.projectChart}>
+                            <svg className={styles.waveSvg} viewBox="0 0 100 30">
+                              <path 
+                                d="M0,25 C20,25 30,5 50,5 C70,5 80,25 100,25" 
+                                fill="none" 
+                                stroke="var(--accent-1)" 
+                                strokeWidth="2.5" 
+                                strokeDasharray="200"
+                                strokeDashoffset={loaded ? 0 : 200}
+                                style={{ transition: 'stroke-dashoffset 1.4s 0.3s cubic-bezier(0.16, 1, 0.3, 1)' }}
+                              />
+                              <line 
+                                x1="50" 
+                                y1="0" 
+                                x2="50" 
+                                y2="30" 
+                                stroke="var(--accent-2)" 
+                                strokeWidth="1" 
+                                strokeDasharray="3 3" 
+                                style={{ opacity: loaded ? 1 : 0, transition: 'opacity 0.6s 1.5s' }}
+                              />
+                            </svg>
                           </div>
                         </div>
 
-                        {/* Pie / Donut Chart */}
-                        <div className={styles.chartPanel}>
-                          <div className={styles.chartTitleRow}>
-                            <span>System Load</span>
-                            <strong>
-                              <AnimatedNumber value={84} decimals={0} suffix="%" delay={100} duration={800} trigger={loaded} />
-                            </strong>
-                          </div>
-                          <div className={styles.pieContainer}>
-                            <svg className={styles.donutSvg} viewBox="0 0 100 100">
-                              <circle 
-                                className={styles.donutTrack} 
-                                cx="50" 
-                                cy="50" 
-                                r="40" 
-                                fill="transparent" 
-                                stroke="rgba(92, 64, 51, 0.05)" 
-                                strokeWidth="8" 
+                        <div className={styles.projectRow}>
+                          <div className={styles.projectInfo}>
+                            <div className={styles.projectLabel}>
+                              <strong>Project Delta: Data Insights</strong>
+                              <span>
+                                <AnimatedNumber value={92} decimals={0} suffix="%" delay={250} duration={900} trigger={loaded} />
+                              </span>
+                            </div>
+                            <div className={styles.projectProgress}>
+                              <div 
+                                className={styles.projectProgressFill} 
+                                style={{ 
+                                  width: loaded ? '92%' : '0%',
+                                  transition: 'width 1.2s 0.35s cubic-bezier(0.16, 1, 0.3, 1)' 
+                                }} 
                               />
-                              <circle 
-                                className={styles.donutFill} 
-                                cx="50" 
-                                cy="50" 
-                                r="40" 
-                                fill="transparent" 
+                            </div>
+                          </div>
+                          <div className={styles.projectChart}>
+                            <svg className={styles.waveSvg} viewBox="0 0 100 30">
+                              <path 
+                                d="M0,20 C15,20 25,5 40,5 C55,5 65,25 80,25 C90,25 95,20 100,20" 
+                                fill="none" 
                                 stroke="var(--accent-1)" 
-                                strokeWidth="8" 
-                                strokeDasharray="251.2" 
-                                strokeDashoffset={loaded ? 251.2 - (251.2 * 84) / 100 : 251.2}
-                                strokeLinecap="round"
-                                transform="rotate(-90 50 50)"
-                                style={{
-                                  transition: 'stroke-dashoffset 1.2s 0.2s cubic-bezier(0.16, 1, 0.3, 1)'
-                                }}
+                                strokeWidth="2.5" 
+                                strokeDasharray="200"
+                                strokeDashoffset={loaded ? 0 : 200}
+                                style={{ transition: 'stroke-dashoffset 1.4s 0.45s cubic-bezier(0.16, 1, 0.3, 1)' }}
                               />
                             </svg>
-                            <div className={styles.donutCenter}>
-                              <span className={styles.donutNumber}>
-                                <AnimatedNumber value={84} decimals={0} suffix="%" delay={200} duration={1000} trigger={loaded} />
+                          </div>
+                        </div>
+
+                        <div className={styles.projectRow}>
+                          <div className={styles.projectInfo}>
+                            <div className={styles.projectLabel}>
+                              <strong>Project Gamma: App Dev</strong>
+                              <span>
+                                <AnimatedNumber value={45} decimals={0} suffix="%" delay={350} duration={900} trigger={loaded} />
                               </span>
-                              <span className={styles.donutSub}>Efficiency</span>
                             </div>
+                            <div className={styles.projectProgress}>
+                              <div 
+                                className={styles.projectProgressFill} 
+                                style={{ 
+                                  width: loaded ? '45%' : '0%',
+                                  transition: 'width 1.2s 0.5s cubic-bezier(0.16, 1, 0.3, 1)' 
+                                }} 
+                              />
+                            </div>
+                          </div>
+                          <div className={styles.projectChart}>
+                            <svg className={styles.waveSvg} viewBox="0 0 100 30">
+                              <path 
+                                d="M0,25 C30,25 45,25 60,10 C70,0 75,30 85,30 C95,30 100,25 100,25" 
+                                fill="none" 
+                                stroke="var(--accent-1)" 
+                                strokeWidth="2.5" 
+                                strokeDasharray="200"
+                                strokeDashoffset={loaded ? 0 : 200}
+                                style={{ transition: 'stroke-dashoffset 1.4s 0.6s cubic-bezier(0.16, 1, 0.3, 1)' }}
+                              />
+                              <line 
+                                x1="72" 
+                                y1="0" 
+                                x2="72" 
+                                y2="30" 
+                                stroke="var(--accent-2)" 
+                                strokeWidth="1" 
+                                strokeDasharray="3 3" 
+                                style={{ opacity: loaded ? 1 : 0, transition: 'opacity 0.6s 1.8s' }}
+                              />
+                            </svg>
                           </div>
                         </div>
                       </div>
