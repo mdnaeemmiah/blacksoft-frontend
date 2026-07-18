@@ -75,6 +75,9 @@
   opacity: 0;
   transform: translateX(-80px);
   transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1), transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 100%;
+  max-width: 580px;
+  margin-right: auto;
 }
 
 .heroContent.animateIn {
@@ -320,7 +323,7 @@
 
 .workspaceBody {
   display: grid;
-  grid-template-columns: 110px 1fr;
+  grid-template-columns: 64px 1fr;
   height: 480px; /* Fixed height! */
   overflow: hidden;
 }
@@ -328,18 +331,21 @@
 .workspaceRail {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  padding: 20px 10px;
-  border-right: 1px solid rgba(0, 0, 0, 0.05);
-  font-size: 0.6rem;
+  align-items: center;
+  padding: 20px 0;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
   color: var(--text-subtle);
 }
 
 .workspaceRail span {
-  padding: 7px 10px;
+  width: 36px;
+  height: 36px;
   border-radius: 8px;
+  display: grid;
+  place-items: center;
   cursor: pointer;
   transition: all 0.2s ease;
+  margin: 0 auto;
   
   /* Entrance animation */
   opacity: 0;
