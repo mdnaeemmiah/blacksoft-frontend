@@ -115,19 +115,33 @@
   overflow: hidden;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   width: 100%;
   font-size: 0.92rem;
   color: var(--text-muted);
   line-height: 1.65;
   margin: 0;
   text-align: left;
-  cursor: pointer;
 }
 
 .descriptionExpanded {
   display: block;
   overflow: visible;
   -webkit-line-clamp: unset;
+  line-clamp: unset;
+}
+
+.seeMoreButton {
+  margin-top: 4px;
+  color: var(--text-main);
+  font-size: 0.86rem;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.seeMoreButton:hover {
+  color: var(--primary);
 }
 
 .cardImage {
@@ -160,7 +174,7 @@
   align-items: center;
   gap: 10px;
   min-height: 38px;
-  margin-top: auto;
+  margin-top: 1.25rem;
   padding: 8px 16px;
   border: 1px solid #e0e4ea;
   border-radius: 9999px;

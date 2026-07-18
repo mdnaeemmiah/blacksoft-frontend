@@ -201,14 +201,18 @@ function ServiceCardItem({ card, index }: { card: SolutionCard; index: number })
       )}
       <div className={styles.cardContent}>
         <h3 className={styles.cardTitle}>{card.title}</h3>
-        <button
-          type="button"
+        <p
           className={`${styles.cardDescription} ${descriptionExpanded ? styles.descriptionExpanded : ''}`}
-          onClick={() => setDescriptionExpanded((expanded) => !expanded)}
-          aria-expanded={descriptionExpanded}
-          title={descriptionExpanded ? 'Show less' : 'Show full description'}
         >
           {card.description}
+        </p>
+        <button
+          type="button"
+          className={styles.seeMoreButton}
+          onClick={() => setDescriptionExpanded((expanded) => !expanded)}
+          aria-expanded={descriptionExpanded}
+        >
+          {descriptionExpanded ? 'See less' : 'See more...'}
         </button>
         <a href={cardLink} className={styles.liveLink} target="_blank" rel="noopener noreferrer">
           <span>View live</span>
