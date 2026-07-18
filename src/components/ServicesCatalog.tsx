@@ -202,7 +202,7 @@ function ServiceCardItem({ card, index }: { card: SolutionCard; index: number })
         <h3 className={styles.cardTitle}>{card.title}</h3>
         <p className={styles.cardDescription}>{card.description}</p>
         <a href={cardLink} className={styles.detailsLink}>See details</a>
-        <a href={cardLink} className={styles.liveLink}>
+        <a href={cardLink} className={styles.liveLink} target="_blank" rel="noopener noreferrer">
           <span>View live</span>
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M14 5h5v5M19 5l-9 9" />
