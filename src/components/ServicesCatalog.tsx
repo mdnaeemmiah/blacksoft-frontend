@@ -213,7 +213,7 @@ function PlaceholderCardItem({ pl, categoryKey }: { pl: { title: string; descrip
       href={pl.link} 
       style={{ 
         borderStyle: 'dashed', 
-        borderColor: 'rgba(255,255,255,0.15)',
+        borderColor: 'rgba(92, 64, 51, 0.15)',
         opacity: visible ? 1 : 0,
         transform: visible ? 'none' : 'translateY(30px)',
         transition: 'opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out)',
@@ -221,7 +221,7 @@ function PlaceholderCardItem({ pl, categoryKey }: { pl: { title: string; descrip
     >
       <div className={styles.cardTop}>
         <span className={styles.index} style={{ opacity: 0.5 }}>REQUEST</span>
-        <span className={styles.icon} style={{ background: 'rgba(79, 142, 247, 0.1)' }}>{pl.icon}</span>
+        <span className={styles.icon} style={{ background: 'rgba(92, 64, 51, 0.05)' }}>{pl.icon}</span>
       </div>
       <h3 className={styles.cardTitle} style={{ opacity: 0.9 }}>{pl.title}</h3>
       <p className={styles.cardDescription} style={{ opacity: 0.7 }}>{pl.description}</p>
