@@ -172,7 +172,9 @@
 .liveLink {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
+  width: 100%;
   min-height: 38px;
   margin-top: 1.25rem;
   padding: 8px 16px;
