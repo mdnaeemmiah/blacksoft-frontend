@@ -175,6 +175,7 @@ function CategorySection({
 
 function ServiceCardItem({ card, index }: { card: SolutionCard; index: number }) {
   const [ref, visible] = useInView<HTMLDivElement>(0.1, true);
+  const [descriptionExpanded, setDescriptionExpanded] = React.useState(false);
   const cardLink = card.link || '#solutions';
 
   return (
@@ -200,8 +201,15 @@ function ServiceCardItem({ card, index }: { card: SolutionCard; index: number })
       )}
       <div className={styles.cardContent}>
         <h3 className={styles.cardTitle}>{card.title}</h3>
-        <p className={styles.cardDescription}>{card.description}</p>
-        <a href={cardLink} className={styles.detailsLink}>See details</a>
+        <button
+          type="button"
+          className={`${styles.cardDescription} ${descriptionExpanded ? styles.descriptionExpanded : ''}`}
+          onClick={() => setDescriptionExpanded((expanded) => !expanded)}
+          aria-expanded={descriptionExpanded}
+          title={descriptionExpanded ? 'Show less' : 'Show full description'}
+        >
+          {card.description}
+        </button>
         <a href={cardLink} className={styles.liveLink} target="_blank" rel="noopener noreferrer">
           <span>View live</span>
           <svg viewBox="0 0 24 24" aria-hidden="true">
