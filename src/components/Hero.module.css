@@ -1387,5 +1387,35 @@
   height: 30px;
 }
 
+.wavePath {
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+}
+
+.loaded .wavePath {
+  animation: drawPathLine 1.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.waveLine {
+  opacity: 0;
+}
+
+.loaded .waveLine {
+  animation: fadeLineIn 0.6s ease both;
+}
+
+@keyframes drawPathLine {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fadeLineIn {
+  to {
+    opacity: 1;
+  }
+}
+
+
 
 

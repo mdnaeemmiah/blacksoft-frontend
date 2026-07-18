@@ -342,9 +342,8 @@ export default function Hero() {
                                 fill="none" 
                                 stroke="var(--accent-1)" 
                                 strokeWidth="2.5" 
-                                strokeDasharray="200"
-                                strokeDashoffset={loaded ? 0 : 200}
-                                style={{ transition: 'stroke-dashoffset 1.4s 0.3s cubic-bezier(0.16, 1, 0.3, 1)' }}
+                                className={styles.wavePath}
+                                style={{ animationDelay: '0.3s' }}
                               />
                               <line 
                                 x1="50" 
@@ -354,7 +353,8 @@ export default function Hero() {
                                 stroke="var(--accent-2)" 
                                 strokeWidth="1" 
                                 strokeDasharray="3 3" 
-                                style={{ opacity: loaded ? 1 : 0, transition: 'opacity 0.6s 1.5s' }}
+                                className={styles.waveLine}
+                                style={{ animationDelay: '1.5s' }}
                               />
                             </svg>
                           </div>
@@ -385,9 +385,8 @@ export default function Hero() {
                                 fill="none" 
                                 stroke="var(--accent-1)" 
                                 strokeWidth="2.5" 
-                                strokeDasharray="200"
-                                strokeDashoffset={loaded ? 0 : 200}
-                                style={{ transition: 'stroke-dashoffset 1.4s 0.45s cubic-bezier(0.16, 1, 0.3, 1)' }}
+                                className={styles.wavePath}
+                                style={{ animationDelay: '0.5s' }}
                               />
                             </svg>
                           </div>
@@ -418,9 +417,8 @@ export default function Hero() {
                                 fill="none" 
                                 stroke="var(--accent-1)" 
                                 strokeWidth="2.5" 
-                                strokeDasharray="200"
-                                strokeDashoffset={loaded ? 0 : 200}
-                                style={{ transition: 'stroke-dashoffset 1.4s 0.6s cubic-bezier(0.16, 1, 0.3, 1)' }}
+                                className={styles.wavePath}
+                                style={{ animationDelay: '0.7s' }}
                               />
                               <line 
                                 x1="72" 
@@ -430,7 +428,8 @@ export default function Hero() {
                                 stroke="var(--accent-2)" 
                                 strokeWidth="1" 
                                 strokeDasharray="3 3" 
-                                style={{ opacity: loaded ? 1 : 0, transition: 'opacity 0.6s 1.8s' }}
+                                className={styles.waveLine}
+                                style={{ animationDelay: '1.8s' }}
                               />
                             </svg>
                           </div>
