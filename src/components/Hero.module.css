@@ -21,7 +21,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 72px;
-  align-items: center;
+  align-items: stretch;
   z-index: 1;
 }
 
@@ -33,6 +33,9 @@
   width: 100%;
   max-width: 580px;
   margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .heroContent.animateIn {
@@ -207,11 +210,16 @@
 
 .workspaceCardWrapper {
   width: min(100%, 580px); /* Enlarged max-width */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   perspective: 1000px;
   opacity: 0;
   transform: translateY(40px) scale(0.97);
   transition: opacity 1.2s var(--ease-out), transform 1.2s var(--ease-out);
   z-index: 2;
+  margin-left: auto;
 }
 
 .workspaceCardWrapper.loaded {
@@ -232,6 +240,9 @@
     0 0 0 1px rgba(255, 255, 255, 0.6) inset;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+  display: flex;
+  flex-direction: column;
+  min-height: 520px;
 
   /* Local overrides for light-theme card elements */
   --accent-1: #5c4033; /* Espresso Brown */
