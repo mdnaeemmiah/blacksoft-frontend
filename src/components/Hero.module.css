@@ -76,12 +76,7 @@
 }
 
 .titleAccent {
-  background: var(--grad-hero);
-  background-size: 200% auto;
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: gradientShift 3s ease infinite;
+  color: var(--text-white);
 }
 
 .description {
