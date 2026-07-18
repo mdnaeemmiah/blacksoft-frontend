@@ -52,10 +52,10 @@
 }
 
 .card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-card);
-  padding: 40px 32px;
-  border-radius: 20px;
+  background: #ffffff;
+  border: 1px solid #e2ded7;
+  padding: 0;
+  border-radius: 16px;
   transition: all 0.4s var(--ease-out);
   display: flex;
   flex-direction: column;
@@ -65,9 +65,16 @@
 
 .card:hover {
   transform: translateY(-6px);
-  border-color: rgba(92, 64, 51, 0.2);
-  background: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 24px 60px rgba(92, 64, 51, 0.05), 0 0 30px rgba(92, 64, 51, 0.03);
+  border-color: #cfc6ba;
+  box-shadow: 0 22px 48px rgba(92, 64, 51, 0.12);
+}
+
+.cardContent {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 26px 24px 24px;
 }
 
 .cardTop {
@@ -100,29 +107,82 @@
   font-size: 1.25rem;
   font-weight: 700;
   color: var(--text-white);
-  margin: 0 0 14px 0;
+  margin: 0 0 16px;
 }
 
 .cardDescription {
   font-size: 0.92rem;
   color: var(--text-muted);
   line-height: 1.65;
-  margin: 0;
-  flex-grow: 1;
+  margin: 0 0 4px;
 }
 
 .cardImage {
   width: 100%;
-  height: 160px;
+  height: 192px;
   object-fit: cover;
-  border-radius: 12px;
-  margin-bottom: 24px;
-  border: 1px solid var(--border-light);
-  opacity: 0.85;
-  transition: opacity 0.3s ease;
+  border-bottom: 1px solid #e2ded7;
 }
-.card:hover .cardImage {
-  opacity: 1;
+
+.cardMediaFallback {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 192px;
+  background: linear-gradient(145deg, #1e1b17, #0f0f0f);
+  border-bottom: 1px solid #2d2924;
+}
+
+.cardMediaFallback .icon {
+  width: 64px;
+  height: 64px;
+  margin: 0;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.detailsLink {
+  margin-top: auto;
+  color: var(--text-main);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.liveLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 38px;
+  margin-top: 14px;
+  padding: 8px 16px;
+  border: 1px solid #e0e4ea;
+  border-radius: 9999px;
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.liveLink svg {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+}
+
+.liveLink:hover {
+  color: #ffffff;
+  background: var(--primary);
+  border-color: var(--primary);
+}
+
+.placeholderCard {
+  padding: 40px 32px;
 }
 
 .footerLine {
@@ -153,6 +213,12 @@
     gap: 16px;
   }
   .card {
+    border-radius: 14px;
+  }
+  .cardContent {
+    padding: 24px 20px 22px;
+  }
+  .placeholderCard {
     padding: 32px 24px;
   }
 }

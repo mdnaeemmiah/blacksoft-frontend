@@ -174,33 +174,43 @@ function CategorySection({
 }
 
 function ServiceCardItem({ card, index }: { card: SolutionCard; index: number }) {
-  const [ref, visible] = useInView<HTMLAnchorElement>(0.1, true);
+  const [ref, visible] = useInView<HTMLDivElement>(0.1, true);
+  const cardLink = card.link || '#solutions';
+
   return (
-    <a 
+    <div
       ref={ref}
-      className={styles.card} 
-      href={card.link || '#solutions'}
+      className={styles.card}
       style={{
         opacity: visible ? 1 : 0,
         transform: visible ? 'none' : 'translateY(30px)',
         transition: `opacity 0.7s ${index * 0.1}s var(--ease-out), transform 0.7s ${index * 0.1}s var(--ease-out)`,
       }}
     >
-      <div className={styles.cardTop}>
-        <span className={styles.index}>0{index + 1}</span>
-        <span className={styles.icon}>{card.icon}</span>
-      </div>
-      {card.imageSrc && (
+      {card.imageSrc ? (
         <img 
           src={card.imageSrc} 
           alt={card.imageAlt || card.title} 
           className={styles.cardImage} 
         />
+      ) : (
+        <div className={styles.cardMediaFallback} aria-hidden="true">
+          <span className={styles.icon}>{card.icon}</span>
+        </div>
       )}
-      <h3 className={styles.cardTitle}>{card.title}</h3>
-      <p className={styles.cardDescription}>{card.description}</p>
-      <div className={styles.footerLine} />
-    </a>
+      <div className={styles.cardContent}>
+        <h3 className={styles.cardTitle}>{card.title}</h3>
+        <p className={styles.cardDescription}>{card.description}</p>
+        <a href={cardLink} className={styles.detailsLink}>See details</a>
+        <a href={cardLink} className={styles.liveLink}>
+          <span>View live</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M14 5h5v5M19 5l-9 9" />
+            <path d="M19 14v5H5V5h5" />
+          </svg>
+        </a>
+      </div>
+    </div>
   );
 }
 
@@ -209,7 +219,7 @@ function PlaceholderCardItem({ pl, categoryKey }: { pl: { title: string; descrip
   return (
     <a 
       ref={ref}
-      className={styles.card} 
+      className={`${styles.card} ${styles.placeholderCard}`}
       href={pl.link} 
       style={{ 
         borderStyle: 'dashed', 
