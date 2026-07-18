@@ -8,27 +8,40 @@ import React, { useEffect, useRef, useState, useCallback } from 'react';
 export function useInView<T extends HTMLElement = HTMLDivElement>(
   threshold = 0.15,
   once = true
-): [React.RefObject<T>, boolean] {
-  const ref = useRef<T>(null!);
+): [(node: T | null) => void, boolean] {
   const [visible, setVisible] = useState(false);
+  const observerRef = useRef<IntersectionObserver | null>(null);
+
+  const ref = useCallback((node: T | null) => {
+    if (observerRef.current) {
+      observerRef.current.disconnect();
+      observerRef.current = null;
+    }
+
+    if (node) {
+      const obs = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setVisible(true);
+            if (once) obs.unobserve(node);
+          } else if (!once) {
+            setVisible(false);
+          }
+        },
+        { threshold }
+      );
+      obs.observe(node);
+      observerRef.current = obs;
+    }
+  }, [threshold, once]);
 
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          if (once) obs.unobserve(el);
-        } else if (!once) {
-          setVisible(false);
-        }
-      },
-      { threshold }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, [threshold, once]);
+    return () => {
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+      }
+    };
+  }, []);
 
   return [ref, visible];
 }

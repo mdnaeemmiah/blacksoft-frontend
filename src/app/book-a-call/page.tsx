@@ -302,7 +302,7 @@ export default function MinimalBookACallPage() {
           <p style={{ color: '#475569', fontSize: '15px', lineHeight: 1.6, marginBottom: '24px' }}>
             We have received your project details. Our team will review your requirements and reach out to you within 24 hours.
           </p>
-          <Link href="/" style={{
+          <Link href="/home" style={{
             display: 'inline-block',
             padding: '12px 32px',
             borderRadius: '9999px',
@@ -325,7 +325,7 @@ export default function MinimalBookACallPage() {
       
       {/* Back button */}
       <div className={styles.backWrapper}>
-        <Link href="/" className={styles.backLink}>
+        <Link href="/home" className={styles.backLink}>
           ← Back to Home
         </Link>
       </div>
