@@ -18,7 +18,7 @@ export default function Partners() {
         <p
           className={styles.heading}
           style={{
-            opacity: visible ? 0.6 : 0,
+            opacity: visible ? 1 : 0,
             transform: visible ? 'none' : 'translateY(10px)',
             transition: 'opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out)',
           }}
@@ -31,9 +31,8 @@ export default function Partners() {
               key={partner.id}
               className={styles.logoItem}
               style={{
-                opacity: visible ? 0.45 : 0,
-                transform: visible ? 'none' : 'scale(0.9)',
-                transition: `opacity 0.7s ${index * 0.08}s var(--ease-out), transform 0.7s ${index * 0.08}s var(--ease-out)`,
+                opacity: visible ? 1 : 0,
+                transition: `opacity 0.7s ${index * 0.08}s var(--ease-out)`,
               }}
             >
               {partner.name}
