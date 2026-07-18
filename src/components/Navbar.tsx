@@ -26,7 +26,7 @@ export default function Navbar() {
   return (
     <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
       <div className={`container ${styles.navContainer}`}>
-        <Link href="/" className={styles.logo}>
+        <Link href="/home" className={styles.logo}>
           <svg viewBox="0 0 32 32" className={styles.logoIcon} width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="2" y="2" width="6" height="17" rx="3" fill="currentColor" />
             <rect x="2" y="23" width="6" height="7" rx="3" fill="currentColor" />
@@ -39,7 +39,7 @@ export default function Navbar() {
         </Link>
 
         <nav className={styles.navMenu}>
-          <Link href="/#hero" className={`${styles.navLink} ${pathnameStr === '/' ? styles.navActive : ''}`}>Home</Link>
+          <Link href="/home" className={`${styles.navLink} ${pathnameStr === '/home' ? styles.navActive : ''}`}>Home</Link>
           <Link href="/solutions" className={`${styles.navLink} ${pathnameStr.startsWith('/solutions') ? styles.navActive : ''}`}>Solutions</Link>
           <Link href="/technology" className={`${styles.navLink} ${pathnameStr.startsWith('/technology') ? styles.navActive : ''}`}>Technology</Link>
           <Link href="/about" className={`${styles.navLink} ${pathnameStr.startsWith('/about') ? styles.navActive : ''}`}>About</Link>
