@@ -166,7 +166,7 @@
 
 .mobileCta { margin-top: 20px; }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .navMenu, .navCta { display: none; }
   .burger { display: flex; }
 }
