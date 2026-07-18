@@ -1247,4 +1247,175 @@
   font-weight: 600;
 }
 
+/* Redesigned Mockup Console Styles */
+.railLogo {
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
+  font-weight: 900;
+  color: var(--accent-1);
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.railMenu {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin: auto 0;
+  width: 100%;
+}
+
+.workspaceRail span svg {
+  transition: transform 0.2s;
+}
+
+.workspaceRail span:hover svg {
+  transform: scale(1.1);
+}
+
+.railExit {
+  margin-top: auto;
+  color: var(--text-subtle);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.railExit:hover {
+  color: var(--accent-1);
+  background: rgba(92, 64, 51, 0.05);
+}
+
+.headerActions {
+  display: flex;
+  gap: 6px;
+}
+
+.headerActionBtn {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid var(--border-light);
+  display: grid;
+  place-items: center;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.25s var(--ease-out);
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.headerActionBtn:hover {
+  color: var(--accent-1);
+  border-color: var(--accent-3);
+  background: rgba(92, 64, 51, 0.04);
+  transform: scale(1.05);
+}
+
+.indicatorRow {
+  display: flex;
+  gap: 12px;
+  font-size: 0.58rem;
+  color: var(--text-subtle);
+  align-items: center;
+}
+
+.indicatorItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dotActive {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 6px #10b981;
+}
+
+.dotPending {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #d9a07b;
+  box-shadow: 0 0 6px #d9a07b;
+}
+
+.dotComplete {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--text-subtle);
+}
+
+.projectList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.projectRow {
+  display: grid;
+  grid-template-columns: 1fr 100px;
+  gap: 20px;
+  align-items: center;
+  padding: 16px 20px;
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 16px;
+  transition: all 0.3s;
+}
+
+.projectRow:hover {
+  transform: translateY(-2px);
+  border-color: rgba(92, 64, 51, 0.12);
+  box-shadow: 0 8px 24px rgba(92, 64, 51, 0.03);
+}
+
+.projectInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.projectLabel {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.64rem;
+  color: var(--text-main);
+  font-weight: 700;
+  font-family: var(--font-body);
+}
+
+.projectProgress {
+  height: 5px;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.projectProgressFill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-2), var(--accent-1));
+  border-radius: 3px;
+  transform-origin: left;
+}
+
+.projectChart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.waveSvg {
+  width: 100%;
+  height: 30px;
+}
+
+
 

@@ -216,48 +216,86 @@ export default function Hero() {
             <div ref={cardRef} className={styles.workspaceCard} style={cardTiltStyle}>
               {/* Top bar */}
               <div className={styles.workspaceTop}>
-                <div className={styles.windowDots}>
-                  <span className={`${styles.windowDot} ${styles.dotRed}`} />
-                  <span className={`${styles.windowDot} ${styles.dotYellow}`} />
-                  <span className={`${styles.windowDot} ${styles.dotGreen}`} />
+                <span style={{ fontWeight: 700, color: 'var(--text-main)', fontSize: '0.75rem', fontFamily: 'var(--font-body)' }}>Blacksoft Console</span>
+                <div className={styles.headerActions}>
+                  <div className={styles.headerActionBtn}>
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                      <circle cx="12" cy="12" r="10"/>
+                      <line x1="12" y1="16" x2="12" y2="12"/>
+                      <line x1="12" y1="8" x2="12.01" y2="8"/>
+                    </svg>
+                  </div>
+                  <div className={styles.headerActionBtn}>
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                      <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                      <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                    </svg>
+                  </div>
+                  <div className={styles.headerActionBtn}>
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                      <line x1="12" y1="5" x2="12" y2="19"/>
+                      <line x1="5" y1="12" x2="19" y2="12"/>
+                    </svg>
+                  </div>
                 </div>
-                <span>blacksoft.intelligence / workspace</span>
-                <span className={styles.workspaceStatus}>● LIVE</span>
               </div>
               {/* Body */}
               <div className={styles.workspaceBody}>
                 {/* Sidebar rail */}
                 <div className={styles.workspaceRail}>
-                  <span 
-                    className={activeTab === '/' ? styles.railActive : ''} 
-                    onClick={() => setActiveTab('/')}
-                  >
-                    /
-                  </span>
-                  <span 
-                    className={activeTab === '/solutions' ? styles.railActive : ''} 
-                    onClick={() => setActiveTab('/solutions')}
-                  >
-                    /solutions
-                  </span>
-                  <span 
-                    className={activeTab === '/technology' ? styles.railActive : ''} 
-                    onClick={() => setActiveTab('/technology')}
-                  >
-                    /technology
-                  </span>
-                  <span 
-                    className={activeTab === '/about' ? styles.railActive : ''} 
-                    onClick={() => setActiveTab('/about')}
-                  >
-                    /about
-                  </span>
-                  <span 
-                    className={activeTab === '/team' ? styles.railActive : ''} 
-                    onClick={() => setActiveTab('/team')}
-                  >
-                    /team
-                  </span>
+                  <div className={styles.railLogo}>B</div>
+                  <div className={styles.railMenu}>
+                    <span 
+                      className={activeTab === '/' ? styles.railActive : ''} 
+                      onClick={() => setActiveTab('/')}
+                      title="Overview"
+                    >
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <rect x="3" y="3" width="7" height="7"/>
+                        <rect x="14" y="3" width="7" height="7"/>
+                        <rect x="14" y="14" width="7" height="7"/>
+                        <rect x="3" y="14" width="7" height="7"/>
+                      </svg>
+                    </span>
+                    <span 
+                      className={activeTab === '/team' ? styles.railActive : ''} 
+                      onClick={() => setActiveTab('/team')}
+                      title="Team"
+                    >
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                      </svg>
+                    </span>
+                    <span 
+                      className={activeTab === '/solutions' ? styles.railActive : ''} 
+                      onClick={() => setActiveTab('/solutions')}
+                      title="Solutions"
+                    >
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+                      </svg>
+                    </span>
+                    <span 
+                      className={activeTab === '/technology' ? styles.railActive : ''} 
+                      onClick={() => setActiveTab('/technology')}
+                      title="Technology"
+                    >
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                      </svg>
+                    </span>
+                  </div>
+                  <div className={styles.railExit} title="Exit">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                      <polyline points="16 17 21 12 16 7"/>
+                      <line x1="21" y1="12" x2="9" y2="12"/>
+                    </svg>
+                  </div>
                 </div>
 
                 {/* Main panel */}
@@ -267,104 +305,69 @@ export default function Hero() {
                       {/* Header row */}
                       <div className={styles.workspaceHeadingRow}>
                         <div className={styles.workspaceHeading}>
-                          <small>System status</small>
-                          <b>/ (home)</b>
+                          <b style={{ fontSize: '0.8rem', letterSpacing: '0.5px' }}>LIVE STUDIO OVERVIEW</b>
+                          <small style={{ marginTop: '2px' }}>Live studio overview status</small>
                         </div>
-                        <div className={styles.liveBadge}>
-                          <span className={styles.livePulse} />
-                          CONNECTED
-                        </div>
-                      </div>
-
-                      {/* Top content grid: left stats & right performance */}
-                      <div className={styles.mainGrid}>
-                        <div className={styles.mainGridLeft}>
-                          <div className={styles.signalCard}>
-                            <div>
-                              <small>Operations intelligence</small>
-                              <strong>
-                                <AnimatedNumber value={92.8} decimals={1} suffix="%" delay={400} duration={1000} trigger={loaded} />
-                              </strong>
-                              <span className={styles.signalUp}>▲ +14.6% this week</span>
-                            </div>
-                            <div className={styles.signalBars}>
-                              <i/><i/><i/><i/><i/><i/><i/><i/><i/>
-                            </div>
-                          </div>
-
-                          <div className={styles.miniGrid}>
-                            <div>
-                              <small>Active agents</small>
-                              <b>
-                                <AnimatedNumber value={24} decimals={0} suffix="" delay={550} duration={800} trigger={loaded} />
-                              </b>
-                              <em>across 6 teams</em>
-                            </div>
-                            <div>
-                              <small>Tasks automated</small>
-                              <b>
-                                <AnimatedNumber value={18.4} decimals={1} suffix="k" delay={650} duration={800} trigger={loaded} />
-                              </b>
-                              <em>this month</em>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className={styles.mainGridRight}>
-                          <div className={styles.perfCard}>
-                            <small>Compute Core (GPU)</small>
-                            <div className={styles.perfRow}>
-                              <strong>
-                                <AnimatedNumber value={78} decimals={0} suffix="%" delay={700} duration={1000} trigger={loaded} />
-                              </strong>
-                              <div className={styles.progressBar}>
-                                <span className={styles.progressBarFill} style={{ width: '78%' }} />
-                              </div>
-                            </div>
-                            <div className={styles.perfMetrics}>
-                              <span>VRAM: 64/80 GB</span>
-                              <span>Ping: 24ms</span>
-                            </div>
-                          </div>
-
-                          <div className={styles.pipelinesCard}>
-                            <small>Active Pipelines</small>
-                            <ul className={styles.pipelineList}>
-                              <li>
-                                <span className={styles.pipelineDot} />
-                                <code>kepler-nlp-v3</code>
-                                <span className={styles.pipelineStatus}>processing</span>
-                              </li>
-                              <li>
-                                <span className={styles.pipelineDot} />
-                                <code>orion-infra</code>
-                                <span className={styles.pipelineStatus}>synced</span>
-                              </li>
-                            </ul>
-                          </div>
+                        <div className={styles.indicatorRow}>
+                          <span className={styles.indicatorItem}><span className={styles.dotActive} />active</span>
+                          <span className={styles.indicatorItem}><span className={styles.dotPending} />pending</span>
+                          <span className={styles.indicatorItem}><span className={styles.dotComplete} />complete</span>
                         </div>
                       </div>
 
-                      {/* Bottom: Event stream */}
-                      <div className={styles.eventStream}>
-                        <div className={styles.streamHeader}>
-                          <span>Live Event Feed</span>
-                          <span className={styles.streamCount}>3 active threads</span>
+                      {/* Project rows list */}
+                      <div className={styles.projectList}>
+                        <div className={styles.projectRow}>
+                          <div className={styles.projectInfo}>
+                            <div className={styles.projectLabel}>
+                              <strong>Project Alpha: Model Training</strong>
+                              <span>68%</span>
+                            </div>
+                            <div className={styles.projectProgress}>
+                              <div className={styles.projectProgressFill} style={{ width: '68%' }} />
+                            </div>
+                          </div>
+                          <div className={styles.projectChart}>
+                            <svg className={styles.waveSvg} viewBox="0 0 100 30">
+                              <path d="M0,25 C20,25 30,5 50,5 C70,5 80,25 100,25" fill="none" stroke="var(--accent-1)" strokeWidth="2.5" />
+                              <line x1="50" y1="0" x2="50" y2="30" stroke="var(--accent-2)" strokeWidth="1" strokeDasharray="3 3" />
+                            </svg>
+                          </div>
                         </div>
-                        <div className={styles.streamItem}>
-                          <span className={`${styles.streamBullet} ${styles.bulletGreen}`} />
-                          <span>Agent Atlas completed repository sync</span>
-                          <time>just now</time>
+
+                        <div className={styles.projectRow}>
+                          <div className={styles.projectInfo}>
+                            <div className={styles.projectLabel}>
+                              <strong>Project Delta: Data Insights</strong>
+                              <span>92%</span>
+                            </div>
+                            <div className={styles.projectProgress}>
+                              <div className={styles.projectProgressFill} style={{ width: '92%' }} />
+                            </div>
+                          </div>
+                          <div className={styles.projectChart}>
+                            <svg className={styles.waveSvg} viewBox="0 0 100 30">
+                              <path d="M0,20 C15,20 25,5 40,5 C55,5 65,25 80,25 C90,25 95,20 100,20" fill="none" stroke="var(--accent-1)" strokeWidth="2.5" />
+                            </svg>
+                          </div>
                         </div>
-                        <div className={styles.streamItem}>
-                          <span className={`${styles.streamBullet} ${styles.bulletBlue}`} />
-                          <span>Kepler LLM generated routing plan</span>
-                          <time>2m ago</time>
-                        </div>
-                        <div className={styles.streamItem}>
-                          <span className={`${styles.streamBullet} ${styles.bulletYellow}`} />
-                          <span>System optimized container allocation</span>
-                          <time>12m ago</time>
+
+                        <div className={styles.projectRow}>
+                          <div className={styles.projectInfo}>
+                            <div className={styles.projectLabel}>
+                              <strong>Project Gamma: App Dev</strong>
+                              <span>45%</span>
+                            </div>
+                            <div className={styles.projectProgress}>
+                              <div className={styles.projectProgressFill} style={{ width: '45%' }} />
+                            </div>
+                          </div>
+                          <div className={styles.projectChart}>
+                            <svg className={styles.waveSvg} viewBox="0 0 100 30">
+                              <path d="M0,25 C30,25 45,25 60,10 C70,0 75,30 85,30 C95,30 100,25 100,25" fill="none" stroke="var(--accent-1)" strokeWidth="2.5" />
+                              <line x1="72" y1="0" x2="72" y2="30" stroke="var(--accent-2)" strokeWidth="1" strokeDasharray="3 3" />
+                            </svg>
+                          </div>
                         </div>
                       </div>
                     </div>
