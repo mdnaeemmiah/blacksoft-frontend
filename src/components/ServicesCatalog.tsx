@@ -229,25 +229,27 @@ function ServiceCardItem({ card, index }: { card: SolutionCard; index: number })
           <span className={styles.icon}>{card.icon}</span>
         </div>
       )}
-      <h3 className={styles.cardTitle}>{card.title}</h3>
-      <p className={styles.cardDescription}>{card.description}</p>
+      <div className={styles.cardContent}>
+        <h3 className={styles.cardTitle}>{card.title}</h3>
+        <p className={styles.cardDescription}>{card.description}</p>
 
-      {hasOtherLinks ? (
-        <div className={styles.otherLinksContainer}>
-          {card.otherLinks?.map((ol, i) => (
-            <a key={i} href={ol.url} className={styles.otherLinkItem} target="_blank" rel="noopener noreferrer">
-              <span className={styles.otherLinkTitle}>{ol.title} ↗</span>
-              {ol.description && <span className={styles.otherLinkDesc}>{ol.description}</span>}
+        {hasOtherLinks ? (
+          <div className={styles.otherLinksContainer}>
+            {card.otherLinks?.map((ol, i) => (
+              <a key={i} href={ol.url} className={styles.otherLinkItem} target="_blank" rel="noopener noreferrer">
+                <span className={styles.otherLinkTitle}>{ol.title} ↗</span>
+                {ol.description && <span className={styles.otherLinkDesc}>{ol.description}</span>}
+              </a>
+            ))}
+          </div>
+        ) : (
+          card.link && card.link !== '#solutions' && (
+            <a href={card.link} className={styles.primaryLink} target="_blank" rel="noopener noreferrer">
+              View Live ↗
             </a>
-          ))}
-        </div>
-      ) : (
-        card.link && card.link !== '#solutions' && (
-          <a href={card.link} className={styles.primaryLink} target="_blank" rel="noopener noreferrer">
-            Explore Project ↗
-          </a>
-        )
-      )}
+          )
+        )}
+      </div>
 
       <div className={styles.footerLine} />
     </div>
