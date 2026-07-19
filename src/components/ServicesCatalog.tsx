@@ -35,6 +35,11 @@ const CATEGORIES_META: Record<string, { title: string; subtitle: string }> = {
     subtitle:
       "Goal-oriented agents, vector databases, and neural interfaces automating business workflows.",
   },
+  "Progressive Web App": {
+    title: "Progressive Web Applications (PWA)",
+    subtitle:
+      "Offline-capable, installable web systems with native-like mobile and desktop performance.",
+  },
   Other: {
     title: "Specialized Operations & Tech",
     subtitle:
@@ -48,6 +53,7 @@ const CATEGORIES_ORDER = [
   "Figma design",
   "Backend development",
   "AI solution",
+  "Progressive Web App",
 ];
 
 const SECTION_PLACEHOLDERS: Record<
@@ -58,35 +64,42 @@ const SECTION_PLACEHOLDERS: Record<
     title: "Custom Mobile & Desktop Showcase",
     description:
       "Bespoke native applications engineered for optimal speed, fluidity, and seamless integration with your company operations.",
-    icon: "📱",
+    icon: "",
     link: "/book-a-call",
   },
   Website: {
     title: "Premium Corporate Web Surfaces",
     description:
       "High-speed marketing layers and interactive web products designed for exceptional conversion rate performance.",
-    icon: "🌐",
+    icon: "",
     link: "/book-a-call",
   },
   "Figma design": {
     title: "High-Fidelity Product UI/UX Systems",
     description:
       "Complete UI component libraries, prototypes, and dynamic layout systems built for direct frontend translation.",
-    icon: "🎨",
+    icon: "",
     link: "/book-a-call",
   },
   "Backend development": {
     title: "Secure Cloud & API Architectures",
     description:
       "High-concurrency data layers, robust server controllers, and zero-trust authentication protocols tailored to scale.",
-    icon: "⚙️",
+    icon: "",
     link: "/book-a-call",
   },
   "AI solution": {
     title: "Agentic Automations & LLM Engines",
     description:
       "Context-specific AI assistants, neural language layers, and workflow automation blocks that eliminate routine task loops.",
-    icon: "🧠",
+    icon: "",
+    link: "/book-a-call",
+  },
+  "Progressive Web App": {
+    title: "Premium Progressive Web App (PWA)",
+    description:
+      "Installable, offline-first digital products and systems designed for seamless mobile and desktop execution.",
+    icon: "",
     link: "/book-a-call",
   },
 };
@@ -111,6 +124,8 @@ export default function ServicesCatalog() {
           lower.includes("development")
         )
           cat = "Backend development";
+        else if (lower.includes("pwa") || lower.includes("progressive"))
+          cat = "Progressive Web App";
         else if (lower.includes("ai") || lower.includes("solution"))
           cat = "AI solution";
         else cat = "Other";
@@ -280,12 +295,14 @@ function PlaceholderCardItem({
         <span className={styles.index} style={{ opacity: 0.5 }}>
           REQUEST
         </span>
-        <span
-          className={styles.icon}
-          style={{ background: "rgba(92, 64, 51, 0.05)" }}
-        >
-          {pl.icon}
-        </span>
+        {pl.icon && (
+          <span
+            className={styles.icon}
+            style={{ background: "rgba(92, 64, 51, 0.05)" }}
+          >
+            {pl.icon}
+          </span>
+        )}
       </div>
       <h3 className={styles.cardTitle} style={{ opacity: 0.9 }}>
         {pl.title}
