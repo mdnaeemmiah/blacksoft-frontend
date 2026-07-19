@@ -27,7 +27,7 @@ export default function PrivacyPolicyPage() {
         }}>
           {/* Breadcrumb */}
           <div style={{ marginBottom: '32px' }}>
-            <Link href="/" style={{
+            <Link href="/home" style={{
               fontSize: '0.85rem',
               color: 'var(--text-muted)',
               textDecoration: 'none',

@@ -27,9 +27,9 @@
   color: var(--accent-1);
   margin-bottom: 16px;
   padding: 4px 12px;
-  background: rgba(79, 142, 247, 0.08);
+  background: rgba(92, 64, 51, 0.05);
   border-radius: 9999px;
-  border: 1px solid rgba(79, 142, 247, 0.2);
+  border: 1px solid rgba(92, 64, 51, 0.15);
 }
 
 .title {
@@ -107,9 +107,9 @@
 
 .card:hover {
   transform: translateY(-5px);
-  border-color: rgba(79, 142, 247, 0.25);
-  background: rgba(79, 142, 247, 0.05);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35), 0 0 20px rgba(79, 142, 247, 0.05);
+  border-color: rgba(92, 64, 51, 0.2);
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 16px 40px rgba(92, 64, 51, 0.04), 0 0 20px rgba(92, 64, 51, 0.03);
 }
 
 .card:hover::before {
@@ -121,7 +121,7 @@
   width: 44px;
   height: 44px;
   border-radius: 12px;
-  background: rgba(79, 142, 247, 0.1);
+  background: rgba(92, 64, 51, 0.05);
   color: var(--accent-1);
   display: flex;
   align-items: center;
@@ -129,7 +129,7 @@
   margin-bottom: 16px;
   transition: all 0.3s ease;
   flex-shrink: 0;
-  border: 1px solid rgba(79, 142, 247, 0.2);
+  border: 1px solid rgba(92, 64, 51, 0.15);
 }
 
 .card:hover .iconContainer {
@@ -192,3 +192,102 @@
     padding: 22px 18px;
   }
 }
+
+/* Skeleton Loader Styles */
+.loadingContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 120px 40px 80px;
+  min-height: 80vh;
+}
+
+.skeleton {
+  background: linear-gradient(90deg, var(--bg-secondary) 25%, rgba(92, 64, 51, 0.05) 50%, var(--bg-secondary) 75%);
+  background-size: 200% 100%;
+  animation: skeletonShimmer 1.5s infinite linear;
+  border-radius: 4px;
+}
+
+@keyframes skeletonShimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.tagSkeleton {
+  width: 160px;
+  height: 20px;
+  border-radius: 9999px;
+  margin: 0 auto 16px;
+}
+
+.titleSkeleton {
+  width: 320px;
+  height: 40px;
+  margin: 0 auto 16px;
+  border-radius: 8px;
+}
+
+.subtextSkeleton {
+  width: min(100%, 540px);
+  height: 18px;
+  margin: 0 auto;
+  border-radius: 6px;
+}
+
+.categoryGroup {
+  margin-top: 56px;
+}
+
+.categoryLabelSkeleton {
+  width: 110px;
+  height: 24px;
+  margin-bottom: 24px;
+  border-radius: 6px;
+}
+
+.cardSkeleton {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 14px;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.iconSkeleton {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  margin-bottom: 12px;
+}
+
+.categoryTagSkeleton {
+  width: 80px;
+  height: 16px;
+  border-radius: 4px;
+}
+
+.cardTitleSkeleton {
+  width: 140px;
+  height: 22px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+.cardDescSkeletonLine1 {
+  width: 100%;
+  height: 14px;
+  border-radius: 4px;
+}
+
+.cardDescSkeletonLine2 {
+  width: 75%;
+  height: 14px;
+  border-radius: 4px;
+}
+

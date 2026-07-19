@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { getApiBaseUrl } from '../../utils/apiClient';
+import styles from './page.module.css';
 
 // ── Option lists ──────────────────────────────────────────────────────────────
 const SERVICES = [
@@ -291,47 +292,17 @@ export default function MinimalBookACallPage() {
     }
   }
 
-  // ── CSS & Style definitions for minimal cream & white layout ─────────────────
-  const labelStyle: React.CSSProperties = {
-    fontSize: '13px',
-    fontWeight: 700,
-    color: '#334155', // slate-700
-    marginBottom: '8px',
-    display: 'block',
-  };
-
-  const inputStyle: React.CSSProperties = {
-    width: '100%',
-    padding: '12px 16px',
-    borderRadius: '10px',
-    border: '1.5px solid #e2e8f0', // soft gray border
-    backgroundColor: '#f8fafc', // very light gray/blue background
-    color: '#0f172a', // dark slate text
-    fontSize: '14px',
-    outline: 'none',
-    transition: 'all 0.2s',
-  };
-
-  const selectStyle: React.CSSProperties = {
-    ...inputStyle,
-    cursor: 'pointer',
-    appearance: 'none',
-    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")`,
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'right 16px center',
-    paddingRight: '40px',
-  };
-
+  // Submitted screen
   if (submitted) {
     return (
-      <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#fbfaf7', padding: '24px' }}>
+      <div className={styles.pageContainer} style={{ justifyContent: 'center' }}>
         <div style={{ textAlign: 'center', maxWidth: '480px', background: '#ffffff', padding: '40px', borderRadius: '20px', border: '1px solid #e1dfda', boxShadow: '0 10px 30px rgba(0,0,0,0.03)' }}>
           <div style={{ fontSize: '64px', marginBottom: '20px' }}>🚀</div>
           <h1 style={{ fontSize: '28px', fontWeight: 800, color: '#0f172a', marginBottom: '12px' }}>Thank You!</h1>
           <p style={{ color: '#475569', fontSize: '15px', lineHeight: 1.6, marginBottom: '24px' }}>
             We have received your project details. Our team will review your requirements and reach out to you within 24 hours.
           </p>
-          <Link href="/" style={{
+          <Link href="/home" style={{
             display: 'inline-block',
             padding: '12px 32px',
             borderRadius: '9999px',
@@ -350,79 +321,67 @@ export default function MinimalBookACallPage() {
   }
 
   return (
-    <div style={{ minHeight: '100vh', background: '#fbfaf7', padding: '60px 24px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    <div className={styles.pageContainer}>
       
       {/* Back button */}
-      <div style={{ width: '100%', maxWidth: '640px', marginBottom: '24px' }}>
-        <Link href="/" style={{ color: '#64748b', fontSize: '13px', fontWeight: 600, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+      <div className={styles.backWrapper}>
+        <Link href="/home" className={styles.backLink}>
           ← Back to Home
         </Link>
       </div>
 
       {/* Main card container */}
-      <div style={{
-        width: '100%',
-        maxWidth: '680px',
-        background: '#ffffff', // Crisp white card background
-        border: '1px solid #e8e6e0', // subtle cream-border
-        borderRadius: '24px',
-        padding: '48px 40px',
-        boxShadow: '0 20px 50px rgba(7, 30, 17, 0.03)', // subtle organic shadow
-      }}>
+      <div className={styles.card}>
         
         {/* Header Block */}
-        <span style={{ fontSize: '11px', fontWeight: 800, color: '#84cc16', letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '12px', display: 'block' }}>
+        <span className={styles.tag}>
           SEND A MESSAGE
         </span>
-        <h1 style={{ fontSize: '32px', fontWeight: 800, color: '#0f172a', margin: '0 0 8px 0', letterSpacing: '-0.5px' }}>
+        <h1 className={styles.title}>
           Tell us about your project
         </h1>
-        <p style={{ fontSize: '15px', color: '#64748b', margin: '0 0 36px 0', lineHeight: 1.5 }}>
+        <p className={styles.subtitle}>
           Fill in the details below and our team will reach out within <strong style={{ color: '#334155' }}>24 hours</strong>.
         </p>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} style={{ display: 'grid', gap: '20px' }}>
+        <form onSubmit={handleSubmit} className={styles.form}>
           
           {/* Full Name */}
-          <div>
-            <label style={labelStyle}>Full Name *</label>
+          <div className={styles.formGroup}>
+            <label className={styles.label}>Full Name *</label>
             <input
               required
               type="text"
               value={name}
               onChange={e => setName(e.target.value)}
               placeholder="e.g. John Smith"
-              style={inputStyle}
+              className={styles.input}
             />
           </div>
 
           {/* Email & Phone Row */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
-            <div>
-              <label style={labelStyle}>Email Address *</label>
+          <div className={styles.row}>
+            <div className={styles.formGroup}>
+              <label className={styles.label}>Email Address *</label>
               <input
                 required
                 type="email"
                 value={email}
                 onChange={e => setEmail(e.target.value)}
                 placeholder="you@example.com"
-                style={inputStyle}
+                className={styles.input}
               />
             </div>
-            <div>
-              <label style={labelStyle}>Phone Number *</label>
-              <div style={{ display: 'flex', gap: '8px' }}>
+            <div className={styles.formGroup}>
+              <label className={styles.label}>Phone Number *</label>
+              <div className={styles.phoneWrapper}>
                 {/* Code selector */}
-                <div style={{ position: 'relative', width: '105px', flexShrink: 0 }}>
+                <div className={styles.phoneCodeSelect}>
                   <select
                     value={phoneCode}
                     onChange={e => setPhoneCode(e.target.value)}
-                    style={{
-                      ...selectStyle,
-                      padding: '12px 28px 12px 12px',
-                      backgroundPosition: 'right 8px center',
-                    }}
+                    className={styles.select}
                   >
                     {COUNTRY_CODES.map(c => (
                       <option key={`${c.country}-${c.code}`} value={c.code} style={{ background: '#ffffff', color: '#0f172a' }}>
@@ -438,21 +397,21 @@ export default function MinimalBookACallPage() {
                   value={phoneNumber}
                   onChange={e => setPhoneNumber(e.target.value)}
                   placeholder="01712345678"
-                  style={inputStyle}
+                  className={styles.input}
                 />
               </div>
             </div>
           </div>
 
           {/* Service & Budget Row */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
-            <div>
-              <label style={labelStyle}>Service Required *</label>
+          <div className={styles.row}>
+            <div className={styles.formGroup}>
+              <label className={styles.label}>Service Required *</label>
               <select
                 required
                 value={service}
                 onChange={e => setService(e.target.value)}
-                style={selectStyle}
+                className={styles.select}
               >
                 <option value="" style={{ background: '#ffffff', color: '#0f172a' }}>Select a service</option>
                 {SERVICES.map(s => (
@@ -462,13 +421,13 @@ export default function MinimalBookACallPage() {
                 ))}
               </select>
             </div>
-            <div>
-              <label style={labelStyle}>Project Budget *</label>
+            <div className={styles.formGroup}>
+              <label className={styles.label}>Project Budget *</label>
               <select
                 required
                 value={budget}
                 onChange={e => setBudget(e.target.value)}
-                style={selectStyle}
+                className={styles.select}
               >
                 <option value="" style={{ background: '#ffffff', color: '#0f172a' }}>Select a range</option>
                 {BUDGETS.map(b => (
@@ -481,15 +440,16 @@ export default function MinimalBookACallPage() {
           </div>
 
           {/* Project Details */}
-          <div>
-            <label style={labelStyle}>Project Details *</label>
+          <div className={styles.formGroup}>
+            <label className={styles.label}>Project Details *</label>
             <textarea
               required
               value={details}
               onChange={e => setDetails(e.target.value)}
               rows={6}
               placeholder="Tell us about your project, goals, timeline, and any specific requirements..."
-              style={{ ...inputStyle, resize: 'vertical', lineHeight: 1.6 }}
+              className={styles.input}
+              style={{ resize: 'vertical', lineHeight: 1.6 }}
             />
           </div>
 
@@ -503,23 +463,7 @@ export default function MinimalBookACallPage() {
           <button
             type="submit"
             disabled={loading}
-            style={{
-              width: '100%',
-              padding: '14px',
-              borderRadius: '12px',
-              background: 'var(--primary)', // Espresso Brown button
-              color: '#ffffff',
-              fontSize: '15px',
-              fontWeight: 700,
-              border: 'none',
-              cursor: loading ? 'not-allowed' : 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '10px',
-              transition: 'opacity 0.2s',
-              marginTop: '10px',
-            }}
+            className={styles.submitBtn}
           >
             {loading ? (
               <span>Sending...</span>

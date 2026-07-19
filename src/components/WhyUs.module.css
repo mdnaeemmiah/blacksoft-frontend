@@ -1,5 +1,6 @@
 .section {
-  padding: 140px 0;
+  padding-top: 50px;
+  padding-bottom: 95px;
   position: relative;
   overflow: hidden;
 }
@@ -8,7 +9,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(167,139,250,0.06) 0%, transparent 70%);
+  background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(92, 64, 51, 0.03) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -33,9 +34,9 @@
   color: var(--accent-2);
   margin-bottom: 20px;
   padding: 4px 12px;
-  background: rgba(167,139,250,0.1);
+  background: rgba(92, 64, 51, 0.06);
   border-radius: 9999px;
-  border: 1px solid rgba(167,139,250,0.25);
+  border: 1px solid rgba(92, 64, 51, 0.15);
 }
 
 .title {
@@ -56,7 +57,7 @@
 /* ── Bento Grid ── */
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 16px;
 }
 
@@ -78,15 +79,15 @@
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(167,139,250,0.5), transparent);
+  background: linear-gradient(90deg, transparent, rgba(92, 64, 51, 0.4), transparent);
   opacity: 0;
   transition: opacity 0.4s ease;
 }
 
 .card:hover {
   transform: translateY(-6px);
-  border-color: rgba(167,139,250,0.2);
-  box-shadow: 0 24px 60px rgba(0,0,0,0.35), 0 0 40px rgba(167,139,250,0.06);
+  border-color: rgba(163, 130, 111, 0.2);
+  box-shadow: 0 24px 60px rgba(92, 64, 51, 0.03), 0 0 40px rgba(163, 130, 111, 0.04);
 }
 .card:hover::before { opacity: 1; }
 
@@ -98,7 +99,7 @@
   height: 150px;
   top: -50px;
   right: -50px;
-  background: radial-gradient(circle, rgba(167,139,250,0.12) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(163, 130, 111, 0.08) 0%, transparent 70%);
   pointer-events: none;
   transition: opacity 0.4s ease;
 }
@@ -107,8 +108,8 @@
   width: 52px;
   height: 52px;
   border-radius: 16px;
-  background: rgba(167,139,250,0.08);
-  border: 1px solid rgba(167,139,250,0.15);
+  background: rgba(92, 64, 51, 0.06);
+  border: 1px solid rgba(92, 64, 51, 0.15);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -118,7 +119,7 @@
 }
 .card:hover .icon {
   transform: scale(1.1) rotate(-5deg);
-  background: rgba(167,139,250,0.15);
+  background: rgba(92, 64, 51, 0.12);
 }
 
 .cardImage {
