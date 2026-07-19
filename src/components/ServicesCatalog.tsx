@@ -1,69 +1,106 @@
-'use client';
+"use client";
 
-import React from 'react';
-import styles from './ServicesCatalog.module.css';
-import { useAppWebsiteCards, useAiSolutionCards, type SolutionCard } from '../utils/solutionCardsStore';
-import { useInView } from '../utils/useAnimation';
+import React from "react";
+import styles from "./ServicesCatalog.module.css";
+import {
+  useAppWebsiteCards,
+  useAiSolutionCards,
+  type SolutionCard,
+} from "../utils/solutionCardsStore";
+import { useInView } from "../utils/useAnimation";
 
 const CATEGORIES_META: Record<string, { title: string; subtitle: string }> = {
-  'App': {
-    title: 'Application Development Showcase',
-    subtitle: 'High-performance mobile and desktop application systems custom-built for scaling operations.',
+  App: {
+    title: "Application Development Showcase",
+    subtitle:
+      "High-performance mobile and desktop application systems custom-built for scaling operations.",
   },
-  'Website': {
-    title: 'Website Development & Platforms',
-    subtitle: 'Premium, fast-loading marketing surfaces and digital products built on modern web stacks.',
+  Website: {
+    title: "Website Development & Platforms",
+    subtitle:
+      "Premium, fast-loading marketing surfaces and digital products built on modern web stacks.",
   },
-  'Figma design': {
-    title: 'UI/UX & Figma Design Systems',
-    subtitle: 'High-fidelity wireframes, premium components libraries, and complete interactive prototypes.',
+  "Figma design": {
+    title: "UI/UX & Figma Design Systems",
+    subtitle:
+      "High-fidelity wireframes, premium components libraries, and complete interactive prototypes.",
   },
-  'Backend development': {
-    title: 'Backend Systems & API Kernels',
-    subtitle: 'Scalable data architectures, high-concurrency cloud engines, and robust web server APIs.',
+  "Backend development": {
+    title: "Backend Systems & API Kernels",
+    subtitle:
+      "Scalable data architectures, high-concurrency cloud engines, and robust web server APIs.",
   },
-  'AI solution': {
-    title: 'AI-Powered Solutions & Agents',
-    subtitle: 'Goal-oriented agents, vector databases, and neural interfaces automating business workflows.',
+  "AI solution": {
+    title: "AI-Powered Solutions & Agents",
+    subtitle:
+      "Goal-oriented agents, vector databases, and neural interfaces automating business workflows.",
   },
-  'Other': {
-    title: 'Specialized Operations & Tech',
-    subtitle: 'Bespoke software integrations and experimental tools built for specialized domains.',
+  "Progressive Web App": {
+    title: "Progressive Web Applications (PWA)",
+    subtitle:
+      "Offline-capable, installable web systems with native-like mobile and desktop performance.",
+  },
+  Other: {
+    title: "Specialized Operations & Tech",
+    subtitle:
+      "Bespoke software integrations and experimental tools built for specialized domains.",
   },
 };
 
-const CATEGORIES_ORDER = ['App', 'Website', 'Figma design', 'Backend development', 'AI solution'];
+const CATEGORIES_ORDER = [
+  "App",
+  "Website",
+  "Figma design",
+  "Backend development",
+  "AI solution",
+  "Progressive Web App",
+];
 
-const SECTION_PLACEHOLDERS: Record<string, { title: string; description: string; icon: string; link: string }> = {
-  'App': {
-    title: 'Custom Mobile & Desktop Showcase',
-    description: 'Bespoke native applications engineered for optimal speed, fluidity, and seamless integration with your company operations.',
-    icon: '📱',
-    link: '/book-a-call',
+const SECTION_PLACEHOLDERS: Record<
+  string,
+  { title: string; description: string; icon: string; link: string }
+> = {
+  App: {
+    title: "Custom Mobile & Desktop Showcase",
+    description:
+      "Bespoke native applications engineered for optimal speed, fluidity, and seamless integration with your company operations.",
+    icon: "",
+    link: "/book-a-call",
   },
-  'Website': {
-    title: 'Premium Corporate Web Surfaces',
-    description: 'High-speed marketing layers and interactive web products designed for exceptional conversion rate performance.',
-    icon: '🌐',
-    link: '/book-a-call',
+  Website: {
+    title: "Premium Corporate Web Surfaces",
+    description:
+      "High-speed marketing layers and interactive web products designed for exceptional conversion rate performance.",
+    icon: "",
+    link: "/book-a-call",
   },
-  'Figma design': {
-    title: 'High-Fidelity Product UI/UX Systems',
-    description: 'Complete UI component libraries, prototypes, and dynamic layout systems built for direct frontend translation.',
-    icon: '🎨',
-    link: '/book-a-call',
+  "Figma design": {
+    title: "High-Fidelity Product UI/UX Systems",
+    description:
+      "Complete UI component libraries, prototypes, and dynamic layout systems built for direct frontend translation.",
+    icon: "",
+    link: "/book-a-call",
   },
-  'Backend development': {
-    title: 'Secure Cloud & API Architectures',
-    description: 'High-concurrency data layers, robust server controllers, and zero-trust authentication protocols tailored to scale.',
-    icon: '⚙️',
-    link: '/book-a-call',
+  "Backend development": {
+    title: "Secure Cloud & API Architectures",
+    description:
+      "High-concurrency data layers, robust server controllers, and zero-trust authentication protocols tailored to scale.",
+    icon: "",
+    link: "/book-a-call",
   },
-  'AI solution': {
-    title: 'Agentic Automations & LLM Engines',
-    description: 'Context-specific AI assistants, neural language layers, and workflow automation blocks that eliminate routine task loops.',
-    icon: '🧠',
-    link: '/book-a-call',
+  "AI solution": {
+    title: "Agentic Automations & LLM Engines",
+    description:
+      "Context-specific AI assistants, neural language layers, and workflow automation blocks that eliminate routine task loops.",
+    icon: "",
+    link: "/book-a-call",
+  },
+  "Progressive Web App": {
+    title: "Premium Progressive Web App (PWA)",
+    description:
+      "Installable, offline-first digital products and systems designed for seamless mobile and desktop execution.",
+    icon: "",
+    link: "/book-a-call",
   },
 };
 
@@ -75,14 +112,23 @@ export default function ServicesCatalog() {
     return [...appCards, ...aiCards]
       .filter((c) => c.enabled)
       .map((c) => {
-        let cat = c.category || 'App';
+        let cat = c.category || "App";
         const lower = cat.toLowerCase();
-        if (lower === 'app') cat = 'App';
-        else if (lower === 'website') cat = 'Website';
-        else if (lower.includes('figma') || lower.includes('design')) cat = 'Figma design';
-        else if (lower.includes('backend') || lower.includes('developement') || lower.includes('development')) cat = 'Backend development';
-        else if (lower.includes('ai') || lower.includes('solution')) cat = 'AI solution';
-        else cat = 'Other';
+        if (lower === "app") cat = "App";
+        else if (lower === "website") cat = "Website";
+        else if (lower.includes("figma") || lower.includes("design"))
+          cat = "Figma design";
+        else if (
+          lower.includes("backend") ||
+          lower.includes("developement") ||
+          lower.includes("development")
+        )
+          cat = "Backend development";
+        else if (lower.includes("pwa") || lower.includes("progressive"))
+          cat = "Progressive Web App";
+        else if (lower.includes("ai") || lower.includes("solution"))
+          cat = "AI solution";
+        else cat = "Other";
         return { ...c, category: cat };
       });
   }, [appCards, aiCards]);
@@ -100,7 +146,7 @@ export default function ServicesCatalog() {
   }, [allCards]);
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column' }}>
+    <div style={{ display: "flex", flexDirection: "column" }}>
       {CATEGORIES_ORDER.map((categoryKey) => {
         const categoryCards = groupedCards[categoryKey] || [];
         const meta = CATEGORIES_META[categoryKey] || {
@@ -133,17 +179,20 @@ function CategorySection({
   const [headerRef, headerVisible] = useInView(0.1, true);
 
   return (
-    <section className={styles.section} id={`section-${categoryKey.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}>
+    <section
+      className={styles.section}
+      id={`section-${categoryKey.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
+    >
       <div className={`container ${styles.container}`}>
-        
         {/* Section Header */}
-        <div 
-          ref={headerRef} 
+        <div
+          ref={headerRef}
           className={styles.headerBlock}
           style={{
             opacity: headerVisible ? 1 : 0,
-            transform: headerVisible ? 'none' : 'translateY(24px)',
-            transition: 'opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out)',
+            transform: headerVisible ? "none" : "translateY(24px)",
+            transition:
+              "opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out)",
           }}
         >
           <span className={styles.tag}>{categoryKey.toUpperCase()}</span>
@@ -153,21 +202,18 @@ function CategorySection({
 
         {/* Grid of Cards */}
         <div className={styles.grid}>
-          {categoryCards.length > 0 ? (
-            categoryCards.map((card, index) => (
-              <ServiceCardItem key={card.id} card={card} index={index} />
-            ))
-          ) : (
-            (() => {
-              const pl = SECTION_PLACEHOLDERS[categoryKey];
-              if (!pl) return null;
-              return (
-                <PlaceholderCardItem pl={pl} categoryKey={categoryKey} />
-              );
-            })()
-          )}
+          {categoryCards.length > 0
+            ? categoryCards.map((card, index) => (
+                <ServiceCardItem key={card.id} card={card} index={index} />
+              ))
+            : (() => {
+                const pl = SECTION_PLACEHOLDERS[categoryKey];
+                if (!pl) return null;
+                return (
+                  <PlaceholderCardItem pl={pl} categoryKey={categoryKey} />
+                );
+              })()}
         </div>
-
       </div>
     </section>
   );
@@ -183,20 +229,20 @@ function ServiceCardItem({ card, index }: { card: SolutionCard; index: number })
       className={styles.card} 
       style={{
         opacity: visible ? 1 : 0,
-        transform: visible ? 'none' : 'translateY(30px)',
+        transform: visible ? "none" : "translateY(30px)",
         transition: `opacity 0.7s ${index * 0.1}s var(--ease-out), transform 0.7s ${index * 0.1}s var(--ease-out)`,
       }}
     >
-      <div className={styles.cardTop}>
-        <span className={styles.index}>0{index + 1}</span>
-        <span className={styles.icon}>{card.icon}</span>
-      </div>
-      {card.imageSrc && (
-        <img 
-          src={card.imageSrc} 
-          alt={card.imageAlt || card.title} 
-          className={styles.cardImage} 
+      {card.imageSrc ? (
+        <img
+          src={card.imageSrc}
+          alt={card.imageAlt || card.title}
+          className={styles.cardImage}
         />
+      ) : (
+        <div className={styles.cardMediaFallback} aria-hidden="true">
+          <span className={styles.icon}>{card.icon}</span>
+        </div>
       )}
       <h3 className={styles.cardTitle}>{card.title}</h3>
       <p className={styles.cardDescription}>{card.description}</p>
@@ -223,28 +269,58 @@ function ServiceCardItem({ card, index }: { card: SolutionCard; index: number })
   );
 }
 
-function PlaceholderCardItem({ pl, categoryKey }: { pl: { title: string; description: string; icon: string; link: string }; categoryKey: string }) {
+function PlaceholderCardItem({
+  pl,
+  categoryKey,
+}: {
+  pl: { title: string; description: string; icon: string; link: string };
+  categoryKey: string;
+}) {
   const [ref, visible] = useInView<HTMLAnchorElement>(0.1, true);
   return (
-    <a 
+    <a
       ref={ref}
-      className={styles.card} 
-      href={pl.link} 
-      style={{ 
-        borderStyle: 'dashed', 
-        borderColor: 'rgba(92, 64, 51, 0.15)',
+      className={`${styles.card} ${styles.placeholderCard}`}
+      href={pl.link}
+      style={{
+        borderStyle: "dashed",
+        borderColor: "rgba(92, 64, 51, 0.15)",
         opacity: visible ? 1 : 0,
-        transform: visible ? 'none' : 'translateY(30px)',
-        transition: 'opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out)',
+        transform: visible ? "none" : "translateY(30px)",
+        transition:
+          "opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out)",
       }}
     >
       <div className={styles.cardTop}>
-        <span className={styles.index} style={{ opacity: 0.5 }}>REQUEST</span>
-        <span className={styles.icon} style={{ background: 'rgba(92, 64, 51, 0.05)' }}>{pl.icon}</span>
+        <span className={styles.index} style={{ opacity: 0.5 }}>
+          REQUEST
+        </span>
+        {pl.icon && (
+          <span
+            className={styles.icon}
+            style={{ background: "rgba(92, 64, 51, 0.05)" }}
+          >
+            {pl.icon}
+          </span>
+        )}
       </div>
-      <h3 className={styles.cardTitle} style={{ opacity: 0.9 }}>{pl.title}</h3>
-      <p className={styles.cardDescription} style={{ opacity: 0.7 }}>{pl.description}</p>
-      <span style={{ fontSize: '0.78rem', fontWeight: 800, color: 'var(--accent-1)', marginTop: 'auto', display: 'flex', alignItems: 'center', gap: '6px' }}>
+      <h3 className={styles.cardTitle} style={{ opacity: 0.9 }}>
+        {pl.title}
+      </h3>
+      <p className={styles.cardDescription} style={{ opacity: 0.7 }}>
+        {pl.description}
+      </p>
+      <span
+        style={{
+          fontSize: "0.78rem",
+          fontWeight: 800,
+          color: "var(--accent-1)",
+          marginTop: "auto",
+          display: "flex",
+          alignItems: "center",
+          gap: "6px",
+        }}
+      >
         Start your project <span>↗</span>
       </span>
       <div className={styles.footerLine} />

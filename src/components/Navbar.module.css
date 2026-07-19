@@ -9,13 +9,12 @@
   display: flex;
   align-items: center;
 
-  /* Start transparent */
-  background-color: transparent;
+  background: linear-gradient(135deg, #eeeae2 0%, #f8f6f1 52%, #e9e3da 100%);
   border-bottom: 1px solid transparent;
 }
 
 .scrolled {
-  background-color: rgba(251, 250, 247, 0.85);
+  background: linear-gradient(135deg, rgba(238, 234, 226, 0.92) 0%, rgba(248, 246, 241, 0.92) 52%, rgba(233, 227, 218, 0.92) 100%);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
@@ -165,6 +164,12 @@
 .mobileLink:hover { color: var(--text-white); }
 
 .mobileCta { margin-top: 20px; }
+
+@media (min-width: 1025px) {
+  .logo { font-size: 1.5rem; }
+  .navLink { font-size: 1.05rem; }
+  .navCta :global(.btn) { font-size: 1.05rem; }
+}
 
 @media (max-width: 1024px) {
   .navMenu, .navCta { display: none; }
