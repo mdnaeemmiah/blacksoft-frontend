@@ -145,9 +145,20 @@ export default function ServicesCatalog() {
     return groups;
   }, [allCards]);
 
+  const sortedCategories = React.useMemo(() => {
+    return [...CATEGORIES_ORDER].sort((a, b) => {
+      const countA = (groupedCards[a] || []).length;
+      const countB = (groupedCards[b] || []).length;
+      if (countA !== countB) {
+        return countB - countA;
+      }
+      return CATEGORIES_ORDER.indexOf(a) - CATEGORIES_ORDER.indexOf(b);
+    });
+  }, [groupedCards]);
+
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
-      {CATEGORIES_ORDER.map((categoryKey) => {
+      {sortedCategories.map((categoryKey) => {
         const categoryCards = groupedCards[categoryKey] || [];
         const meta = CATEGORIES_META[categoryKey] || {
           title: `${categoryKey} Development`,
