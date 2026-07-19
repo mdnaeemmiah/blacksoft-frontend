@@ -242,3 +242,64 @@
     padding: 32px 24px;
   }
 }
+
+.otherLinksContainer {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.otherLinkItem {
+  display: flex;
+  flex-direction: column;
+  padding: 14px 18px;
+  background: rgba(92, 64, 51, 0.03);
+  border: 1px solid rgba(92, 64, 51, 0.08);
+  border-radius: 14px;
+  transition: all 0.3s var(--ease-out);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.otherLinkItem:hover {
+  background: rgba(92, 64, 51, 0.08);
+  border-color: rgba(92, 64, 51, 0.25);
+  transform: translateX(4px);
+}
+
+.otherLinkTitle {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: color 0.3s ease;
+}
+
+.otherLinkDesc {
+  font-size: 0.78rem;
+  color: var(--text-subtle);
+  line-height: 1.4;
+  margin-top: 4px;
+  transition: color 0.3s ease;
+}
+
+.primaryLink {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 24px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--accent-1);
+  text-decoration: none;
+  transition: transform 0.3s var(--ease-out);
+  cursor: pointer;
+}
+
+.primaryLink:hover {
+  transform: translateX(4px);
+}

@@ -204,21 +204,14 @@ function CategorySection({
   );
 }
 
-function ServiceCardItem({
-  card,
-  index,
-}: {
-  card: SolutionCard;
-  index: number;
-}) {
+function ServiceCardItem({ card, index }: { card: SolutionCard; index: number }) {
   const [ref, visible] = useInView<HTMLDivElement>(0.1, true);
-  const [descriptionExpanded, setDescriptionExpanded] = React.useState(false);
-  const cardLink = card.link || "#solutions";
+  const hasOtherLinks = card.otherLinks && card.otherLinks.length > 0;
 
   return (
-    <div
+    <div 
       ref={ref}
-      className={styles.card}
+      className={styles.card} 
       style={{
         opacity: visible ? 1 : 0,
         transform: visible ? "none" : "translateY(30px)",
@@ -236,34 +229,27 @@ function ServiceCardItem({
           <span className={styles.icon}>{card.icon}</span>
         </div>
       )}
-      <div className={styles.cardContent}>
-        <h3 className={styles.cardTitle}>{card.title}</h3>
-        <p
-          className={`${styles.cardDescription} ${descriptionExpanded ? styles.descriptionExpanded : ""}`}
-        >
-          {card.description}
-        </p>
-        <button
-          type="button"
-          className={styles.seeMoreButton}
-          onClick={() => setDescriptionExpanded((expanded) => !expanded)}
-          aria-expanded={descriptionExpanded}
-        >
-          {descriptionExpanded ? "See less" : "See more..."}
-        </button>
-        <a
-          href={cardLink}
-          className={styles.liveLink}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <span>View live</span>
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M14 5h5v5M19 5l-9 9" />
-            <path d="M19 14v5H5V5h5" />
-          </svg>
-        </a>
-      </div>
+      <h3 className={styles.cardTitle}>{card.title}</h3>
+      <p className={styles.cardDescription}>{card.description}</p>
+
+      {hasOtherLinks ? (
+        <div className={styles.otherLinksContainer}>
+          {card.otherLinks?.map((ol, i) => (
+            <a key={i} href={ol.url} className={styles.otherLinkItem} target="_blank" rel="noopener noreferrer">
+              <span className={styles.otherLinkTitle}>{ol.title} ↗</span>
+              {ol.description && <span className={styles.otherLinkDesc}>{ol.description}</span>}
+            </a>
+          ))}
+        </div>
+      ) : (
+        card.link && card.link !== '#solutions' && (
+          <a href={card.link} className={styles.primaryLink} target="_blank" rel="noopener noreferrer">
+            Explore Project ↗
+          </a>
+        )
+      )}
+
+      <div className={styles.footerLine} />
     </div>
   );
 }
