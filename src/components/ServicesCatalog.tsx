@@ -174,12 +174,13 @@ function CategorySection({
 }
 
 function ServiceCardItem({ card, index }: { card: SolutionCard; index: number }) {
-  const [ref, visible] = useInView<HTMLAnchorElement>(0.1, true);
+  const [ref, visible] = useInView<HTMLDivElement>(0.1, true);
+  const hasOtherLinks = card.otherLinks && card.otherLinks.length > 0;
+
   return (
-    <a 
+    <div 
       ref={ref}
       className={styles.card} 
-      href={card.link || '#solutions'}
       style={{
         opacity: visible ? 1 : 0,
         transform: visible ? 'none' : 'translateY(30px)',
@@ -199,8 +200,26 @@ function ServiceCardItem({ card, index }: { card: SolutionCard; index: number })
       )}
       <h3 className={styles.cardTitle}>{card.title}</h3>
       <p className={styles.cardDescription}>{card.description}</p>
+
+      {hasOtherLinks ? (
+        <div className={styles.otherLinksContainer}>
+          {card.otherLinks?.map((ol, i) => (
+            <a key={i} href={ol.url} className={styles.otherLinkItem} target="_blank" rel="noopener noreferrer">
+              <span className={styles.otherLinkTitle}>{ol.title} ↗</span>
+              {ol.description && <span className={styles.otherLinkDesc}>{ol.description}</span>}
+            </a>
+          ))}
+        </div>
+      ) : (
+        card.link && card.link !== '#solutions' && (
+          <a href={card.link} className={styles.primaryLink} target="_blank" rel="noopener noreferrer">
+            Explore Project ↗
+          </a>
+        )
+      )}
+
       <div className={styles.footerLine} />
-    </a>
+    </div>
   );
 }
 
