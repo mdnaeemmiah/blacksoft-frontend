@@ -36,14 +36,22 @@ export default function Footer() {
         <div className={styles.brandCol}>
           <Link href="/home" className={styles.logo}>
             <svg viewBox="0 0 32 32" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '8px', flexShrink: 0 }}>
-              <rect x="2" y="2" width="6" height="17" rx="3" fill="currentColor" />
-              <rect x="2" y="23" width="6" height="7" rx="3" fill="currentColor" />
-              <path d="M5 25 L12 18" stroke="currentColor" strokeWidth="4.5" strokeLinecap="round" />
-              <circle cx="14" cy="16" r="4.5" fill="currentColor" />
-              <path d="M11 5 h11 c2.76 0 5 2.24 5 5 v0 c0 2.76 -2.24 5 -5 5 h-4" stroke="currentColor" strokeWidth="5.5" strokeLinecap="round" strokeLinejoin="round" />
-              <path d="M11 27 h11 c2.76 0 5 -2.24 5 -5 v0 c0 -2.76 -2.24 -5 -5 -5 h-4" stroke="currentColor" strokeWidth="5.5" strokeLinecap="round" strokeLinejoin="round" />
+              <defs>
+                <linearGradient id="namisoftGradFooter" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#a855f7" />
+                  <stop offset="50%" stopColor="#3b82f6" />
+                  <stop offset="100%" stopColor="#06b6d4" />
+                </linearGradient>
+              </defs>
+              <path 
+                d="M16 16C18 13 21 10 24 10C28 10 30 13 30 16C30 19 28 22 24 22C21 22 18 19 16 16C14 13 11 10 8 10C4 10 2 13 2 16C2 19 4 22 8 22C11 22 14 19 16 16Z" 
+                stroke="url(#namisoftGradFooter)" 
+                strokeWidth="4" 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+              />
             </svg>
-            Blacksoft
+            Namisoft
           </Link>
           <p className={styles.description}>
             {footerDesc}

@@ -5,7 +5,7 @@ import { getApiBaseUrl } from '../utils/apiClient';
 
 export function openCallModal() {
   if (typeof window !== 'undefined') {
-    window.dispatchEvent(new Event('blacksoft_open_call'));
+    window.dispatchEvent(new Event('Namisoft_open_call'));
   }
 }
 
@@ -68,8 +68,8 @@ export default function CallModal() {
 
   React.useEffect(() => {
     const onOpen = () => setOpen(true);
-    window.addEventListener('blacksoft_open_call', onOpen);
-    return () => window.removeEventListener('blacksoft_open_call', onOpen);
+    window.addEventListener('Namisoft_open_call', onOpen);
+    return () => window.removeEventListener('Namisoft_open_call', onOpen);
   }, []);
 
   function close() {

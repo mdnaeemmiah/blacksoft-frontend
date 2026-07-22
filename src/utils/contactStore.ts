@@ -10,7 +10,7 @@ export interface ContactInfoSettings {
   privacyPolicy: string;
 }
 
-const EVENT_NAME = 'blacksoft_contact_info_updated';
+const EVENT_NAME = 'Namisoft_contact_info_updated';
 const API_PATH = '/services/contact-info';
 
 const EMPTY: ContactInfoSettings = {

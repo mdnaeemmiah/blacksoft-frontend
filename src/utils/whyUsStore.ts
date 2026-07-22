@@ -13,7 +13,7 @@ export type WhyUsCard = {
   enabled: boolean;
 };
 
-const STORE_EVENT = 'blacksoft_why_us_cards_updated';
+const STORE_EVENT = 'Namisoft_why_us_cards_updated';
 const API_PATH = '/why-us';
 
 const EMPTY_WHY_US_CARDS: WhyUsCard[] = [];
@@ -114,7 +114,7 @@ export function useWhyUsCards(): [WhyUsCard[], boolean] {
 }
 
 export async function addWhyUsCard(card: Omit<WhyUsCard, 'id' | 'enabled'>): Promise<WhyUsCard> {
-  const token = typeof window !== 'undefined' ? localStorage.getItem('blacksoft_auth_token') : null;
+  const token = typeof window !== 'undefined' ? localStorage.getItem('Namisoft_auth_token') : null;
   const newCard = await apiRequest<WhyUsCard>(API_PATH, {
     method: 'POST',
     headers: token ? { Authorization: `Bearer ${token}` } : {},
@@ -130,7 +130,7 @@ export async function addWhyUsCard(card: Omit<WhyUsCard, 'id' | 'enabled'>): Pro
 }
 
 export async function updateWhyUsCard(id: string, card: Partial<Omit<WhyUsCard, 'id'>>): Promise<WhyUsCard> {
-  const token = typeof window !== 'undefined' ? localStorage.getItem('blacksoft_auth_token') : null;
+  const token = typeof window !== 'undefined' ? localStorage.getItem('Namisoft_auth_token') : null;
   const updated = await apiRequest<WhyUsCard>(`${API_PATH}/${id}`, {
     method: 'PUT',
     headers: token ? { Authorization: `Bearer ${token}` } : {},
@@ -143,7 +143,7 @@ export async function updateWhyUsCard(id: string, card: Partial<Omit<WhyUsCard, 
 }
 
 export async function deleteWhyUsCard(id: string): Promise<void> {
-  const token = typeof window !== 'undefined' ? localStorage.getItem('blacksoft_auth_token') : null;
+  const token = typeof window !== 'undefined' ? localStorage.getItem('Namisoft_auth_token') : null;
   await apiRequest<void>(`${API_PATH}/${id}`, {
     method: 'DELETE',
     headers: token ? { Authorization: `Bearer ${token}` } : {},

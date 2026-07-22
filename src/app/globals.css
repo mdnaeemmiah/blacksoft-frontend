@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   BLACKSOFT — Premium Dark Design System
+   NAMISOFT — Premium Dark Design System
    Apple-quality animations & typography
    Editorial Serif Theme
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 :root {
-  /* Color Palette - Blacksoft Cream & White Mode Design System with Brown Accents */
+  /* Color Palette - Namisoft Cream & White Mode Design System with Brown Accents */
   --primary: #5c4033;       /* Espresso Brown */
   --primary-container: #7a5843; /* Bronze Brown */
   --primary-hover: #3d281e; /* Deep Coffee */

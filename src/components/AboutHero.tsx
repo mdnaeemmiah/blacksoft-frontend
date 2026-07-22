@@ -75,7 +75,7 @@ export default function AboutHero() {
           <div className={styles.imageCard}>
             <Image
               src="/images/about_hero_data.png"
-              alt="Blacksoft Neural Data Processing"
+              alt="Namisoft Neural Data Processing"
               width={540}
               height={540}
               priority

@@ -15,7 +15,7 @@ export interface StatsSettings {
   stat3Description: string;
 }
 
-const EVENT_NAME = 'blacksoft_stats_settings_updated';
+const EVENT_NAME = 'Namisoft_stats_settings_updated';
 const SETTINGS_API_PATH = '/services/stats/settings';
 
 const DEFAULT_SETTINGS: StatsSettings = {

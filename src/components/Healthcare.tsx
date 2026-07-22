@@ -51,7 +51,7 @@ export default function Healthcare() {
           <div className={styles.imageCard}>
             <Image
               src="/images/solutions_healthcare.png"
-              alt="Blacksoft Healthcare AI Diagnostics"
+              alt="Namisoft Healthcare AI Diagnostics"
               width={520}
               height={520}
               className={styles.image}
