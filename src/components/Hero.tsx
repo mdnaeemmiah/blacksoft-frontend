@@ -216,7 +216,7 @@ export default function Hero() {
             <div ref={cardRef} className={styles.workspaceCard} style={cardTiltStyle}>
               {/* Top bar */}
               <div className={styles.workspaceTop}>
-                <span style={{ fontWeight: 700, color: 'var(--text-main)', fontSize: '0.75rem', fontFamily: 'var(--font-body)' }}>Blacksoft Console</span>
+                <span style={{ fontWeight: 700, color: 'var(--text-main)', fontSize: '0.75rem', fontFamily: 'var(--font-body)' }}>Namisoft Console</span>
                 <div className={styles.headerActions}>
                   <div className={styles.headerActionBtn}>
                     <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">

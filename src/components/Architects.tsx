@@ -30,7 +30,7 @@ export default function Architects() {
           }}
         >
           <span className={styles.eyebrow}>OUR CREATIVE DIRECTORS & ARCHITECTS</span>
-          <h2 className={styles.title}>{settings.title || 'The Architects of Blacksoft'}</h2>
+          <h2 className={styles.title}>{settings.title || 'The Architects of Namisoft'}</h2>
           <p className={styles.subtext}>
             {settings.subtitle || 'A group of engineers, designers, and system builders dedicated to crafting next-generation digital products.'}
           </p>
