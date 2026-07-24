@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import styles from './Footer.module.css';
@@ -34,24 +35,14 @@ export default function Footer() {
         
         {/* Brand Description Column */}
         <div className={styles.brandCol}>
-          <Link href="/home" className={styles.logo}>
-            <svg viewBox="0 0 32 32" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '8px', flexShrink: 0 }}>
-              <defs>
-                <linearGradient id="namisoftGradFooter" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#a855f7" />
-                  <stop offset="50%" stopColor="#3b82f6" />
-                  <stop offset="100%" stopColor="#06b6d4" />
-                </linearGradient>
-              </defs>
-              <path 
-                d="M16 16C18 13 21 10 24 10C28 10 30 13 30 16C30 19 28 22 24 22C21 22 18 19 16 16C14 13 11 10 8 10C4 10 2 13 2 16C2 19 4 22 8 22C11 22 14 19 16 16Z" 
-                stroke="url(#namisoftGradFooter)" 
-                strokeWidth="4" 
-                strokeLinecap="round" 
-                strokeLinejoin="round" 
-              />
-            </svg>
-            Namisoft
+          <Link href="/home" className={styles.logo} aria-label="Namisoft home">
+            <Image
+              className={styles.logoImage}
+              src="/images/namisoft-logo-transparent.png"
+              alt="Namisoft"
+              width={132}
+              height={64}
+            />
           </Link>
           <p className={styles.description}>
             {footerDesc}

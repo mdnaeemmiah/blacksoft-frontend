@@ -6,6 +6,12 @@ export const metadata: Metadata = {
   description: "Namisoft is a next-generation AI software development agency for startups and enterprises. We design, build, and scale custom AI agents, LLM specializations, and high-performance workflow automation.",
   keywords: ["AI Development", "Custom AI Agents", "LLM Specialization", "Workflow Automation", "Enterprise Web", "Namisoft"],
   authors: [{ name: "Namisoft Team" }],
+  applicationName: "Namisoft",
+  icons: {
+    icon: [{ url: "/images/namisoft-favicon.png?v=2", type: "image/png", sizes: "512x512" }],
+    shortcut: ["/images/namisoft-favicon.png?v=2"],
+    apple: [{ url: "/images/namisoft-favicon.png?v=2", sizes: "512x512" }],
+  },
   openGraph: {
     title: "Namisoft - Transforming Ideas Into Intelligent Digital Products",
     description: "Award-winning AI software development for startups and enterprise. We design, develop, and deploy intelligent systems that scale at speed.",

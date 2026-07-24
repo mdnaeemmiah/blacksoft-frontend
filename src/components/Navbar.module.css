@@ -29,26 +29,23 @@
 }
 
 .logo {
-  font-family: var(--font-heading);
-  font-size: 1.2rem;
-  font-weight: 800;
-  color: var(--text-white);
-  letter-spacing: -0.04em;
   display: inline-flex;
   align-items: center;
-  gap: 9px;
   animation: fadeInDown 0.6s var(--ease-out) both;
 }
 
-.logoIcon {
-  color: var(--accent-1);
+.logoImage {
+  width: 132px;
+  height: 64px;
+  object-fit: cover;
+  object-position: center;
   flex-shrink: 0;
   transition: transform 0.4s var(--ease-spring), filter 0.4s ease;
-  filter: drop-shadow(0 0 8px rgba(79,142,247,0.5));
+  filter: grayscale(1) brightness(0) contrast(1.15);
 }
-.logo:hover .logoIcon {
+.logo:hover .logoImage {
   transform: scale(1.15) rotate(-6deg);
-  filter: drop-shadow(0 0 16px rgba(79,142,247,0.8));
+  filter: grayscale(1) brightness(0) contrast(1.2);
 }
 
 .navMenu {
@@ -166,7 +163,7 @@
 .mobileCta { margin-top: 20px; }
 
 @media (min-width: 1025px) {
-  .logo { font-size: 1.5rem; }
+  .logoImage { width: 144px; height: 68px; }
   .navLink { font-size: 1.05rem; }
   .navCta :global(.btn) { font-size: 1.05rem; }
 }
